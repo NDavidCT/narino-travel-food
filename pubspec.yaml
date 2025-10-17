@@ -1,0 +1,37 @@
+name: ipi_deli_tour
+descrname: ipi_deli_tour
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+2
+
+environment:
+  sdk: '>=3.2.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Dependencias de Firebase actualizadas
+  firebase_core: ^2.27.1
+  firebase_auth: ^4.17.9
+  google_sign_in: ^6.2.1
+  cloud_firestore: ^4.16.8
+  
+  # Paquete de iconos (Necesario para FontAwesomeIcons)
+  font_awesome_flutter: ^10.7.0
+  
+  # Otros paquetes comunes
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Declaración de assets para incluir la carpeta de imágenes
+  assets:
+    - assets/images/
