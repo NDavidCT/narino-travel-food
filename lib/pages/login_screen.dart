@@ -44,46 +44,24 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  // LÓGICA DE LOGIN CON GOOGLE
+  // LÓGICA DE LOGIN CON GOOGLE (OPTIMIZADA)
   Future<void> _signInWithGoogle() async {
     setState(() {
       _errorMessage = null;
     });
     try {
-      // Usar signInSilently en web para evitar popups cuando sea posible.
       GoogleSignInAccount? googleUser;
-      if (kIsWeb) {
-        googleUser = await googleSignIn.signInSilently();
-        if (googleUser == null) {
-          // Pide confirmación antes de abrir popup
-          final bool? openPopup = await showDialog<bool>(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: const Text('Iniciar sesión con Google'),
-              content: const Text(
-                  'Se abrirá una ventana emergente para iniciar sesión. Asegúrate de permitir ventanas emergentes y cookies para localhost. ¿Deseas continuar?'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  child: const Text('Cancelar'),
-                ),
-                ElevatedButton(
-                  onPressed: () => Navigator.of(context).pop(true),
-                  child: const Text('Continuar'),
-                ),
-              ],
-            ),
-          );
 
-          if (openPopup == true) {
-            googleUser = await googleSignIn.signIn();
-          } else {
-            // Usuario canceló
-            return;
-          }
+      if (kIsWeb) {
+        // 1. Intento silencioso primero (sin popup)
+        googleUser = await googleSignIn.signInSilently();
+
+        // 2. Si no hay usuario silencioso, ir directo al popup (sin confirmación)
+        if (googleUser == null) {
+          googleUser = await googleSignIn.signIn();
         }
       } else {
-        // No web: flujo normal
+        // Móvil/Desktop: flujo normal
         googleUser = await googleSignIn.signIn();
       }
 
@@ -153,22 +131,31 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   // TÍTULO DE LA APLICACIÓN
                   const Text(
-                    'Ipi Deli Tour',
+                    'Nariño Travel & Food',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: Colors.white, // Letras blancas
-                      letterSpacing: 1.5,
+                      letterSpacing: 1.2,
                     ),
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Iniciar Sesión',
+                    'Descubre destinos, restaurantes y experiencias únicas',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.white70, // Letras blancas sutiles
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    'Sign In',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white60,
                     ),
                   ),
                   const SizedBox(height: 40),

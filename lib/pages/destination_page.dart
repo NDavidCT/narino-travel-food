@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ipi_deli_tour/models/activity.dart';
-import 'package:ipi_deli_tour/models/destination.dart';
+import 'package:narino_travel_food/models/activity.dart';
+import 'package:narino_travel_food/models/destination.dart';
+import 'package:narino_travel_food/services/google_maps_service.dart';
 
 class DestinationPage extends StatefulWidget {
   final Destination destination;
@@ -244,6 +245,57 @@ class _DestinationPageState extends State<DestinationPage> {
                       ),
                     ),
                   ),
+                  // ICONO DE GOOGLE MAPS - Esquina superior derecha
+                  Positioned(
+                    top: 60.0,
+                    right: 20.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25.0),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0.0, 2.0),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(25.0),
+                          onTap: () async {
+                            // Abrir Google Maps con las coordenadas del destino
+                            await GoogleMapsService.openDestinationInGoogleMaps(
+                                widget.destination.city ?? '');
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                Icon(
+                                  Icons.map,
+                                  color: Colors.green,
+                                  size: 24.0,
+                                ),
+                                SizedBox(width: 6.0),
+                                Text(
+                                  'Maps',
+                                  style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -274,6 +326,84 @@ class _DestinationPageState extends State<DestinationPage> {
                           fontSize: 16.0, color: Colors.grey[700], height: 1.4),
                     ),
                   ),
+
+                // BOTONES DE MAPA Y NAVEGACIÓN
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 20.0),
+                  child: Row(
+                    children: [
+                      // BOTÓN VER EN MAPA
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () async {
+                            try {
+                              await GoogleMapsService
+                                  .openDestinationInGoogleMaps(
+                                      widget.destination.city ?? '');
+                            } catch (e) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('No se pudo abrir el mapa: $e'),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
+                          },
+                          icon: Icon(Icons.map_outlined, size: 20),
+                          label: Text('Ver en Mapa'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green[50],
+                            foregroundColor: Colors.green[700],
+                            elevation: 2,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12.0, horizontal: 16.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              side: BorderSide(
+                                  color: Colors.green[300]!, width: 1),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(width: 12.0),
+
+                      // BOTÓN NAVEGAR
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () async {
+                            try {
+                              await GoogleMapsService
+                                  .openNavigationToDestination(
+                                      widget.destination.city ?? '');
+                            } catch (e) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'No se pudo abrir la navegación: $e'),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
+                          },
+                          icon: Icon(Icons.navigation, size: 20),
+                          label: Text('Navegar'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green[600],
+                            foregroundColor: Colors.white,
+                            elevation: 3,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12.0, horizontal: 16.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
 
                 // TÍTULO DE HISTORIA E INFORMACIÓN RELEVANTE
                 if (widget.destination.historyAndInfo != null)

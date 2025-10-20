@@ -5,22 +5,32 @@ import '../services/google_sign_in_service.dart';
 import 'home_page.dart';
 import 'search_page.dart';
 import 'favorites_page.dart';
+import 'map_page.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final int initialIndex;
+
+  const MainScreen({super.key, this.initialIndex = 1});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 1; // Inicia en la pestaña "Inicio"
+  late int _selectedIndex; // Quitamos la inicialización aquí
 
   final List<Widget> _pages = [
     const SearchPage(),
     const HomePage(),
     const FavoritesPage(),
+    const MapPage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex; // Usamos el valor del widget
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -28,10 +38,10 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  // FUNCIÓN PARA CERRAR SESIÓN (Mejorada)
+  // FUNCIÓN PARA CERRAR SESIÓN (Restaurada)
   void _signOut() async {
     try {
-      // 1. Cerrar la sesión de Google en el dispositivo (esto pide seleccionar cuenta de nuevo)
+      // 1. Cerrar la sesión de Google en el dispositivo
       await googleSignIn.signOut();
 
       // 2. Cerrar la sesión de Firebase
@@ -41,9 +51,8 @@ class _MainScreenState extends State<MainScreen> {
     } catch (e) {
       print('Error al cerrar sesión: $e');
     }
-  }
+  } // WIDGET AUXILIAR PARA EL TÍTULO DEL APP BAR CON INFORMACIÓN DEL USUARIO
 
-  // WIDGET AUXILIAR PARA EL TÍTULO DEL APP BAR CON INFORMACIÓN DEL USUARIO
   Widget _buildProfileTitle() {
     // Obtiene el usuario de Firebase actualmente logueado
     final user = FirebaseAuth.instance.currentUser;
@@ -114,6 +123,7 @@ class _MainScreenState extends State<MainScreen> {
 
       // BARRA DE NAVEGACIÓN INFERIOR (BottomNavigationBar)
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
@@ -126,6 +136,10 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: 'Favoritos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Mapa',
           ),
         ],
         currentIndex: _selectedIndex,

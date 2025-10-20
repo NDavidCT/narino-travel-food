@@ -1,4 +1,4 @@
-import 'package:ipi_deli_tour/models/food.dart';
+import 'package:narino_travel_food/models/food.dart';
 
 class Restaurant {
   String? imageUrl;

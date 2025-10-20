@@ -7,115 +7,36 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:187733989912:android:2f6ad274d613320b9d816d",
+        "mobilesdk_app_id": "1:187733989912:android:0df1e855ad0c1b109d816d",
         "android_client_info": {
-          "package_name": "com.example.TouristAssist"
+          "package_name": "com.ipideli.tour"
         }
       },
       "oauth_client": [
         {
-          "client_id": "187733989912-4tl32be27591kovqe935jir5kpmrduiv.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAiMW_u1JUG5KXk_xqtgtyiDV6Kq4wBiHE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "187733989912-4tl32be27591kovqe935jir5kpmrduiv.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "187733989912-ffl50i1hf6mhu8ntj9sc7nuu8a3vlags.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.ipiDeliTour"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:187733989912:android:d880392f62ad8ca99d816d",
-        "android_client_info": {
-          "package_name": "com.example.ipi_deli_tour"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "187733989912-2kgnptfhafudt73op8ksulk56mmsna1k.apps.googleusercontent.com",
+          "client_id": "187733989912-0v7d3elouopnl0bm5o5efo8n6f1n6qpk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ipi_deli_tour",
-            "certificate_hash": "55777f12c178d767768993f354fa321f80f94881"
+            "package_name": "com.ipideli.tour",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
-          "client_id": "187733989912-4tl32be27591kovqe935jir5kpmrduiv.apps.googleusercontent.com",
+          "client_id": "187733989912-nlkddbnftn8soqv8dv6vbknivkig07ih.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAiMW_u1JUG5KXk_xqtgtyiDV6Kq4wBiHE"
+          "current_key": "AIzaSyCWgMht3SqwyWGF7mSZbwymTk8PsEKyjR0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "187733989912-4tl32be27591kovqe935jir5kpmrduiv.apps.googleusercontent.com",
+              "client_id": "187733989912-nlkddbnftn8soqv8dv6vbknivkig07ih.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "187733989912-ffl50i1hf6mhu8ntj9sc7nuu8a3vlags.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.ipiDeliTour"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:187733989912:android:953834f032abd5aa9d816d",
-        "android_client_info": {
-          "package_name": "com.example.ipideli.tour"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "187733989912-4tl32be27591kovqe935jir5kpmrduiv.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAiMW_u1JUG5KXk_xqtgtyiDV6Kq4wBiHE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "187733989912-4tl32be27591kovqe935jir5kpmrduiv.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "187733989912-ffl50i1hf6mhu8ntj9sc7nuu8a3vlags.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.ipiDeliTour"
-              }
             }
           ]
         }

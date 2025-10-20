@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ipi_deli_tour/widgets/destination_carousel.dart';
-import 'package:ipi_deli_tour/widgets/restaurant_carousel.dart';
+import 'package:narino_travel_food/widgets/destination_carousel.dart';
+import 'package:narino_travel_food/widgets/restaurant_carousel.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

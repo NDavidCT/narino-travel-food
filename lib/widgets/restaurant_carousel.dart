@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ipi_deli_tour/models/restaurant.dart';
-import 'package:ipi_deli_tour/pages/restaurant_page.dart';
+import 'package:narino_travel_food/models/restaurant.dart';
+import 'package:narino_travel_food/pages/restaurant_page.dart';
 
 class RestaurantCarousel extends StatelessWidget {
   const RestaurantCarousel({super.key});

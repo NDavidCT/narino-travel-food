@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ipi_deli_tour/models/restaurant.dart';
+import 'package:narino_travel_food/models/restaurant.dart';
 
 class RestaurantPage extends StatelessWidget {
   final Restaurant? restaurant;

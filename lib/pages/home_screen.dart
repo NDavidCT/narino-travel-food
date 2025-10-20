@@ -25,8 +25,8 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ipi Deli Tour - Inicio'),
-        backgroundColor: Colors.red,
+        title: const Text('Nariño Travel & Food'),
+        backgroundColor: Colors.green.shade700,
         foregroundColor: Colors.white,
         automaticallyImplyLeading: false, // Deshabilita el botón de regreso
         actions: [
@@ -50,8 +50,14 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const Text(
-                '¡Bienvenido a Ipi Deli Tour!',
+                '¡Welcome to Nariño Travel & Food!',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Discover the best destinations, restaurants and unique experiences in Nariño',
+                style: TextStyle(fontSize: 16, color: Colors.grey),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),

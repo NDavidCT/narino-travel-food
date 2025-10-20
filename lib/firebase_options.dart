@@ -47,20 +47,19 @@ class DefaultFirebaseOptions {
     projectId: 'apptouripi',
     authDomain: 'apptouripi.firebaseapp.com',
     storageBucket: 'apptouripi.firebasestorage.app',
-    measurementId: 'G-QP5QYDJZ2F',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAiMW_u1JUG5KXk_xqtgtyiDV6Kq4wBiHE',
-    appId: '1:187733989912:android:d880392f62ad8ca99d816d',
+    apiKey: 'AIzaSyDHfO7kZsj1RjkTKOvz3uyGhQBnBZHhfGo',
+    appId: '1:187733989912:android:2f6ad274d613320b9d816d',
     messagingSenderId: '187733989912',
     projectId: 'apptouripi',
     storageBucket: 'apptouripi.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDQZF1u67G4YSivqyVBH-gFIc5vumYV6G8',
-    appId: '1:187733989912:ios:a63a5fbba09e725f9d816d',
+    apiKey: 'AIzaSyBo6G2WqQ_SJD4dYFXnTjGDH9lA5HTjEfc',
+    appId: '1:187733989912:ios:a88e2df23e2c66c39d816d',
     messagingSenderId: '187733989912',
     projectId: 'apptouripi',
     storageBucket: 'apptouripi.firebasestorage.app',
@@ -68,8 +67,8 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDQZF1u67G4YSivqyVBH-gFIc5vumYV6G8',
-    appId: '1:187733989912:ios:a63a5fbba09e725f9d816d',
+    apiKey: 'AIzaSyBo6G2WqQ_SJD4dYFXnTjGDH9lA5HTjEfc',
+    appId: '1:187733989912:macos:a88e2df23e2c66c39d816d',
     messagingSenderId: '187733989912',
     projectId: 'apptouripi',
     storageBucket: 'apptouripi.firebasestorage.app',
@@ -78,11 +77,9 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'AIzaSyCWgMht3SqwyWGF7mSZbwymTk8PsEKyjR0',
-    appId: '1:187733989912:web:cd813c2151cafde69d816d',
+    appId: '1:187733989912:windows:d08b0c7ce79b1b039d816d',
     messagingSenderId: '187733989912',
     projectId: 'apptouripi',
-    authDomain: 'apptouripi.firebaseapp.com',
     storageBucket: 'apptouripi.firebasestorage.app',
-    measurementId: 'G-H13VD3N8LR',
   );
 }

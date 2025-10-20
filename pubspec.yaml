@@ -1,9 +1,8 @@
-name: ipi_deli_tour
-descrname: ipi_deli_tour
-description: "A new Flutter project."
+name: narino_travel_food
+description: "Discover the best destinations, restaurants and unique experiences in Nariño - Your complete travel and food guide"
 publish_to: 'none'
 
-version: 1.0.0+2
+version: 2.0.0+3
 
 environment:
   sdk: '>=3.2.6 <4.0.0'
@@ -12,14 +11,23 @@ dependencies:
   flutter:
     sdk: flutter
   
-  # Dependencias de Firebase actualizadas
+  # Dependencias de Firebase (versiones estables)
   firebase_core: ^2.27.1
   firebase_auth: ^4.17.9
   google_sign_in: ^6.2.1
-  cloud_firestore: ^4.16.8
+  cloud_firestore: ^4.15.10
   
   # Paquete de iconos (Necesario para FontAwesomeIcons)
   font_awesome_flutter: ^10.7.0
+  
+  # Mapas GRATUITOS - OpenStreetMap
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.1
+  location: ^5.0.0
+  geolocator: ^10.1.0
+  
+  # Para abrir URLs (Google Maps)
+  url_launcher: ^6.2.2
   
   # Otros paquetes comunes
   cupertino_icons: ^1.0.2
@@ -27,7 +35,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
