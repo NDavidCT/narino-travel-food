@@ -1,1 +1,39 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"apptouripi","appId":"1:187733989912:android:d880392f62ad8ca99d816d","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"apptouripi","configurations":{"android":"1:187733989912:android:d880392f62ad8ca99d816d","ios":"1:187733989912:ios:a63a5fbba09e725f9d816d","macos":"1:187733989912:ios:a63a5fbba09e725f9d816d","web":"1:187733989912:web:09be00285b53091d9d816d","windows":"1:187733989912:web:cd813c2151cafde69d816d"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "apptouripi",
+          "appId": "1:187733989912:android:d880392f62ad8ca99d816d",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "apptouripi",
+          "configurations": {
+            "android": "1:187733989912:android:d880392f62ad8ca99d816d",
+            "ios": "1:187733989912:ios:a63a5fbba09e725f9d816d",
+            "macos": "1:187733989912:ios:a63a5fbba09e725f9d816d",
+            "web": "1:187733989912:web:09be00285b53091d9d816d",
+            "windows": "1:187733989912:web:cd813c2151cafde69d816d"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
