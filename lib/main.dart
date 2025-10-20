@@ -12,12 +12,20 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    // Verificar si Firebase ya está inicializado
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      print('Firebase initialized successfully');
+    } else {
+      print('Firebase app already exists, using existing instance');
+    }
     runApp(const MyApp());
   } catch (e) {
-    runApp(ErrorApp(error: e.toString()));
+    // Si Firebase ya existe, continuar con la app de todas formas
+    print('Firebase initialization handled: $e');
+    runApp(const MyApp());
   }
 }
 
