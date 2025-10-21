@@ -4,7 +4,6 @@ import 'package:narino_travel_food/firebase_options.dart';
 
 // Importamos las páginas principales
 import 'package:narino_travel_food/pages/auth_page.dart';
-import 'package:narino_travel_food/pages/main_screen.dart';
 import 'package:narino_travel_food/pages/all_destinations_page.dart';
 import 'package:narino_travel_food/pages/map_page.dart';
 
