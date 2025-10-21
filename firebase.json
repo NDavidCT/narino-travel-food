@@ -1,1 +1,36 @@
-{}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "narinotravelfood-eff35",
+          "appId": "1:860020371265:android:4afd6724ee871c21357bc0",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "narinotravelfood-eff35",
+          "configurations": {
+            "android": "1:860020371265:android:4afd6724ee871c21357bc0",
+            "web": "1:860020371265:web:4fcfd9ba2aae7e81357bc0"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

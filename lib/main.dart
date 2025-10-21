@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:narino_travel_food/firebase_options.dart';
+import 'dart:html' as html;
 
 // Importamos las páginas principales
 import 'package:narino_travel_food/pages/auth_page.dart';
@@ -10,21 +11,51 @@ import 'package:narino_travel_food/pages/map_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Intentar inicializar Firebase con múltiples estrategias
+  bool firebaseInitialized = false;
+  
   try {
-    // Verificar si Firebase ya está inicializado
-    if (Firebase.apps.isEmpty) {
+    print('🔥 Estrategia 1: Verificando Firebase apps...');
+    
+    // Verificar de forma más segura si Firebase está disponible
+    final apps = Firebase.apps;
+    print('📱 Apps encontradas: ${apps.length}');
+    
+    if (apps.isEmpty) {
+      print('📱 Inicializando Firebase...');
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-      print('Firebase initialized successfully');
+      print('✅ Firebase inicializado correctamente');
     } else {
-      print('Firebase app already exists, using existing instance');
+      print('✅ Firebase ya estaba inicializado');
     }
-    runApp(const MyApp());
+    
+    firebaseInitialized = true;
+    
   } catch (e) {
-    // Si Firebase ya existe, continuar con la app de todas formas
-    print('Firebase initialization handled: $e');
+    print('❌ Estrategia 1 falló: $e');
+    
+    try {
+      print('� Estrategia 2: Inicialización directa...');
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      firebaseInitialized = true;
+      print('✅ Firebase inicializado en estrategia 2');
+    } catch (e2) {
+      print('❌ Estrategia 2 también falló: $e2');
+      firebaseInitialized = false;
+    }
+  }
+
+  // Ejecutar la app según el resultado
+  if (firebaseInitialized) {
+    print('🚀 Iniciando app CON Firebase...');
     runApp(const MyApp());
+  } else {
+    print('🔄 Iniciando app SIN Firebase...');
+    runApp(const MyAppWithoutFirebase());
   }
 }
 
@@ -37,11 +68,9 @@ class MyApp extends StatelessWidget {
       title: 'Nariño Travel & Food',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch:
-            Colors.green, // Verde para representar la naturaleza de Nariño
+        primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Inter',
-        // Optimizaciones de rendimiento
         useMaterial3: true,
         splashFactory: InkRipple.splashFactory,
       ),
@@ -50,87 +79,78 @@ class MyApp extends StatelessWidget {
         '/all-destinations': (context) => const AllDestinationsPage(),
         '/map': (context) => const MapPage(),
       },
-      // Restaurar la funcionalidad completa con AuthPage
+      // Usar AuthPage como página principal
       home: const AuthPage(),
     );
   }
 }
 
-// Widget de error en caso de que Firebase no se inicialice correctamente
-class ErrorApp extends StatelessWidget {
-  final String error;
-
-  const ErrorApp({Key? key, required this.error}) : super(key: key);
+// App de respaldo sin Firebase
+class MyAppWithoutFirebase extends StatelessWidget {
+  const MyAppWithoutFirebase({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Nariño Travel & Food - Sin Firebase',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        useMaterial3: true,
+      ),
       home: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.error_outline,
-                color: Colors.red,
-                size: 60,
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'Error de inicialización',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  error,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 14),
-                ),
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          title: const Text('Nariño Travel & Food'),
+          backgroundColor: Colors.orange,
         ),
-      ),
-    );
-  }
-}
-
-// Pantalla de prueba simple
-class TestScreen extends StatelessWidget {
-  const TestScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Nariño Travel & Food'),
-        backgroundColor: Colors.green,
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.check_circle,
-              color: Colors.green,
-              size: 80,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.warning, color: Colors.orange, size: 80),
+                const SizedBox(height: 20),
+                const Text(
+                  'Modo sin Firebase',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'La aplicación funciona pero sin autenticación.\n'
+                  'Firebase no se pudo inicializar correctamente.',
+                  style: TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Flutter Web funciona correctamente'),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                  ),
+                  child: const Text(
+                    'Probar Flutter',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                OutlinedButton(
+                  onPressed: () {
+                    // Recargar la página para intentar nuevamente
+                    html.window.location.reload();
+                  },
+                  child: const Text('Reintentar Firebase'),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            Text(
-              '¡App Funcionando!',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Nariño Travel & Food está activa',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
+          ),
         ),
       ),
     );

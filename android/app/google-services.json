@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "860020371265",
+    "project_id": "narinotravelfood-eff35",
+    "storage_bucket": "narinotravelfood-eff35.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860020371265:android:4afd6724ee871c21357bc0",
+        "android_client_info": {
+          "package_name": "com.ipideli.tour"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNMHEu4ep-4f_JwmW5cbcWhbJQ0L9FYMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

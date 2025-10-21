@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:narino_travel_food/widgets/destination_carousel.dart';
 import 'package:narino_travel_food/widgets/restaurant_carousel.dart';
 
@@ -13,7 +14,38 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+    
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Nariño Travel & Food',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.green.shade700,
+        elevation: 0,
+        actions: [
+          // Mostrar información del usuario
+          if (user != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Center(
+                child: Text(
+                  'Hola, ${user.displayName ?? user.email?.split('@')[0] ?? "Usuario"}',
+                  style: const TextStyle(color: Colors.white, fontSize: 14),
+                ),
+              ),
+            ),
+          // Botón de cerrar sesión
+          IconButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+            },
+            icon: const Icon(Icons.logout, color: Colors.white),
+            tooltip: 'Cerrar sesión',
+          ),
+        ],
+      ),
       body: Stack(
         fit: StackFit.expand, // Esto hace que el Stack ocupe toda la pantalla
         children: <Widget>[
