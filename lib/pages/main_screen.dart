@@ -53,51 +53,182 @@ class _MainScreenState extends State<MainScreen> {
     }
   } // WIDGET AUXILIAR PARA EL TÍTULO DEL APP BAR CON INFORMACIÓN DEL USUARIO
 
-  Widget _buildProfileTitle() {
+  // WIDGET AUXILIAR PARA EL HEADER PROFESIONAL CON BRANDING Y USUARIO
+
+  Widget _buildProfessionalHeader() {
     // Obtiene el usuario de Firebase actualmente logueado
     final user = FirebaseAuth.instance.currentUser;
     // El texto a mostrar (Nombre del usuario o su correo)
     final profileText = user?.displayName ?? user?.email ?? 'Usuario';
     // La URL de la foto de perfil (si usa Google o proveedor con foto)
-    final profileImageUrl = user?.photoURL;
+    String? profileImageUrl = user?.photoURL;
 
-    return Row(
-      mainAxisSize: MainAxisSize.min, // Ocupa solo el espacio necesario
+    // Mejora para fotos de Google: agregar parámetro de tamaño
+    if (profileImageUrl != null &&
+        profileImageUrl.contains('googleusercontent.com')) {
+      // Remover parámetros existentes y agregar tamaño específico
+      profileImageUrl = profileImageUrl.split('=')[0] + '=s96-c';
+    }
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        // 1. Ícono de Perfil o Foto
-        ClipOval(
-          child: Container(
-            width: 30,
-            height: 30,
-            decoration: const BoxDecoration(
-              color: Colors.white, // Fondo blanco para el placeholder
-              shape: BoxShape.circle,
-            ),
-            child: profileImageUrl != null && profileImageUrl.isNotEmpty
-                ? Image.network(
-                    profileImageUrl,
-                    fit: BoxFit.cover,
-                    // Si falla la carga de la imagen, muestra el ícono por defecto
-                    errorBuilder: (context, error, stackTrace) =>
-                        const Icon(Icons.person, color: Colors.red, size: 20),
-                  )
-                : const Icon(Icons.person,
-                    color: Colors.red, size: 20), // Ícono por defecto
+        // 1. TÍTULO PRINCIPAL DE LA APP (MÁS PROMINENTE)
+        const Text(
+          'NARIÑO TRAVEL & FOOD',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            letterSpacing: 1.2,
+            shadows: [
+              Shadow(
+                offset: Offset(0, 1),
+                blurRadius: 2.0,
+                color: Colors.black26,
+              ),
+            ],
           ),
+          textAlign: TextAlign.center,
         ),
-        const SizedBox(width: 8),
 
-        // 2. Nombre / Correo del Usuario
-        Flexible(
-          child: Text(
-            profileText,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              // Permite que el texto se envuelva si es muy largo, aunque en AppBar se verá truncado
+        const SizedBox(height: 8),
+
+        // 2. LÍNEA DE USUARIO (MÁS SUTIL)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Lado izquierdo: Saludo + foto + nombre
+            Expanded(
+              child: Row(
+                children: [
+                  // Saludo "Hola,"
+                  const Text(
+                    'Hola, ',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white70,
+                    ),
+                  ),
+
+                  // Foto de perfil
+                  ClipOval(
+                    child: Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.3),
+                          width: 1,
+                        ),
+                      ),
+                      child:
+                          profileImageUrl != null && profileImageUrl.isNotEmpty
+                              ? ClipOval(
+                                  child: Image.network(
+                                    profileImageUrl,
+                                    width: 24,
+                                    height: 24,
+                                    fit: BoxFit.cover,
+                                    loadingBuilder:
+                                        (context, child, loadingProgress) {
+                                      if (loadingProgress == null) return child;
+                                      return Container(
+                                        width: 24,
+                                        height: 24,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: const Center(
+                                          child: SizedBox(
+                                            width: 12,
+                                            height: 12,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 1.5,
+                                              color: Colors.green,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Container(
+                                        width: 24,
+                                        height: 24,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: const Icon(
+                                          Icons.account_circle,
+                                          color: Colors.green,
+                                          size: 20,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
+                              : Container(
+                                  width: 24,
+                                  height: 24,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.account_circle,
+                                    color: Colors.green,
+                                    size: 20,
+                                  ),
+                                ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 6),
+
+                  // Nombre del usuario
+                  Flexible(
+                    child: Text(
+                      profileText,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white70,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            overflow: TextOverflow.ellipsis,
-          ),
+
+            // Lado derecho: Botón cerrar sesión
+            TextButton.icon(
+              onPressed: _signOut,
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white70,
+                size: 18,
+              ),
+              label: const Text(
+                'Cerrar Sesión',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -107,16 +238,17 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // ¡CAMBIO AQUÍ! Usamos la función para generar el título dinámico.
-        title: _buildProfileTitle(),
-
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout), // Ícono de cerrar sesión
-            onPressed: _signOut,
-            tooltip: 'Cerrar Sesión',
+        backgroundColor: Colors.green.shade700,
+        elevation: 0,
+        toolbarHeight: 80, // Altura mayor para acomodar el diseño de dos líneas
+        // Eliminamos title y actions, usamos flexibleSpace para control total
+        flexibleSpace: SafeArea(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: _buildProfessionalHeader(),
           ),
-        ],
+        ),
       ),
 
       body: _pages[_selectedIndex],

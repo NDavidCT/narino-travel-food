@@ -16,6 +16,33 @@ class Restaurant {
     this.rating,
     this.menu,
   });
+
+  // Métodos para serialización JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'imageUrl': imageUrl,
+      'name': name,
+      'address': address,
+      'description': description,
+      'rating': rating,
+      'menu': menu?.map((food) => food.toJson()).toList(),
+    };
+  }
+
+  factory Restaurant.fromJson(Map<String, dynamic> json) {
+    return Restaurant(
+      imageUrl: json['imageUrl'],
+      name: json['name'],
+      address: json['address'],
+      description: json['description'],
+      rating: json['rating'],
+      menu: json['menu'] != null
+          ? (json['menu'] as List)
+              .map((foodJson) => Food.fromJson(foodJson))
+              .toList()
+          : null,
+    );
+  }
 }
 
 List<Restaurant> restaurants = [

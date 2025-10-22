@@ -16,6 +16,46 @@ class Destination {
     this.activities,
     this.historyAndInfo,
   });
+
+  // Getter para obtener el nombre (usamos city como identificador principal)
+  String get name => city ?? 'Destino sin nombre';
+
+  // Getter para rating (calculamos promedio de actividades)
+  int get rating {
+    if (activities == null || activities!.isEmpty) return 0;
+    double avgRating = activities!
+            .map((activity) => activity.rating ?? 0)
+            .reduce((a, b) => a + b) /
+        activities!.length;
+    return avgRating.round();
+  }
+
+  // Métodos para serialización JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'imageUrl': imageUrl,
+      'city': city,
+      'country': country,
+      'description': description,
+      'historyAndInfo': historyAndInfo,
+      'activities': activities?.map((activity) => activity.toJson()).toList(),
+    };
+  }
+
+  factory Destination.fromJson(Map<String, dynamic> json) {
+    return Destination(
+      imageUrl: json['imageUrl'],
+      city: json['city'],
+      country: json['country'],
+      description: json['description'],
+      historyAndInfo: json['historyAndInfo'],
+      activities: json['activities'] != null
+          ? (json['activities'] as List)
+              .map((activityJson) => Activity.fromJson(activityJson))
+              .toList()
+          : null,
+    );
+  }
 }
 
 // *** LISTA DE ACTIVIDADES ACTUALIZADA PARA LAS LAJAS (PRECIOS EN COP) ***

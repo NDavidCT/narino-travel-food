@@ -1,0 +1,31 @@
+{
+  "accessibility.signals.enabled": false,
+  "accessibility.signals.sounds": false,
+  "accessibility.signals.lineHasBreakpoint": "off",
+  "accessibility.signals.lineHasError": "off",
+  "accessibility.signals.lineHasFoldedArea": "off",
+  "accessibility.signals.lineHasInlineSuggestion": "off",
+  "accessibility.signals.lineHasWarning": "off",
+  "accessibility.signals.onDebugBreak": "off",
+  "accessibility.signals.noInlayHints": "off",
+  "accessibility.signals.taskCompleted": "off",
+  "accessibility.signals.taskFailed": "off",
+  "accessibility.signals.terminalCommandFailed": "off",
+  "accessibility.signals.terminalQuickFix": "off",
+  "workbench.accessibility.keyboardNavigation": false,
+  "editor.accessibilitySupport": "off",
+  "audioCues.enabled": false,
+  "audioCues.volume": 0,
+  "accessibility.voice.keywordActivation": "off",
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "screenReaderSupport": false,
+  "editor.guides.bracketPairs": false,
+  "editor.lightbulb.enabled": false,
+  "problems.decorations.enabled": false,
+  "git.decorations.enabled": false
+}

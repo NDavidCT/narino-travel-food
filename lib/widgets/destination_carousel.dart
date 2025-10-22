@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:narino_travel_food/models/destination.dart';
 import 'package:narino_travel_food/pages/destination_page.dart';
+import 'animated_favorite_button.dart';
 
 class DestinationCarousel extends StatefulWidget {
   const DestinationCarousel({super.key});
@@ -159,6 +160,15 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
                                     image:
                                         AssetImage(destination.imageUrl ?? ''),
                                     fit: BoxFit.cover,
+                                  ),
+                                ),
+                                // Botón de favoritos
+                                Positioned(
+                                  top: 10.0,
+                                  right: 10.0,
+                                  child: DestinationFavoriteButton(
+                                    destination: destination,
+                                    size: 20,
                                   ),
                                 ),
                                 Positioned(

@@ -29,6 +29,15 @@ dependencies:
   # Para abrir URLs (Google Maps)
   url_launcher: ^6.2.2
   
+  # Para favoritos y persistencia
+  shared_preferences: ^2.2.2
+  
+  # Para compartir contenido
+  share_plus: ^7.2.2
+  
+  # Para fechas relativas (hace 2 días, etc.)
+  timeago: ^3.6.1
+  
   # Otros paquetes comunes
   cupertino_icons: ^1.0.2
 

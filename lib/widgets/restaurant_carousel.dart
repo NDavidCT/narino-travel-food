@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/models/restaurant.dart';
 import 'package:narino_travel_food/pages/restaurant_page.dart';
+import 'animated_favorite_button.dart';
 
 class RestaurantCarousel extends StatelessWidget {
   const RestaurantCarousel({super.key});
@@ -104,14 +105,27 @@ class RestaurantCarousel extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Image(
-                            height: 180.0,
-                            width: 180.0,
-                            image: AssetImage(restaurant.imageUrl ?? ''),
-                            fit: BoxFit.cover,
-                          ),
+                        child: Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: Image(
+                                height: 180.0,
+                                width: 180.0,
+                                image: AssetImage(restaurant.imageUrl ?? ''),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            // Botón de favoritos
+                            Positioned(
+                              top: 10.0,
+                              right: 10.0,
+                              child: RestaurantFavoriteButton(
+                                restaurant: restaurant,
+                                size: 20,
+                              ),
+                            ),
+                          ],
                         ),
                       )
                     ],
