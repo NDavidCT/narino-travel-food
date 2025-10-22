@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
-import 'home_page.dart';
+import 'main_screen.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -45,9 +45,9 @@ class AuthPage extends StatelessWidget {
           );
         }
 
-        // Si el usuario está conectado, mostrar la página principal
+        // Si el usuario está conectado, mostrar la pantalla principal con navegación
         if (snapshot.hasData && snapshot.data != null) {
-          return const HomePage();
+          return const MainScreen(initialIndex: 1); // Empezar en "Inicio"
         }
 
         // Si no está conectado, vamos al Login

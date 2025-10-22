@@ -13,14 +13,14 @@ void main() async {
 
   // Intentar inicializar Firebase con múltiples estrategias
   bool firebaseInitialized = false;
-  
+
   try {
     print('🔥 Estrategia 1: Verificando Firebase apps...');
-    
+
     // Verificar de forma más segura si Firebase está disponible
     final apps = Firebase.apps;
     print('📱 Apps encontradas: ${apps.length}');
-    
+
     if (apps.isEmpty) {
       print('📱 Inicializando Firebase...');
       await Firebase.initializeApp(
@@ -30,12 +30,11 @@ void main() async {
     } else {
       print('✅ Firebase ya estaba inicializado');
     }
-    
+
     firebaseInitialized = true;
-    
   } catch (e) {
     print('❌ Estrategia 1 falló: $e');
-    
+
     try {
       print('� Estrategia 2: Inicialización directa...');
       await Firebase.initializeApp(
