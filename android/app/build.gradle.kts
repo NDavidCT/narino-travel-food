@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.ipideli.tour"
+    namespace = "com.narinotravelfood.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -23,8 +23,8 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.ipideli.tour"  // Temporalmente usando el ID con SHA-1 configurado
+        // Application ID actualizado para consistencia con Firebase proyecto narinotravelfood-eff35
+        applicationId = "com.narinotravelfood.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:narino_travel_food/firebase_options.dart';
-import 'dart:html' as html;
+import 'package:flutter/foundation.dart';
 
 // Importamos las páginas principales
 import 'package:narino_travel_food/pages/auth_page.dart';
@@ -142,8 +142,13 @@ class MyAppWithoutFirebase extends StatelessWidget {
                 const SizedBox(height: 15),
                 OutlinedButton(
                   onPressed: () {
-                    // Recargar la página para intentar nuevamente
-                    html.window.location.reload();
+                    // Recargar la página solo en web
+                    if (kIsWeb) {
+                      // En web usamos JS para recargar
+                      // html.window.location.reload();
+                    }
+                    // En cualquier plataforma, volver a intentar inicializar Firebase
+                    main();
                   },
                   child: const Text('Reintentar Firebase'),
                 ),

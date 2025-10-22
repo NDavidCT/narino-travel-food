@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:860020371265:android:4afd6724ee871c21357bc0",
+        "mobilesdk_app_id": "1:860020371265:android:6e1705de449361d1357bc0",
         "android_client_info": {
-          "package_name": "com.ipideli.tour"
+          "package_name": "com.narinotravelfood.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "860020371265-ir9kl5fb30fbbtfa23nmtri91og4crp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDNMHEu4ep-4f_JwmW5cbcWhbJQ0L9FYMk"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860020371265-ir9kl5fb30fbbtfa23nmtri91og4crp3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
