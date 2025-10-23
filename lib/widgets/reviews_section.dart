@@ -84,6 +84,21 @@ class _ReviewsSectionState extends State<ReviewsSection> {
     return StreamBuilder<ReviewStats>(
       stream: _reviewService.getReviewStatsForPlace(widget.placeId),
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Container(
+            padding: const EdgeInsets.all(16),
+            color: Colors.red.shade50,
+            child: Row(
+              children: [
+                Icon(Icons.error, color: Colors.red.shade400),
+                const SizedBox(width: 8),
+                Expanded(
+                    child: Text(
+                        'Error al cargar estadísticas:\n${snapshot.error}')),
+              ],
+            ),
+          );
+        }
         if (!snapshot.hasData) {
           return const Center(
             child: CircularProgressIndicator(),
@@ -251,6 +266,21 @@ class _ReviewsSectionState extends State<ReviewsSection> {
     return FutureBuilder<bool>(
       future: _reviewService.canUserReview(widget.placeId),
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Container(
+            padding: const EdgeInsets.all(12),
+            color: Colors.red.shade50,
+            child: Row(
+              children: [
+                Icon(Icons.error, color: Colors.red.shade400),
+                const SizedBox(width: 8),
+                Expanded(
+                    child: Text(
+                        'Error al verificar si puedes reseñar:\n${snapshot.error}')),
+              ],
+            ),
+          );
+        }
         if (!snapshot.hasData) {
           return const SizedBox.shrink();
         }
@@ -261,6 +291,21 @@ class _ReviewsSectionState extends State<ReviewsSection> {
           return FutureBuilder<Review?>(
             future: _reviewService.getCurrentUserReviewForPlace(widget.placeId),
             builder: (context, reviewSnapshot) {
+              if (reviewSnapshot.hasError) {
+                return Container(
+                  padding: const EdgeInsets.all(12),
+                  color: Colors.red.shade50,
+                  child: Row(
+                    children: [
+                      Icon(Icons.error, color: Colors.red.shade400),
+                      const SizedBox(width: 8),
+                      Expanded(
+                          child: Text(
+                              'Error al cargar tu reseña:\n${reviewSnapshot.error}')),
+                    ],
+                  ),
+                );
+              }
               if (!reviewSnapshot.hasData || reviewSnapshot.data == null) {
                 return const SizedBox.shrink();
               }
@@ -303,11 +348,33 @@ class _ReviewsSectionState extends State<ReviewsSection> {
             children: [
               Icon(Icons.check_circle, color: Colors.blue.shade600, size: 20),
               const SizedBox(width: 8),
-              const Text(
+              // Avatar del usuario autenticado
+              CircleAvatar(
+                radius: 16,
+                backgroundImage: review.userPhotoUrl.isNotEmpty
+                    ? NetworkImage(review.userPhotoUrl)
+                    : null,
+                child: review.userPhotoUrl.isEmpty
+                    ? Icon(Icons.person, color: Colors.grey.shade600)
+                    : null,
+              ),
+              const SizedBox(width: 8),
+              Text(
                 'Tu reseña',
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Flexible(
+                child: Text(
+                  review.userName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black54,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               const Spacer(),
@@ -347,6 +414,20 @@ class _ReviewsSectionState extends State<ReviewsSection> {
     return StreamBuilder<List<Review>>(
       stream: _reviewService.getReviewsForPlace(widget.placeId),
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Container(
+            padding: const EdgeInsets.all(16),
+            color: Colors.red.shade50,
+            child: Row(
+              children: [
+                Icon(Icons.error, color: Colors.red.shade400),
+                const SizedBox(width: 8),
+                Expanded(
+                    child: Text('Error al cargar reseñas:\n${snapshot.error}')),
+              ],
+            ),
+          );
+        }
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(),

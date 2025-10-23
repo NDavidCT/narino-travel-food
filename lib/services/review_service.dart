@@ -91,9 +91,17 @@ class ReviewService {
         throw Exception('Usuario no autenticado');
       }
 
+      // Optimizar URL de foto de Google
+      String photoUrl = user.photoURL ?? '';
+      if (photoUrl.isNotEmpty && photoUrl.contains('googleusercontent.com')) {
+        photoUrl = photoUrl.split('=')[0] + '=s96-c';
+      }
+
       await _reviewsCollection.doc(reviewId).update({
         'rating': rating,
         'comment': comment,
+        'userName': user.displayName ?? user.email ?? 'Usuario Anónimo',
+        'userPhotoUrl': photoUrl,
         'updatedAt': Timestamp.now(),
       });
 
