@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:narino_travel_food/firebase_options.dart';
 import 'package:flutter/foundation.dart';
@@ -73,6 +75,16 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         splashFactory: InkRipple.splashFactory,
       ),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('es'),
+        Locale('en'),
+      ],
       // Rutas de la aplicación
       routes: {
         '/all-destinations': (context) => const AllDestinationsPage(),

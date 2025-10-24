@@ -37,18 +37,26 @@ dependencies:
   
   # Para fechas relativas (hace 2 días, etc.)
   timeago: ^3.6.1
-  
-  # Otros paquetes comunes
-  cupertino_icons: ^1.0.2
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
+  intl_utils: ^2.8.5
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  cupertino_icons: ^1.0.2
+
 
 flutter:
   uses-material-design: true
-
+  generate: true
   # Declaración de assets para incluir la carpeta de imágenes
   assets:
     - assets/images/
+
+l10n:
+  arb-dir: lib/l10n
+  template-arb-file: app_es.arb
+  output-localization-file: app_localizations.dart
+  output-class: AppLocalizations

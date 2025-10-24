@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'main_screen.dart';
+import '../l10n/app_localizations.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -13,14 +14,15 @@ class AuthPage extends StatelessWidget {
       builder: (context, snapshot) {
         // Muestra un indicador de carga mientras se verifica el estado inicial
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
+          return Scaffold(
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(color: Colors.green),
-                  SizedBox(height: 20),
-                  Text('Verificando autenticación...')
+                  const CircularProgressIndicator(color: Colors.green),
+                  const SizedBox(height: 20),
+                  Text(AppLocalizations.of(context)?.verifyingAuth ??
+                      'Verificando autenticación...')
                 ],
               ),
             ),
