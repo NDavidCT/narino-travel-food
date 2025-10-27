@@ -60,8 +60,33 @@ void main() async {
   }
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  @override
+  void initState() {
+    super.initState();
+    // Usar el locale del sistema/navegador si está disponible; si no, por defecto 'es'
+    try {
+      final platformLocale = WidgetsBinding.instance.window.locale;
+      _locale = platformLocale ?? const Locale('es');
+    } catch (_) {
+      _locale = const Locale('es');
+    }
+  }
+
+  void _setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +100,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         splashFactory: InkRipple.splashFactory,
       ),
+      locale: _locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -85,13 +111,14 @@ class MyApp extends StatelessWidget {
         Locale('es'),
         Locale('en'),
       ],
-      // Rutas de la aplicación
       routes: {
         '/all-destinations': (context) => const AllDestinationsPage(),
         '/map': (context) => const MapPage(),
       },
-      // Usar AuthPage como página principal
-      home: const AuthPage(),
+      home: AuthPage(
+        onLocaleChanged: _setLocale,
+        currentLocale: _locale,
+      ),
     );
   }
 }

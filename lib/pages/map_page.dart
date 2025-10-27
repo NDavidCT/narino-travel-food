@@ -6,14 +6,14 @@ import 'package:narino_travel_food/services/maps_service.dart';
 class MapPage extends StatefulWidget {
   final String? selectedDestination;
 
-  const MapPage({Key? key, this.selectedDestination}) : super(key: key);
+  const MapPage({super.key, this.selectedDestination});
 
   @override
   State<MapPage> createState() => _MapPageState();
 }
 
 class _MapPageState extends State<MapPage> {
-  MapController _controller = MapController();
+  final MapController _controller = MapController();
   List<Marker> _markers = [];
   LatLng _currentPosition = MapsService.narinoCenter;
   LatLng? _userLocation;

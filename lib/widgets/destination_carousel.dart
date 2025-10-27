@@ -43,14 +43,18 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const Text(
-                'Destinos turísticos de Nariño', // <--- CAMBIO AQUÍ
-                style: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.5,
+              Expanded(
+                child: Text(
+                  'Destinos turísticos de Nariño', // <--- CAMBIO AQUÍ
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
+              SizedBox(width: 12),
               GestureDetector(
                 onTap: _showAllDestinations,
                 child: Text(
@@ -178,7 +182,7 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Container(
+                                      SizedBox(
                                         width:
                                             160.0, // Ancho disponible para el texto
                                         child: Text(

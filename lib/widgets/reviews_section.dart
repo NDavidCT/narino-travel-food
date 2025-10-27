@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../models/review.dart';
 import '../services/review_service.dart';
 import '../widgets/star_rating.dart';
+import '../l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 /// Widget para mostrar la sección completa de reseñas en páginas de detalles
@@ -24,6 +25,112 @@ class ReviewsSection extends StatefulWidget {
 }
 
 class _ReviewsSectionState extends State<ReviewsSection> {
+  Widget _buildWriteReviewButton() {
+    return FutureBuilder<bool>(
+      future: _reviewService.canUserReview(widget.placeId),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Container(
+            padding: const EdgeInsets.all(12),
+            color: Colors.red.shade50,
+            child: Row(
+              children: [
+                Icon(Icons.error, color: Colors.red.shade400),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    '${AppLocalizations.of(context)?.error ?? 'Error'}: ${snapshot.error}',
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+        if (!snapshot.hasData) {
+          return const SizedBox.shrink();
+        }
+
+        final canReview = snapshot.data!;
+
+        if (!canReview) {
+          return FutureBuilder<Review?>(
+            future: _reviewService.getCurrentUserReviewForPlace(widget.placeId),
+            builder: (context, reviewSnapshot) {
+              if (reviewSnapshot.hasError) {
+                return Container(
+                  padding: const EdgeInsets.all(12),
+                  color: Colors.red.shade50,
+                  child: Row(
+                    children: [
+                      Icon(Icons.error, color: Colors.red.shade400),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          '${AppLocalizations.of(context)?.error ?? 'Error'}: ${reviewSnapshot.error}',
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              if (!reviewSnapshot.hasData || reviewSnapshot.data == null) {
+                return const SizedBox.shrink();
+              }
+
+              final userReview = reviewSnapshot.data!;
+              return _buildUserReviewCard(userReview);
+            },
+          );
+        }
+
+        return ElevatedButton.icon(
+          onPressed: () => _showWriteReviewModal(),
+          icon: const Icon(Icons.edit),
+          label: Text(AppLocalizations.of(context)?.writeReviewShort ??
+              'Escribir Reseña'),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green.shade600,
+            foregroundColor: Colors.white,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildRatingDistribution(ReviewStats stats) {
+    // Visualización de la distribución de estrellas usando ratingDistribution
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (int i = 5; i >= 1; i--)
+          Row(
+            children: [
+              Text('$i ★', style: const TextStyle(fontSize: 12)),
+              const SizedBox(width: 4),
+              Expanded(
+                child: LinearProgressIndicator(
+                  value: stats.totalReviews > 0
+                      ? (stats.ratingDistribution[i] ?? 0) / stats.totalReviews
+                      : 0,
+                  minHeight: 8,
+                  backgroundColor: Colors.grey.shade200,
+                  valueColor:
+                      AlwaysStoppedAnimation<Color>(Colors.green.shade400),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text('${stats.ratingDistribution[i] ?? 0}',
+                  style: const TextStyle(fontSize: 12)),
+            ],
+          ),
+      ],
+    );
+  }
+
   final ReviewService _reviewService = ReviewService();
   bool _showAllReviews = false;
 
@@ -68,9 +175,10 @@ class _ReviewsSectionState extends State<ReviewsSection> {
           size: 24,
         ),
         const SizedBox(width: 8),
-        const Text(
-          'Reseñas y Calificaciones',
-          style: TextStyle(
+        Text(
+          AppLocalizations.of(context)?.reviewsAndRatings ??
+              'Reseñas y Calificaciones',
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.black87,
@@ -133,7 +241,7 @@ class _ReviewsSectionState extends State<ReviewsSection> {
           ),
           const SizedBox(height: 12),
           Text(
-            'Sin reseñas aún',
+            AppLocalizations.of(context)?.noReviewsYet ?? 'Sin reseñas aún',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -142,7 +250,8 @@ class _ReviewsSectionState extends State<ReviewsSection> {
           ),
           const SizedBox(height: 4),
           Text(
-            '¡Sé el primero en compartir tu experiencia!',
+            AppLocalizations.of(context)?.shareExperience ??
+                '¡Sé el primero en compartir tu experiencia!',
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey.shade500,
@@ -197,141 +306,7 @@ class _ReviewsSectionState extends State<ReviewsSection> {
       ),
     );
   }
-
-  Widget _buildRatingDistribution(ReviewStats stats) {
-    return Column(
-      children: [
-        for (int rating = 5; rating >= 1; rating--)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2),
-            child: Row(
-              children: [
-                Text('$rating'),
-                const SizedBox(width: 4),
-                Icon(Icons.star, size: 12, color: Colors.amber),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: LinearProgressIndicator(
-                    value: stats.totalReviews > 0
-                        ? stats.ratingDistribution[rating]! / stats.totalReviews
-                        : 0,
-                    backgroundColor: Colors.grey.shade300,
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(Colors.green.shade400),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                SizedBox(
-                  width: 20,
-                  child: Text(
-                    '${stats.ratingDistribution[rating]}',
-                    style: const TextStyle(fontSize: 12),
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-              ],
-            ),
-          ),
-      ],
-    );
-  }
-
-  Widget _buildWriteReviewButton() {
-    final user = FirebaseAuth.instance.currentUser;
-
-    if (user == null) {
-      return Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.grey.shade300),
-        ),
-        child: Row(
-          children: [
-            Icon(Icons.login, color: Colors.grey.shade600),
-            const SizedBox(width: 8),
-            Text(
-              'Inicia sesión para escribir una reseña',
-              style: TextStyle(
-                color: Colors.grey.shade600,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return FutureBuilder<bool>(
-      future: _reviewService.canUserReview(widget.placeId),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Container(
-            padding: const EdgeInsets.all(12),
-            color: Colors.red.shade50,
-            child: Row(
-              children: [
-                Icon(Icons.error, color: Colors.red.shade400),
-                const SizedBox(width: 8),
-                Expanded(
-                    child: Text(
-                        'Error al verificar si puedes reseñar:\n${snapshot.error}')),
-              ],
-            ),
-          );
-        }
-        if (!snapshot.hasData) {
-          return const SizedBox.shrink();
-        }
-
-        final canReview = snapshot.data!;
-
-        if (!canReview) {
-          return FutureBuilder<Review?>(
-            future: _reviewService.getCurrentUserReviewForPlace(widget.placeId),
-            builder: (context, reviewSnapshot) {
-              if (reviewSnapshot.hasError) {
-                return Container(
-                  padding: const EdgeInsets.all(12),
-                  color: Colors.red.shade50,
-                  child: Row(
-                    children: [
-                      Icon(Icons.error, color: Colors.red.shade400),
-                      const SizedBox(width: 8),
-                      Expanded(
-                          child: Text(
-                              'Error al cargar tu reseña:\n${reviewSnapshot.error}')),
-                    ],
-                  ),
-                );
-              }
-              if (!reviewSnapshot.hasData || reviewSnapshot.data == null) {
-                return const SizedBox.shrink();
-              }
-
-              final userReview = reviewSnapshot.data!;
-              return _buildUserReviewCard(userReview);
-            },
-          );
-        }
-
-        return ElevatedButton.icon(
-          onPressed: () => _showWriteReviewModal(),
-          icon: const Icon(Icons.edit),
-          label: const Text('Escribir Reseña'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green.shade600,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        );
-      },
-    );
-  }
+// (fragmento duplicado eliminado, la función _buildStatsDisplay termina aquí correctamente)
 
   Widget _buildUserReviewCard(Review review) {
     return Container(
@@ -360,7 +335,7 @@ class _ReviewsSectionState extends State<ReviewsSection> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Tu reseña',
+                AppLocalizations.of(context)?.yourReview ?? 'Tu reseña',
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
@@ -423,7 +398,11 @@ class _ReviewsSectionState extends State<ReviewsSection> {
                 Icon(Icons.error, color: Colors.red.shade400),
                 const SizedBox(width: 8),
                 Expanded(
-                    child: Text('Error al cargar reseñas:\n${snapshot.error}')),
+                  child: Text(
+                    '${AppLocalizations.of(context)?.error ?? 'Error'}: ${snapshot.error}',
+                    style: const TextStyle(fontSize: 14),
+                  ),
+                ),
               ],
             ),
           );
@@ -435,7 +414,14 @@ class _ReviewsSectionState extends State<ReviewsSection> {
         }
 
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const SizedBox.shrink();
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Text(
+              AppLocalizations.of(context)?.noReviewsYet ?? 'Sin reseñas aún',
+              style: const TextStyle(fontSize: 15, color: Colors.black54),
+              textAlign: TextAlign.center,
+            ),
+          );
         }
 
         final reviews = snapshot.data!;
@@ -446,7 +432,14 @@ class _ReviewsSectionState extends State<ReviewsSection> {
             reviews.where((review) => review.userId != currentUserId).toList();
 
         if (otherReviews.isEmpty) {
-          return const SizedBox.shrink();
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Text(
+              AppLocalizations.of(context)?.noReviewsYet ?? 'Sin reseñas aún',
+              style: const TextStyle(fontSize: 15, color: Colors.black54),
+              textAlign: TextAlign.center,
+            ),
+          );
         }
 
         // Mostrar solo las primeras 3 reseñas inicialmente
@@ -456,9 +449,10 @@ class _ReviewsSectionState extends State<ReviewsSection> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Reseñas de otros visitantes',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)?.otherVisitorsReviews ??
+                  'Reseñas de otros visitantes',
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.black87,
@@ -476,7 +470,8 @@ class _ReviewsSectionState extends State<ReviewsSection> {
                     _showAllReviews = true;
                   });
                 },
-                child: Text('Ver todas las reseñas (${otherReviews.length})'),
+                child: Text(
+                    '${AppLocalizations.of(context)?.showAllReviews ?? 'Ver todas las reseñas'} (${otherReviews.length})'),
               ),
             if (_showAllReviews && otherReviews.length > 3)
               TextButton(
@@ -485,7 +480,8 @@ class _ReviewsSectionState extends State<ReviewsSection> {
                     _showAllReviews = false;
                   });
                 },
-                child: const Text('Mostrar menos'),
+                child: Text(
+                    AppLocalizations.of(context)?.showLess ?? 'Mostrar menos'),
               ),
           ],
         );
@@ -675,8 +671,10 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
               children: [
                 Text(
                   widget.existingReview != null
-                      ? 'Editar Reseña'
-                      : 'Escribir Reseña',
+                      ? (AppLocalizations.of(context)?.editReview ??
+                          'Editar Reseña')
+                      : (AppLocalizations.of(context)?.writeReviewShort ??
+                          'Escribir Reseña'),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -706,9 +704,9 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Calificación',
-          style: TextStyle(
+        Text(
+          AppLocalizations.of(context)?.rating ?? 'Calificación',
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -733,9 +731,10 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Comparte tu experiencia',
-          style: TextStyle(
+        Text(
+          AppLocalizations.of(context)?.shareExperience ??
+              'Comparte tu experiencia',
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black87,
@@ -751,11 +750,11 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
             controller: _commentController,
             maxLines: 6,
             maxLength: 500,
-            decoration: const InputDecoration(
-              hintText:
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)?.addReview ??
                   'Cuéntanos sobre tu visita, qué te gustó más, recomendaciones...',
               border: InputBorder.none,
-              contentPadding: EdgeInsets.all(16),
+              contentPadding: const EdgeInsets.all(16),
             ),
           ),
         ),
@@ -776,7 +775,7 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
                       width: 20,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Text('Eliminar'),
+                  : Text(AppLocalizations.of(context)?.delete ?? 'Eliminar'),
             ),
           ),
           const SizedBox(width: 12),
@@ -799,8 +798,9 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
                       strokeWidth: 2,
                     ),
                   )
-                : Text(
-                    widget.existingReview != null ? 'Actualizar' : 'Publicar'),
+                : Text(widget.existingReview != null
+                    ? (AppLocalizations.of(context)?.update ?? 'Actualizar')
+                    : (AppLocalizations.of(context)?.publish ?? 'Publicar')),
           ),
         ),
       ],
@@ -810,14 +810,18 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
   Future<void> _saveReview() async {
     if (_rating == 0) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Por favor selecciona una calificación')),
+        SnackBar(
+            content: Text(AppLocalizations.of(context)?.rating ??
+                'Por favor selecciona una calificación')),
       );
       return;
     }
 
     if (_commentController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Por favor escribe un comentario')),
+        SnackBar(
+            content: Text(AppLocalizations.of(context)?.addReview ??
+                'Por favor escribe un comentario')),
       );
       return;
     }
@@ -838,8 +842,9 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
           comment: _commentController.text.trim(),
         );
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Reseña actualizada exitosamente'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)?.update ??
+                'Reseña actualizada exitosamente'),
             backgroundColor: Colors.green,
           ),
         );
@@ -857,8 +862,9 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
           comment: _commentController.text.trim(),
         );
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Reseña publicada exitosamente'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)?.publish ??
+                'Reseña publicada exitosamente'),
             backgroundColor: Colors.green,
           ),
         );
@@ -869,15 +875,20 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
     } catch (e) {
       print('❌ Error al enviar reseña: $e');
 
-      String errorMessage = 'Error al publicar la reseña';
+      String errorMessage =
+          AppLocalizations.of(context)?.error ?? 'Error al publicar la reseña';
       if (e.toString().contains('Ya has escrito una reseña')) {
-        errorMessage = 'Ya has escrito una reseña para este lugar';
+        errorMessage = AppLocalizations.of(context)?.noReviews ??
+            'Ya has escrito una reseña para este lugar';
       } else if (e.toString().contains('Usuario no autenticado')) {
-        errorMessage = 'Debes iniciar sesión para escribir una reseña';
+        errorMessage = AppLocalizations.of(context)?.loginToReview ??
+            'Debes iniciar sesión para escribir una reseña';
       } else if (e.toString().contains('permission-denied')) {
-        errorMessage = 'No tienes permisos para escribir reseñas';
+        errorMessage = AppLocalizations.of(context)?.error ??
+            'No tienes permisos para escribir reseñas';
       } else {
-        errorMessage = 'Error: ${e.toString()}';
+        errorMessage =
+            '${AppLocalizations.of(context)?.error ?? 'Error'}: ${e.toString()}';
       }
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -902,17 +913,18 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Eliminar Reseña'),
-        content: const Text('¿Estás seguro de que quieres eliminar tu reseña?'),
+        title: Text(AppLocalizations.of(context)?.delete ?? 'Eliminar Reseña'),
+        content: Text(AppLocalizations.of(context)?.delete ??
+            '¿Estás seguro de que quieres eliminar tu reseña?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancelar'),
+            child: Text(AppLocalizations.of(context)?.cancel ?? 'Cancelar'),
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text('Eliminar'),
+            child: Text(AppLocalizations.of(context)?.delete ?? 'Eliminar'),
           ),
         ],
       ),
@@ -927,7 +939,9 @@ class _WriteReviewModalState extends State<WriteReviewModal> {
     try {
       await _reviewService.deleteReview(widget.existingReview!.id);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Reseña eliminada exitosamente')),
+        SnackBar(
+            content: Text(AppLocalizations.of(context)?.delete ??
+                'Reseña eliminada exitosamente')),
       );
       Navigator.pop(context);
     } catch (e) {

@@ -6,18 +6,25 @@ import 'home_page.dart';
 import 'search_page.dart';
 import 'favorites_page.dart';
 import 'map_page.dart';
+import '../widgets/language_selector.dart';
 
 class MainScreen extends StatefulWidget {
   final int initialIndex;
+  final void Function(Locale)? onLocaleChanged;
+  final Locale? currentLocale;
 
-  const MainScreen({super.key, this.initialIndex = 1});
+  const MainScreen(
+      {super.key,
+      this.initialIndex = 1,
+      this.onLocaleChanged,
+      this.currentLocale});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late int _selectedIndex; // Quitamos la inicialización aquí
+  late int _selectedIndex;
 
   final List<Widget> _pages = [
     const SearchPage(),
@@ -67,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
     if (profileImageUrl != null &&
         profileImageUrl.contains('googleusercontent.com')) {
       // Remover parámetros existentes y agregar tamaño específico
-      profileImageUrl = profileImageUrl.split('=')[0] + '=s96-c';
+      profileImageUrl = '${profileImageUrl.split('=')[0]}=s96-c';
     }
 
     return Column(
@@ -240,13 +247,34 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green.shade700,
         elevation: 0,
-        toolbarHeight: 80, // Altura mayor para acomodar el diseño de dos líneas
-        // Eliminamos title y actions, usamos flexibleSpace para control total
+        toolbarHeight: 80,
         flexibleSpace: SafeArea(
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: _buildProfessionalHeader(),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(child: _buildProfessionalHeader()),
+                if (widget.onLocaleChanged != null &&
+                    widget.currentLocale != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                    child: SizedBox(
+                      height: 40,
+                      child: Builder(
+                        builder: (context) =>
+                            // Importa el widget creado para el selector de idioma
+                            // ignore: prefer_const_constructors
+                            LanguageSelector(
+                          currentLocale: widget.currentLocale!,
+                          onLocaleChanged: widget.onLocaleChanged!,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),

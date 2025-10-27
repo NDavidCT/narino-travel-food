@@ -4,9 +4,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../services/google_sign_in_service.dart';
 import 'register_screen.dart';
+import '../widgets/language_selector.dart';
+import '../l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final void Function(Locale)? onLocaleChanged;
+  final Locale? currentLocale;
+
+  const LoginScreen({
+    super.key,
+    this.onLocaleChanged,
+    this.currentLocale,
+  });
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -57,9 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
         googleUser = await googleSignIn.signInSilently();
 
         // 2. Si no hay usuario silencioso, ir directo al popup (sin confirmación)
-        if (googleUser == null) {
-          googleUser = await googleSignIn.signIn();
-        }
+        googleUser ??= await googleSignIn.signIn();
       } else {
         // Móvil/Desktop: flujo normal
         googleUser = await googleSignIn.signIn();
@@ -129,6 +136,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  // Selector de idioma (si el callback y el locale están disponibles)
+                  if (widget.onLocaleChanged != null &&
+                      widget.currentLocale != null)
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: SizedBox(
+                        height: 40,
+                        child: LanguageSelector(
+                          currentLocale: widget.currentLocale!,
+                          onLocaleChanged: widget.onLocaleChanged!,
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: 8),
                   // TÍTULO DE LA APLICACIÓN
                   const Text(
                     'Nariño Travel & Food',

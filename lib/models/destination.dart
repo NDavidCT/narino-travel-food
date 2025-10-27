@@ -7,6 +7,8 @@ class Destination {
   String? description; // Descripción corta (resumen)
   List<Activity>? activities;
   String? historyAndInfo; // Campo para historia y detalles
+  double? latitude;
+  double? longitude;
 
   Destination({
     this.imageUrl,
@@ -15,6 +17,8 @@ class Destination {
     this.description,
     this.activities,
     this.historyAndInfo,
+    this.latitude,
+    this.longitude,
   });
 
   // Getter para obtener el nombre (usamos city como identificador principal)
@@ -38,6 +42,8 @@ class Destination {
       'country': country,
       'description': description,
       'historyAndInfo': historyAndInfo,
+      'latitude': latitude,
+      'longitude': longitude,
       'activities': activities?.map((activity) => activity.toJson()).toList(),
     };
   }
@@ -49,6 +55,8 @@ class Destination {
       country: json['country'],
       description: json['description'],
       historyAndInfo: json['historyAndInfo'],
+      latitude: json['latitude']?.toDouble(),
+      longitude: json['longitude']?.toDouble(),
       activities: json['activities'] != null
           ? (json['activities'] as List)
               .map((activityJson) => Activity.fromJson(activityJson))
@@ -237,17 +245,15 @@ List<Activity> lagunaCobaNegraActivities = [
 List<Destination> destinations = [
   Destination(
     imageUrl: 'assets/images/santuario_lajas.jpg',
-    city: 'Santuario de las Lajas',
+    city: 'Santuario de Nuestra Señora de Las Lajas',
     country: 'Ipiales',
+    latitude: -0.807982,
+    longitude: -77.585879,
     description:
-        'Una maravilla arquitectónica neogótica en el cañón del río Guáitara.',
+        'El Santuario de Nuestra Señora de Las Lajas es una proeza de la ingeniería y la estética neogótica, encajado dramáticamente en la garganta del cañón del río Guáitara en Nariño, Colombia.',
     activities: lajasActivities,
-    // ¡TEXTO SIN ASTERISCOS DE FORMATO!
     historyAndInfo:
-        'El Santuario de Nuestra Señora del Rosario de Las Lajas es una de las iglesias más impresionantes del mundo. Se levanta majestuosamente dentro del cañón del río Guáitara, cerca de Ipiales.\n\n'
-        'Historia Milagrosa: Su origen se remonta a 1754, cuando la imagen de la Virgen del Rosario apareció milagrosamente en una roca. Este suceso fue presenciado por María Mueses de Quiñónez y su hija, Rosa, quien —según la tradición— fue sanada de su sordomudez.\n\n'
-        'Arquitectura: La estructura actual, de estilo neogótico, fue construida entre 1916 y 1949. Se apoya sobre un puente de 50 metros de altura que cruza el río, logrando un efecto visual que desafía la gravedad.\n\n'
-        'Información Útil para la Visita:\n* Ubicación: Cañón del río Guáitara, a 7 km de Ipiales.\n* Acceso: Se puede llegar en vehículo particular o taxi, y se recomienda usar el teleférico para tener una vista espectacular del santuario y el cañón (costo adicional).\n* Clima: El clima es frío de montaña. Se recomienda llevar ropa abrigada y cómoda para caminar.',
+        'La edificación actual, construida entre 1916 y 1949, exhibe un riguroso estilo neogótico y se distingue por su cimentación: se levanta espectacularmente sobre un puente de piedra de dos arcos que une los abruptos lados del cañón. Esta solución arquitectónica no solo salva el abismo, sino que integra la estructura a la pared rocosa natural, creando una silueta imponente que le ha valido el reconocimiento como una de las Maravillas de Colombia y un ejemplo de diseño sobresaliente a nivel mundial.',
   ),
   Destination(
     imageUrl: 'assets/images/laguna_verde.jpg',
@@ -371,7 +377,7 @@ List<Destination> destinations = [
     activities: sandonaActivities,
   ),
   Destination(
-    imageUrl: 'assets/images/balneario_los_rosales.jpg',
+    imageUrl: 'assets/images/balneario_los_rosales.JPG',
     city: 'Balneario Los Rosales',
     country: 'Samaniego',
     description: 'excelente clima y hermoso balneario para el descanso.',

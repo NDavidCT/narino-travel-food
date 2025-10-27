@@ -5,7 +5,9 @@ import 'main_screen.dart';
 import '../l10n/app_localizations.dart';
 
 class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+  final void Function(Locale)? onLocaleChanged;
+  final Locale? currentLocale;
+  const AuthPage({super.key, this.onLocaleChanged, this.currentLocale});
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +50,21 @@ class AuthPage extends StatelessWidget {
         }
 
         // Si el usuario está conectado, mostrar la pantalla principal con navegación
+
         if (snapshot.hasData && snapshot.data != null) {
-          return const MainScreen(initialIndex: 1); // Empezar en "Inicio"
+          return MainScreen(
+            initialIndex: 1,
+            onLocaleChanged: onLocaleChanged,
+            currentLocale: currentLocale,
+          );
         }
 
         // Si no está conectado, vamos al Login
         else {
-          return const LoginScreen();
+          return LoginScreen(
+            onLocaleChanged: onLocaleChanged,
+            currentLocale: currentLocale,
+          );
         }
       },
     );

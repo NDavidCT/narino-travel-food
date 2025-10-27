@@ -55,7 +55,7 @@ class ReviewService {
       // Optimizar URL de foto de Google
       String photoUrl = user.photoURL ?? '';
       if (photoUrl.isNotEmpty && photoUrl.contains('googleusercontent.com')) {
-        photoUrl = photoUrl.split('=')[0] + '=s96-c';
+        photoUrl = '${photoUrl.split('=')[0]}=s96-c';
       }
 
       print('📝 Creando objeto Review...');
@@ -94,7 +94,7 @@ class ReviewService {
       // Optimizar URL de foto de Google
       String photoUrl = user.photoURL ?? '';
       if (photoUrl.isNotEmpty && photoUrl.contains('googleusercontent.com')) {
-        photoUrl = photoUrl.split('=')[0] + '=s96-c';
+        photoUrl = '${photoUrl.split('=')[0]}=s96-c';
       }
 
       await _reviewsCollection.doc(reviewId).update({

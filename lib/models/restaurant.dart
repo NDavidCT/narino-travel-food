@@ -73,4 +73,31 @@ List<Restaurant> restaurants = [
     rating: 3,
     menu: [],
   ),
+  Restaurant(
+    imageUrl: 'assets/images/pan_maiz.jpg',
+    name: 'Pan de Maíz',
+    address: 'Tradición ancestral en cada bocado',
+    description:
+        'El pan de maíz es una delicia tradicional de Nariño, elaborado con maíz molido y cocido al horno. Su sabor y textura únicos lo convierten en un acompañante perfecto para las comidas típicas de la región.',
+    rating: 4,
+    menu: [],
+  ),
+  Restaurant(
+    imageUrl: 'assets/images/dulces_tradicionales.jpg',
+    name: 'Dulces Tradicionales',
+    address: 'Sabores dulces de la cultura nariñense',
+    description:
+        'Los dulces tradicionales de Nariño, como el manjar blanco, las cocadas y los alfandoques, son parte esencial de la gastronomía local. Cada uno refleja la creatividad y el sabor de la región.',
+    rating: 4,
+    menu: [],
+  ),
+  Restaurant(
+    imageUrl: 'assets/images/bebidas_tradicionales.jpg',
+    name: 'Bebidas Tradicionales',
+    address: 'Refrescos y sabores autóctonos',
+    description:
+        'Las bebidas tradicionales de Nariño, como la chicha, el hervido y el canelazo, acompañan las celebraciones y comidas típicas. Son el reflejo de la identidad y hospitalidad de la región.',
+    rating: 4,
+    menu: [],
+  ),
 ];

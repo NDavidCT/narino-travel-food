@@ -250,6 +250,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Destinations'**
   String get destinations;
+
+  /// No description provided for @aboutDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'About the Destination'**
+  String get aboutDestination;
+
+  /// No description provided for @historyAndInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'History and Relevant Information'**
+  String get historyAndInfo;
+
+  /// No description provided for @featuredActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Activities'**
+  String get featuredActivities;
+
+  /// No description provided for @reviewsAndOpinions.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviews and Opinions'**
+  String get reviewsAndOpinions;
+
+  /// No description provided for @reviewsAndRatings.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviews and Ratings'**
+  String get reviewsAndRatings;
+
+  /// No description provided for @yourReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Your review'**
+  String get yourReview;
+
+  /// No description provided for @writeReviewShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Write Review'**
+  String get writeReviewShort;
+
+  /// No description provided for @editReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Review'**
+  String get editReview;
+
+  /// No description provided for @rating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get rating;
+
+  /// No description provided for @shareExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Be the first to share your experience!'**
+  String get shareExperience;
+
+  /// No description provided for @noReviewsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No reviews yet'**
+  String get noReviewsYet;
+
+  /// No description provided for @loginToReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to write a review'**
+  String get loginToReview;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
+
+  /// No description provided for @publish.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish'**
+  String get publish;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @otherVisitorsReviews.
+  ///
+  /// In en, this message translates to:
+  /// **'Other visitors\' reviews'**
+  String get otherVisitorsReviews;
+
+  /// No description provided for @showAllReviews.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all reviews'**
+  String get showAllReviews;
+
+  /// No description provided for @showLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get showLess;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

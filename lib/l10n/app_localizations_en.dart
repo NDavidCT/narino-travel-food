@@ -85,4 +85,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get destinations => 'Destinations';
+
+  @override
+  String get aboutDestination => 'About the Destination';
+
+  @override
+  String get historyAndInfo => 'History and Relevant Information';
+
+  @override
+  String get featuredActivities => 'Featured Activities';
+
+  @override
+  String get reviewsAndOpinions => 'Reviews and Opinions';
+
+  @override
+  String get reviewsAndRatings => 'Reviews and Ratings';
+
+  @override
+  String get yourReview => 'Your review';
+
+  @override
+  String get writeReviewShort => 'Write Review';
+
+  @override
+  String get editReview => 'Edit Review';
+
+  @override
+  String get rating => 'Rating';
+
+  @override
+  String get shareExperience => 'Be the first to share your experience!';
+
+  @override
+  String get noReviewsYet => 'No reviews yet';
+
+  @override
+  String get loginToReview => 'Log in to write a review';
+
+  @override
+  String get update => 'Update';
+
+  @override
+  String get publish => 'Publish';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get otherVisitorsReviews => 'Other visitors\' reviews';
+
+  @override
+  String get showAllReviews => 'Show all reviews';
+
+  @override
+  String get showLess => 'Show less';
 }

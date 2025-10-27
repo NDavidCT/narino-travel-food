@@ -58,65 +58,18 @@ class RestaurantCarousel extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(
                       horizontal: 10.0, vertical: 20.0),
                   width: 200.0,
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: <Widget>[
-                      Positioned(
-                        bottom: 15.0,
-                        child: Container(
-                          height: 120.0,
-                          width: 200.0,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  restaurant.name ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 1.2,
-                                  ),
-                                ),
-                                Text(
-                                  restaurant.address ?? '',
-                                  style: const TextStyle(color: Colors.grey),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20.0),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black26,
-                              offset: Offset(0.0, 2.0),
-                              blurRadius: 6.0,
-                            ),
-                          ],
-                        ),
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20.0),
                         child: Stack(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Image(
-                                height: 180.0,
-                                width: 180.0,
-                                image: AssetImage(restaurant.imageUrl ?? ''),
-                                fit: BoxFit.cover,
-                              ),
+                            Image(
+                              height: 140.0,
+                              width: 200.0,
+                              image: AssetImage(restaurant.imageUrl ?? ''),
+                              fit: BoxFit.cover,
                             ),
-                            // Botón de favoritos
                             Positioned(
                               top: 10.0,
                               right: 10.0,
@@ -127,7 +80,48 @@ class RestaurantCarousel extends StatelessWidget {
                             ),
                           ],
                         ),
-                      )
+                      ),
+                      Container(
+                        constraints: BoxConstraints(
+                          minHeight: 60.0,
+                          maxHeight: 90.0,
+                          minWidth: 200.0,
+                          maxWidth: 200.0,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: Text(
+                                  restaurant.name ?? '',
+                                  style: const TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 1.2,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                              ),
+                              Flexible(
+                                child: Text(
+                                  restaurant.address ?? '',
+                                  style: const TextStyle(color: Colors.grey),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

@@ -6,6 +6,8 @@ import 'package:narino_travel_food/services/google_maps_service.dart';
 import 'package:narino_travel_food/services/favorites_service.dart';
 import 'package:narino_travel_food/widgets/reviews_section.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class DestinationPage extends StatefulWidget {
@@ -412,11 +414,12 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
             delegate: SliverChildListDelegate(
               [
                 // TÍTULO DE LA SECCIÓN
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
                   child: Text(
-                    'Acerca del Destino',
-                    style: TextStyle(
+                    AppLocalizations.of(context)?.aboutDestination ??
+                        'Acerca del Destino',
+                    style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -515,11 +518,12 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
 
                 // TÍTULO DE HISTORIA E INFORMACIÓN RELEVANTE
                 if (widget.destination.historyAndInfo != null)
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
                     child: Text(
-                      'Historia e Información Relevante',
-                      style: TextStyle(
+                      AppLocalizations.of(context)?.historyAndInfo ??
+                          'Historia e Información Relevante',
+                      style: const TextStyle(
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -539,11 +543,12 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                   ),
 
                 // TÍTULO DE ACTIVIDADES
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 10.0),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
                   child: Text(
-                    'Actividades destacadas',
-                    style: TextStyle(
+                    AppLocalizations.of(context)?.featuredActivities ??
+                        'Actividades destacadas',
+                    style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -557,11 +562,12 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                   }),
 
                 // SECCIÓN DE RESEÑAS
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 10.0),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 10.0),
                   child: Text(
-                    'Reseñas y opiniones',
-                    style: TextStyle(
+                    AppLocalizations.of(context)?.reviewsAndOpinions ??
+                        'Reseñas y opiniones',
+                    style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
