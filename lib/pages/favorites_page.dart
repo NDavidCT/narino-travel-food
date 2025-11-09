@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:share_plus/share_plus.dart';
 import '../services/favorites_service.dart';
 import '../models/destination.dart';
@@ -15,6 +16,14 @@ class FavoritesPage extends StatefulWidget {
 
 class _FavoritesPageState extends State<FavoritesPage>
     with TickerProviderStateMixin {
+  void _shareFavorites() {
+    final shareText = _favoritesService.generateShareText();
+    Share.share(
+      shareText,
+      subject: AppLocalizations.of(context)!.shareFavorites,
+    );
+  }
+
   late TabController _tabController;
   final FavoritesService _favoritesService = FavoritesService();
   final TextEditingController _searchController = TextEditingController();
@@ -59,18 +68,20 @@ class _FavoritesPageState extends State<FavoritesPage>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Ordenar por',
+            Text(
+              AppLocalizations.of(context)!.sortBy,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 15),
-            _buildSortOption(SortOption.name, 'Nombre', Icons.sort_by_alpha),
-            _buildSortOption(SortOption.rating, 'Calificación', Icons.star),
-            _buildSortOption(
-                SortOption.dateAdded, 'Fecha agregado', Icons.access_time),
+            _buildSortOption(SortOption.name,
+                AppLocalizations.of(context)!.name, Icons.sort_by_alpha),
+            _buildSortOption(SortOption.rating,
+                AppLocalizations.of(context)!.rating, Icons.star),
+            _buildSortOption(SortOption.dateAdded,
+                AppLocalizations.of(context)!.dateAdded, Icons.access_time),
             const SizedBox(height: 10),
             SwitchListTile(
-              title: const Text('Orden ascendente'),
+              title: Text(AppLocalizations.of(context)!.ascendingOrder),
               value: _sortAscending,
               onChanged: (value) {
                 setState(() {
@@ -90,23 +101,6 @@ class _FavoritesPageState extends State<FavoritesPage>
       leading:
           Icon(icon, color: _sortOption == option ? Colors.green : Colors.grey),
       title: Text(title),
-      trailing: _sortOption == option
-          ? const Icon(Icons.check, color: Colors.green)
-          : null,
-      onTap: () {
-        setState(() {
-          _sortOption = option;
-        });
-        Navigator.pop(context);
-      },
-    );
-  }
-
-  Future<void> _shareFavorites() async {
-    final shareText = _favoritesService.generateShareText();
-    await Share.share(
-      shareText,
-      subject: 'Mis lugares favoritos en Nariño 🇨🇴',
     );
   }
 
@@ -114,13 +108,12 @@ class _FavoritesPageState extends State<FavoritesPage>
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Limpiar favoritos'),
-        content: const Text(
-            '¿Estás seguro de que quieres eliminar todos tus favoritos?'),
+        title: Text(AppLocalizations.of(context)!.clearFavorites),
+        content: Text(AppLocalizations.of(context)!.confirmClearFavorites),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancelar'),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           ElevatedButton(
             onPressed: () {
@@ -131,8 +124,8 @@ class _FavoritesPageState extends State<FavoritesPage>
               );
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            child:
-                const Text('Eliminar', style: TextStyle(color: Colors.white)),
+            child: Text(AppLocalizations.of(context)!.delete,
+                style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -146,7 +139,7 @@ class _FavoritesPageState extends State<FavoritesPage>
         title: AnimatedBuilder(
           animation: _favoritesService,
           builder: (context, child) => Text(
-            'Mis Favoritos (${_favoritesService.totalFavorites})',
+            '${AppLocalizations.of(context)!.myFavorites} (${_favoritesService.totalFavorites})',
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold),
           ),
@@ -158,14 +151,14 @@ class _FavoritesPageState extends State<FavoritesPage>
           indicatorColor: Colors.white,
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white70,
-          tabs: const [
+          tabs: [
             Tab(
               icon: Icon(Icons.place),
-              text: 'Destinos',
+              text: AppLocalizations.of(context)!.destinations,
             ),
             Tab(
               icon: Icon(Icons.restaurant),
-              text: 'Restaurantes',
+              text: AppLocalizations.of(context)!.restaurants,
             ),
           ],
         ),
@@ -173,7 +166,7 @@ class _FavoritesPageState extends State<FavoritesPage>
           IconButton(
             icon: const Icon(Icons.sort, color: Colors.white),
             onPressed: _showSortOptions,
-            tooltip: 'Ordenar',
+            tooltip: AppLocalizations.of(context)!.sort,
           ),
           PopupMenuButton<String>(
             icon: const Icon(Icons.more_vert, color: Colors.white),
@@ -188,23 +181,23 @@ class _FavoritesPageState extends State<FavoritesPage>
               }
             },
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'share',
                 child: Row(
                   children: [
                     Icon(Icons.share, color: Colors.green),
                     SizedBox(width: 8),
-                    Text('Compartir favoritos'),
+                    Text(AppLocalizations.of(context)!.shareFavorites),
                   ],
                 ),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'clear',
                 child: Row(
                   children: [
                     Icon(Icons.clear_all, color: Colors.red),
                     SizedBox(width: 8),
-                    Text('Limpiar todo'),
+                    Text(AppLocalizations.of(context)!.clearAll),
                   ],
                 ),
               ),
@@ -278,7 +271,7 @@ class _FavoritesPageState extends State<FavoritesPage>
           ),
           const SizedBox(height: 20),
           Text(
-            'Aún no tienes favoritos',
+            AppLocalizations.of(context)!.noFavorites,
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -287,7 +280,7 @@ class _FavoritesPageState extends State<FavoritesPage>
           ),
           const SizedBox(height: 10),
           Text(
-            '¡Explora destinos y restaurantes increíbles\ny guarda los que más te gusten!',
+            AppLocalizations.of(context)!.exploreAndSave,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16,
@@ -301,7 +294,7 @@ class _FavoritesPageState extends State<FavoritesPage>
               DefaultTabController.of(context).animateTo(1);
             },
             icon: const Icon(Icons.explore, color: Colors.white),
-            label: const Text('Explorar lugares',
+            label: Text(AppLocalizations.of(context)!.explorePlaces,
                 style: TextStyle(color: Colors.white)),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green.shade600,
@@ -548,7 +541,8 @@ class _FavoritesPageState extends State<FavoritesPage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      restaurant.name ?? 'Restaurante sin nombre',
+                      restaurant.name ??
+                          AppLocalizations.of(context)!.restaurantNoName,
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:narino_travel_food/models/destination.dart';
 import 'package:narino_travel_food/pages/destination_page.dart';
@@ -75,7 +76,7 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
             children: <Widget>[
               Expanded(
                 child: Text(
-                  'Destinos turísticos de Nariño', // <--- CAMBIO AQUÍ
+                  AppLocalizations.of(context)!.narinoTouristDestinations,
                   style: TextStyle(
                     fontSize: 22.0,
                     fontWeight: FontWeight.bold,

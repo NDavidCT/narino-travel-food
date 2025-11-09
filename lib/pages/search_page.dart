@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:narino_travel_food/models/destination.dart';
 import 'package:narino_travel_food/models/restaurant.dart';
 import 'package:narino_travel_food/services/search_service.dart';
@@ -147,7 +148,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
           const SizedBox(height: 16),
           Text(
-            '¿Qué estás buscando?',
+            AppLocalizations.of(context)!.whatAreYouLookingFor,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -156,7 +157,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Busca destinos, restaurantes y más en Nariño',
+            AppLocalizations.of(context)!.searchNarino,
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey.shade500,

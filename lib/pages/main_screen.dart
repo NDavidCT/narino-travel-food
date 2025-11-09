@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/google_sign_in_service.dart';
 // Asegúrate de que estas importaciones sean correctas para tus archivos:
@@ -27,10 +28,10 @@ class _MainScreenState extends State<MainScreen> {
   late int _selectedIndex;
 
   final List<Widget> _pages = [
-    const SearchPage(),
-    const HomePage(),
-    const FavoritesPage(),
-    const MapPage(),
+    SearchPage(),
+    HomePage(),
+    FavoritesPage(),
+    MapPage(),
   ];
 
   @override
@@ -110,9 +111,9 @@ class _MainScreenState extends State<MainScreen> {
               child: Row(
                 children: [
                   // Saludo "Hola,"
-                  const Text(
-                    'Hola, ',
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.greeting,
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: Colors.white70,
@@ -221,8 +222,8 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.white70,
                 size: 18,
               ),
-              label: const Text(
-                'Cerrar Sesión',
+              label: Text(
+                AppLocalizations.of(context)!.logout,
                 style: TextStyle(
                   color: Colors.white70,
                   fontSize: 12,
@@ -284,22 +285,22 @@ class _MainScreenState extends State<MainScreen> {
       // BARRA DE NAVEGACIÓN INFERIOR (BottomNavigationBar)
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Buscar',
+            label: AppLocalizations.of(context)!.search,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Inicio',
+            label: AppLocalizations.of(context)!.homeTitle,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'Favoritos',
+            label: AppLocalizations.of(context)!.favorites,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
-            label: 'Mapa',
+            label: AppLocalizations.of(context)!.map,
           ),
         ],
         currentIndex: _selectedIndex,

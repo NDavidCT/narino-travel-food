@@ -323,6 +323,12 @@ abstract class AppLocalizations {
   /// **'Log in to write a review'**
   String get loginToReview;
 
+  /// No description provided for @greeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, '**
+  String get greeting;
+
   /// No description provided for @update.
   ///
   /// In en, this message translates to:
@@ -358,6 +364,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show less'**
   String get showLess;
+
+  /// No description provided for @popularDestinations.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Destinations'**
+  String get popularDestinations;
+
+  /// No description provided for @featuredRestaurants.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Restaurants'**
+  String get featuredRestaurants;
+
+  /// No description provided for @narinoTouristDestinations.
+  ///
+  /// In en, this message translates to:
+  /// **'Nariño Tourist Destinations'**
+  String get narinoTouristDestinations;
+
+  /// No description provided for @narinoGastronomy.
+  ///
+  /// In en, this message translates to:
+  /// **'Nariño Gastronomy'**
+  String get narinoGastronomy;
+
+  /// No description provided for @whatAreYouLookingFor.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you like to find?'**
+  String get whatAreYouLookingFor;
+
+  /// No description provided for @searchNarino.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for destinations, restaurants and more in Nariño'**
+  String get searchNarino;
+
+  /// No description provided for @sortBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get sortBy;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @dateAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Date added'**
+  String get dateAdded;
+
+  /// No description provided for @ascendingOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Ascending order'**
+  String get ascendingOrder;
+
+  /// No description provided for @clearFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear favorites'**
+  String get clearFavorites;
+
+  /// No description provided for @confirmClearFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete all your favorites?'**
+  String get confirmClearFavorites;
+
+  /// No description provided for @myFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'My Favorites'**
+  String get myFavorites;
+
+  /// No description provided for @restaurants.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants'**
+  String get restaurants;
+
+  /// No description provided for @sort.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort'**
+  String get sort;
+
+  /// No description provided for @shareFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Share favorites'**
+  String get shareFavorites;
+
+  /// No description provided for @clearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get clearAll;
+
+  /// No description provided for @noFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no favorites yet'**
+  String get noFavorites;
+
+  /// No description provided for @exploreAndSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore amazing destinations and restaurants\nand save your favorites!'**
+  String get exploreAndSave;
+
+  /// No description provided for @explorePlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore places'**
+  String get explorePlaces;
+
+  /// No description provided for @noResultsFoundDestinations.
+  ///
+  /// In en, this message translates to:
+  /// **'No destinations found'**
+  String get noResultsFoundDestinations;
+
+  /// No description provided for @noResultsFoundRestaurants.
+  ///
+  /// In en, this message translates to:
+  /// **'No restaurants found'**
+  String get noResultsFoundRestaurants;
+
+  /// No description provided for @tryOtherSearchTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'Try other search terms'**
+  String get tryOtherSearchTerms;
+
+  /// No description provided for @removedFromFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'removed from favorites'**
+  String get removedFromFavorites;
+
+  /// No description provided for @undo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undo;
+
+  /// No description provided for @restaurantNoName.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant without name'**
+  String get restaurantNoName;
+
+  /// No description provided for @restaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant'**
+  String get restaurant;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

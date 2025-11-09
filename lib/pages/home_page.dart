@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:narino_travel_food/widgets/destination_carousel.dart';
 import 'package:narino_travel_food/widgets/restaurant_carousel.dart';
 
@@ -45,11 +47,11 @@ class _HomePageState extends State<HomePage> {
           SafeArea(
             child: ListView(
               padding: const EdgeInsets.symmetric(vertical: 30.0),
-              children: const <Widget>[
+              children: <Widget>[
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
-                    '¿Qué te gustaria encontrar?',
+                    AppLocalizations.of(context)!.whatAreYouLookingFor,
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
@@ -61,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
-                    'Destinos populares',
+                    AppLocalizations.of(context)!.popularDestinations,
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -76,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
-                    'Restaurantes destacados',
+                    AppLocalizations.of(context)!.featuredRestaurants,
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,

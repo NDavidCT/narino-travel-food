@@ -15,7 +15,7 @@
     },
     {
       "name": "analyzer",
-      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/analyzer-8.4.0",
+      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/analyzer-8.4.1",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -87,13 +87,13 @@
     },
     {
       "name": "cross_file",
-      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/cross_file-0.3.4+2",
+      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/cross_file-0.3.5",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.7"
     },
     {
       "name": "crypto",
-      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/crypto-3.0.6",
+      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/crypto-3.0.7",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -207,7 +207,7 @@
     },
     {
       "name": "font_awesome_flutter",
-      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/font_awesome_flutter-10.10.0",
+      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/font_awesome_flutter-10.12.0",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -566,12 +566,6 @@
       "languageVersion": "3.1"
     },
     {
-      "name": "sprintf",
-      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/sprintf-7.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "stack_trace",
       "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.12.1",
       "packageUri": "lib/",
@@ -675,7 +669,7 @@
     },
     {
       "name": "uuid",
-      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/uuid-4.5.1",
+      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/uuid-4.5.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },

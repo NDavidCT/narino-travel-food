@@ -191,7 +191,7 @@
     },
     {
       "name": "font_awesome_flutter",
-      "version": "10.10.0",
+      "version": "10.12.0",
       "dependencies": [
         "flutter"
       ]
@@ -409,7 +409,7 @@
     },
     {
       "name": "analyzer",
-      "version": "8.4.0",
+      "version": "8.4.1",
       "dependencies": [
         "_fe_analyzer_shared",
         "collection",
@@ -506,7 +506,7 @@
     },
     {
       "name": "cross_file",
-      "version": "0.3.4+2",
+      "version": "0.3.5",
       "dependencies": [
         "meta",
         "web"
@@ -904,7 +904,7 @@
     },
     {
       "name": "crypto",
-      "version": "3.0.6",
+      "version": "3.0.7",
       "dependencies": [
         "typed_data"
       ]
@@ -951,12 +951,11 @@
     },
     {
       "name": "uuid",
-      "version": "4.5.1",
+      "version": "4.5.2",
       "dependencies": [
         "crypto",
         "fixnum",
-        "meta",
-        "sprintf"
+        "meta"
       ]
     },
     {
@@ -1054,11 +1053,6 @@
     {
       "name": "fixnum",
       "version": "1.1.1",
-      "dependencies": []
-    },
-    {
-      "name": "sprintf",
-      "version": "7.0.0",
       "dependencies": []
     },
     {

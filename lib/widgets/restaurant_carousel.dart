@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:narino_travel_food/models/restaurant.dart';
 import 'package:narino_travel_food/pages/restaurant_page.dart';
 import 'package:narino_travel_food/services/translation_service.dart';
@@ -50,9 +51,9 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const Text(
-                'Gastronomía nariñense',
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.narinoGastronomy,
+                style: const TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.5,

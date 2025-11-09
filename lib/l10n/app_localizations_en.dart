@@ -123,6 +123,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginToReview => 'Log in to write a review';
 
   @override
+  String get greeting => 'Hello, ';
+
+  @override
   String get update => 'Update';
 
   @override
@@ -139,4 +142,85 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get showLess => 'Show less';
+
+  @override
+  String get popularDestinations => 'Popular Destinations';
+
+  @override
+  String get featuredRestaurants => 'Featured Restaurants';
+
+  @override
+  String get narinoTouristDestinations => 'Nariño Tourist Destinations';
+
+  @override
+  String get narinoGastronomy => 'Nariño Gastronomy';
+
+  @override
+  String get whatAreYouLookingFor => 'What would you like to find?';
+
+  @override
+  String get searchNarino => 'Search for destinations, restaurants and more in Nariño';
+
+  @override
+  String get sortBy => 'Sort by';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get dateAdded => 'Date added';
+
+  @override
+  String get ascendingOrder => 'Ascending order';
+
+  @override
+  String get clearFavorites => 'Clear favorites';
+
+  @override
+  String get confirmClearFavorites => 'Are you sure you want to delete all your favorites?';
+
+  @override
+  String get myFavorites => 'My Favorites';
+
+  @override
+  String get restaurants => 'Restaurants';
+
+  @override
+  String get sort => 'Sort';
+
+  @override
+  String get shareFavorites => 'Share favorites';
+
+  @override
+  String get clearAll => 'Clear all';
+
+  @override
+  String get noFavorites => 'You have no favorites yet';
+
+  @override
+  String get exploreAndSave => 'Explore amazing destinations and restaurants\nand save your favorites!';
+
+  @override
+  String get explorePlaces => 'Explore places';
+
+  @override
+  String get noResultsFoundDestinations => 'No destinations found';
+
+  @override
+  String get noResultsFoundRestaurants => 'No restaurants found';
+
+  @override
+  String get tryOtherSearchTerms => 'Try other search terms';
+
+  @override
+  String get removedFromFavorites => 'removed from favorites';
+
+  @override
+  String get undo => 'Undo';
+
+  @override
+  String get restaurantNoName => 'Restaurant without name';
+
+  @override
+  String get restaurant => 'Restaurant';
 }
