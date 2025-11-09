@@ -261,6 +261,8 @@ List<Destination> destinations = [
     country: 'Túquerres',
     description: 'Explora la belleza natural de la Laguna Verde.',
     activities: azufralActivities,
+    historyAndInfo:
+        'La Laguna Verde, ubicada en el cráter del volcán Azufral, es famosa por el intenso color esmeralda de sus aguas, resultado de la alta concentración de azufre y minerales volcánicos. Este entorno andino, rodeado de páramos y montañas, es considerado uno de los paisajes más espectaculares de Nariño y Colombia.\n\nAdemás de su belleza natural, la laguna es un sitio de importancia ecológica y cultural, protegido como reserva natural. Es hábitat de especies endémicas y destino de senderismo y turismo ecológico, donde los visitantes pueden aprender sobre la geología volcánica y la biodiversidad de los Andes.\nFuente: Wikipedia, Parques Nacionales Naturales de Colombia.',
   ),
   Destination(
     imageUrl: 'assets/images/la_cocha.jpg',
@@ -268,12 +270,16 @@ List<Destination> destinations = [
     country: 'Pasto',
     description: 'Navega la hermosa Laguna de la Cocha.',
     activities: laCochaActivities,
+    historyAndInfo:
+        'La Laguna de La Cocha, también conocida como Lago Guamuez, es el segundo cuerpo de agua natural más grande de Colombia y fue declarada humedal de importancia internacional por el Convenio Ramsar. Ubicada a 2680 metros sobre el nivel del mar y rodeada de montañas, es famosa por su belleza paisajística y por albergar la Isla La Corota, un santuario de fauna y flora con especies endémicas de aves y plantas.\n\nEn sus orillas se asientan comunidades descendientes de los quillasingas, quienes consideran la laguna un lugar sagrado. El turismo ecológico y la pesca de trucha arcoíris son actividades destacadas, y la zona cuenta con reservas naturales privadas gestionadas por los habitantes. La Laguna de La Cocha es un destino ideal para quienes buscan naturaleza, cultura y tranquilidad en el sur de Colombia.\nFuente: Wikipedia Laguna de la Cocha.',
   ),
   Destination(
     imageUrl: 'assets/images/volcan_galeras.jpg',
     city: 'Volcán Galeras',
     country: 'Pasto',
     description: 'Explora el volcán activo más monitoreado de Colombia.',
+    historyAndInfo:
+        'El Volcán Galeras, ubicado a pocos kilómetros de Pasto, es uno de los volcanes más activos y monitoreados de Colombia. Su imponente presencia ha marcado la historia geológica y cultural de la región, siendo escenario de numerosas erupciones que han influido en la vida de los habitantes y en el desarrollo científico del país. El área circundante es un santuario de fauna y flora, con senderos ecológicos y miradores que permiten apreciar la majestuosidad del cráter y la biodiversidad andina. Además, el Galeras es símbolo de resiliencia y adaptación para las comunidades locales, quienes han aprendido a convivir con la fuerza de la naturaleza y a valorar la riqueza ambiental y educativa que ofrece el volcán.\n\nEl Observatorio Vulcanológico y Sismológico de Pasto realiza monitoreo constante, contribuyendo a la seguridad y al conocimiento científico internacional. Visitar el Galeras es adentrarse en la historia viva de Nariño y en la conexión profunda entre el ser humano y la tierra.',
     activities: galerasActivities,
   ),
   Destination(
@@ -281,6 +287,8 @@ List<Destination> destinations = [
     city: 'Centro Histórico de Pasto',
     country: 'Pasto',
     description: 'Descubre la arquitectura colonial y cultura pastusa.',
+    historyAndInfo:
+        'El Centro Histórico de Pasto es el corazón cultural y arquitectónico de la capital nariñense. Sus calles empedradas y edificaciones coloniales narran siglos de historia, desde la época virreinal hasta la actualidad. Aquí se encuentran templos emblemáticos como la Catedral, San Juan Bautista y Nuestra Señora de las Mercedes, que reflejan la riqueza artística y religiosa de la ciudad.\n\nEl centro es escenario de festividades tradicionales, como el Carnaval de Blancos y Negros, declarado Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO. Museos, plazas y mercados ofrecen una experiencia única de turismo cultural, donde se puede disfrutar de la gastronomía local, el arte popular y la hospitalidad pastusa.\n\nRecorrer el Centro Histórico es sumergirse en la identidad de Pasto, en la resistencia de sus habitantes durante la Independencia y en la diversidad de expresiones que han hecho de la ciudad un referente nacional.',
     activities: centroHistoricoActivities,
   ),
   Destination(
@@ -288,6 +296,8 @@ List<Destination> destinations = [
     city: 'Playas de Tumaco',
     country: 'Tumaco',
     description: 'Disfruta las playas del Pacífico y cultura afro.',
+    historyAndInfo:
+        'Las Playas de Tumaco, ubicadas en la costa pacífica de Nariño, son reconocidas por su belleza natural y la riqueza cultural afrodescendiente. El litoral ofrece extensas playas de arena oscura, manglares y estuarios que albergan una biodiversidad única.\n\nTumaco es un puerto estratégico y punto de encuentro de tradiciones ancestrales, música, gastronomía y festividades como el Festival del Currulao. La región ha sido testigo de procesos históricos de resistencia y adaptación, y hoy promueve el turismo sostenible y la conservación de sus ecosistemas marinos.\n\nVisitar Tumaco es descubrir la alegría, el sabor y la resiliencia de sus comunidades, así como la importancia de la integración entre naturaleza y cultura en el Pacífico colombiano.',
     activities: tumacoActivities,
   ),
   Destination(
@@ -295,6 +305,8 @@ List<Destination> destinations = [
     city: 'Volcán Cumbal',
     country: 'Cumbal',
     description: 'Ascenso al volcán nevado y cultura indígena Pastos.',
+    historyAndInfo:
+        'El Volcán Cumbal, también conocido como Nevado de Cumbal, es el estratovolcán más alto del sur de Colombia, alcanzando los 4764 metros sobre el nivel del mar. Su cima nevada y sus laderas son fuente de agua y vida para la región, y han sido habitadas por la comunidad indígena Pastos desde tiempos ancestrales.\n\nEl ascenso al volcán permite observar paisajes de páramo, lagunas glaciares y una flora única adaptada a las condiciones extremas. Cumbal es también un lugar de espiritualidad y leyendas, donde los rituales indígenas se mezclan con la admiración por la fuerza de la naturaleza.\n\nLa zona es reconocida por su biodiversidad, la producción agrícola y la importancia geotérmica, siendo objeto de estudios científicos y turísticos. El volcán representa la unión entre tradición, ciencia y aventura en Nariño.',
     activities: cumbalActivities,
   ),
   Destination(
@@ -302,6 +314,8 @@ List<Destination> destinations = [
     city: 'Laguna de La Bolsa',
     country: 'Cumbal',
     description: 'hermosa laguna de aguas cristalinas.',
+    historyAndInfo:
+        'La Laguna de La Bolsa, ubicada en el municipio de Cumbal, es un espejo de agua de origen glaciar rodeado de montañas y vegetación nativa. Sus aguas cristalinas reflejan la pureza del entorno y son hábitat de aves migratorias y especies endémicas.\n\nLa laguna es fundamental para la regulación hídrica de la región y es considerada sagrada por las comunidades locales, quienes realizan rituales y celebraciones en sus orillas. El sitio es ideal para el ecoturismo, la observación de fauna y la contemplación de paisajes andinos.\n\nLa Bolsa forma parte de la red de humedales de Nariño y contribuye a la conservación ambiental y cultural del territorio.',
     activities: lagunaBolsaActivities,
   ),
   Destination(
@@ -309,6 +323,8 @@ List<Destination> destinations = [
     city: 'Katza Pi',
     country: 'Ricaurte',
     description: 'Relájate en las aguas termales naturales.',
+    historyAndInfo:
+        'Katza Pi, en Ricaurte, es un complejo de aguas termales naturales que brotan de las entrañas de la tierra, producto de la actividad volcánica de la región. Estas aguas han sido utilizadas por comunidades indígenas y visitantes para la relajación, la salud y el bienestar, gracias a sus propiedades minerales.\n\nEl entorno de Katza Pi está rodeado de paisajes montañosos, vegetación exuberante y senderos ecológicos que invitan al turismo de naturaleza y aventura. El sitio es punto de encuentro para el turismo de bienestar, la cultura ancestral y la integración comunitaria.\n\nKatza Pi representa la armonía entre el ser humano y los recursos naturales, promoviendo el desarrollo sostenible y la preservación de tradiciones milenarias.',
     activities: katzaPiActivities,
   ),
   Destination(
@@ -316,6 +332,8 @@ List<Destination> destinations = [
     city: 'Río Telembí',
     country: 'Barbacoas',
     description: 'Explora la minería ancestral y cultura afro.',
+    historyAndInfo:
+        'El Río Telembí, en Barbacoas, es uno de los principales afluentes de la costa pacífica nariñense. Sus aguas han sido testigo de la minería ancestral, la pesca y la navegación, actividades que han marcado la historia y la economía de la región.\n\nLa cuenca del Telembí alberga una biodiversidad extraordinaria, con manglares, selvas y especies endémicas. La cultura afrodescendiente y las comunidades indígenas han desarrollado tradiciones, leyendas y festividades en torno al río, que es símbolo de resiliencia y adaptación.\n\nEl Telembí es vital para la integración regional, la conservación ambiental y el turismo ecológico, siendo un ejemplo de la riqueza natural y cultural del Pacífico colombiano.',
     activities: barbacoasActivities,
   ),
   Destination(
@@ -323,6 +341,8 @@ List<Destination> destinations = [
     city: 'Reservas Naturales de El Tambo',
     country: 'El Tambo',
     description: 'Reservas naturales y avistamiento de aves.',
+    historyAndInfo:
+        'Las Reservas Naturales de El Tambo, ubicadas en el corazón de Nariño, son áreas protegidas que albergan una gran diversidad de aves, mamíferos y plantas endémicas. El Tambo es reconocido por sus paisajes de montaña, ríos y bosques, que ofrecen oportunidades para el ecoturismo, la investigación científica y la educación ambiental.\n\nLa comunidad local participa activamente en la conservación y el manejo sostenible de los recursos, promoviendo el turismo responsable y la preservación de especies vulnerables. Las reservas son refugio de paz y aprendizaje, donde se puede disfrutar de la observación de aves, senderismo y actividades culturales.\n\nEl Tambo es ejemplo de integración entre desarrollo rural y protección ambiental en Nariño.',
     activities: elTamboActivities,
   ),
   Destination(
@@ -331,6 +351,8 @@ List<Destination> destinations = [
     country: 'Tuquerres',
     description:
         'recreación como pesca deportiva, una pista de motos y senderos ecológicos',
+    historyAndInfo:
+        'La Hacienda Alsacia, ubicada en Tuquerres, es un espacio rural dedicado a la recreación, la agricultura y el turismo ecológico. Ofrece actividades como pesca deportiva, senderos ecológicos y pista de motos, en un entorno de naturaleza y tranquilidad.\n\nLa hacienda es punto de encuentro para familias, turistas y amantes de la vida campestre, promoviendo la preservación de tradiciones agrícolas y el desarrollo sostenible. Sus instalaciones permiten la realización de eventos, talleres y experiencias educativas sobre el campo nariñense.\n\nAlsacia representa la integración entre modernidad y tradición, siendo un referente de turismo rural y conservación ambiental.',
     activities: haciendaAlsaciaActivities,
   ),
   Destination(
@@ -338,6 +360,8 @@ List<Destination> destinations = [
     city: 'Pedregal Rio',
     country: 'Imues',
     description: 'hermoso balneario para disfrutar en familia',
+    historyAndInfo:
+        'Pedregal Río, en Imues, es un balneario natural formado por el cauce del río y rodeado de extensas áreas verdes y vegetación nativa. Es ideal para el descanso, la recreación familiar y el contacto directo con la naturaleza.\n\nEl sitio es conocido por sus aguas limpias, la hospitalidad de la comunidad local y la posibilidad de realizar actividades como natación, picnic y senderismo. Pedregal Río es ejemplo de turismo comunitario y conservación de recursos hídricos en Nariño.',
     activities: pedregalRioActivities,
   ),
   Destination(
@@ -345,6 +369,8 @@ List<Destination> destinations = [
     city: 'Paramo Paja Blanca',
     country: 'Gualmatán',
     description: 'hermoso paisaje con frailejones y paramos.',
+    historyAndInfo:
+        'El Páramo Paja Blanca, en Gualmatán, es una de las áreas protegidas más importantes de Nariño. Alberga gran cantidad de especies nativas, entre ellas el frailejón, y provee de agua a varios municipios de la zona.\n\nEl páramo es escenario de procesos ecológicos fundamentales para la regulación hídrica, la conservación de la biodiversidad y la adaptación al cambio climático. El paisaje invita a la contemplación, la investigación científica y la educación ambiental, siendo clave para la sostenibilidad regional.\n\nPaja Blanca es también espacio de celebraciones culturales y religiosas, integrando la vida comunitaria con la protección de la naturaleza.',
     activities: paramoPajaBlancaActivities,
   ),
   Destination(
@@ -353,12 +379,16 @@ List<Destination> destinations = [
     country: 'Chachagüí',
     description:
         'centro recreacional con múltiples actividades para toda la familia.',
+    historyAndInfo:
+        'El Centro Recreacional Comfamiliar, en Chachagüí, es un complejo turístico que ofrece múltiples actividades para toda la familia. Sus instalaciones incluyen piscinas, zonas de juegos infantiles, áreas deportivas y espacios para eventos, rodeados de naturaleza y tranquilidad.\n\nComfamiliar es referente de turismo familiar en Nariño, promoviendo la integración social, el bienestar y la recreación en un entorno seguro y accesible. El centro contribuye al desarrollo local y a la promoción de estilos de vida saludables.',
     activities: comfamiliarActivities,
   ),
   Destination(
     imageUrl: 'assets/images/laguna_coba_negra.jpg',
     city: 'laguna Coba Negra',
     country: 'Pasto',
+    historyAndInfo:
+        'La Laguna Coba Negra, ubicada en Pasto, es un área natural protegida de gran importancia ecológica y cultural. Sus aguas oscuras y misteriosas han inspirado leyendas, estudios científicos y actividades de conservación.\n\nLa laguna es vital para la biodiversidad regional, albergando especies de flora y fauna únicas, y contribuyendo a la regulación hídrica y climática. El entorno es ideal para la observación de aves, la investigación ambiental y el turismo ecológico.\n\nCoba Negra es símbolo de la relación entre naturaleza y cultura en Nariño, promoviendo el respeto y la protección de los recursos naturales.',
     description: 'Misteriosa laguna de aguas oscuras y entorno natural.',
     activities: lagunaCobaNegraActivities,
   ),
@@ -367,6 +397,8 @@ List<Destination> destinations = [
     city: 'Haciendas Cafeteras',
     country: 'Buesaco',
     description: 'Ecoparque y Café especial de altura y haciendas cafeteras.',
+    historyAndInfo:
+        'Las Haciendas Cafeteras de Buesaco son reconocidas a nivel nacional por la producción de café especial de altura, resultado de la combinación entre clima, suelo y tradición agrícola. Los ecoparques ofrecen experiencias de agroturismo, donde los visitantes pueden conocer el proceso de cultivo, cosecha y preparación del café, así como disfrutar de actividades recreativas y educativas.\n\nLa región es ejemplo de innovación rural, integración comunitaria y conservación ambiental, promoviendo el desarrollo sostenible y la valoración de la cultura cafetera en Nariño.',
     activities: narinoActivities,
   ),
   Destination(
@@ -374,6 +406,8 @@ List<Destination> destinations = [
     city: 'Sombreros de Paja Toquilla',
     country: 'Sandoná',
     description: 'Sombreros de paja toquilla patrimonio cultural.',
+    historyAndInfo:
+        'Sandoná es el principal productor colombiano de sombreros tejidos en paja toquilla, una tradición artesanal que se remonta al siglo XIX. El arte de tejer sombreros y accesorios con fibras naturales de iraca ha sido transmitido por generaciones, convirtiéndose en símbolo de identidad y patrimonio cultural.\n\nLa elaboración de estos artículos artesanales es fuente de ingresos y atractivo turístico, destacando la destreza y creatividad de los artesanos sandoneños. El municipio celebra ferias y festividades dedicadas a la artesanía, promoviendo la integración social y el reconocimiento nacional e internacional.',
     activities: sandonaActivities,
   ),
   Destination(
@@ -381,6 +415,8 @@ List<Destination> destinations = [
     city: 'Balneario Los Rosales',
     country: 'Samaniego',
     description: 'excelente clima y hermoso balneario para el descanso.',
+    historyAndInfo:
+        'El Balneario Los Rosales, en Samaniego, es un espacio natural de aguas termales y clima agradable, ideal para el descanso y la recreación. El sitio es punto de encuentro para turistas y locales, promoviendo el turismo sostenible y la integración comunitaria.\n\nLos Rosales ofrece servicios de hospedaje, gastronomía y actividades de bienestar, en un entorno de belleza paisajística y tranquilidad. El balneario es ejemplo de aprovechamiento responsable de los recursos naturales y de desarrollo turístico en Nariño.',
     activities: consacaActivities,
   ),
   Destination(
@@ -388,6 +424,8 @@ List<Destination> destinations = [
     city: 'Mirador de Chimayoy',
     country: 'Pasto',
     description: 'Mirador de Chimayoy y páramos únicos.',
+    historyAndInfo:
+        'El Mirador de Chimayoy, situado a pocos kilómetros de Pasto, es un centro ambiental y turístico que ofrece vistas panorámicas de los páramos, montañas y valles andinos. Chimayoy, que en lengua quillasinga significa "ir al encuentro con el sol", es espacio de educación ambiental, investigación y conservación ecológica.\n\nEl lugar cuenta con senderos ecológicos, actividades educativas y proyectos de integración comunitaria, promoviendo la valoración y protección de los ecosistemas de alta montaña. Chimayoy es referente de turismo ecológico y desarrollo sostenible en Nariño.',
     activities: tanguaActivities,
   ),
   Destination(
@@ -395,6 +433,8 @@ List<Destination> destinations = [
     city: 'Piedra de Bolívar',
     country: 'Consaca',
     description: 'Piedra de Bolívar y formaciones rocosas.',
+    historyAndInfo:
+        'La Piedra de Bolívar, en Consaca, es una formación rocosa de gran valor histórico y simbólico. Conmemora la Batalla de Bomboná, uno de los episodios más importantes de la campaña libertadora en Colombia. El sitio es visitado por su valor histórico, sus paisajes únicos y la posibilidad de realizar actividades de senderismo y observación de flora y fauna.\n\nLa Piedra de Bolívar es símbolo de la identidad andina y de la memoria colectiva de Nariño, integrando historia, naturaleza y turismo cultural.',
     activities: mallamaActivities,
   ),
   Destination(
@@ -402,6 +442,8 @@ List<Destination> destinations = [
     city: 'Paramo de Frailejones',
     country: 'Chiles',
     description: 'Páramos, Volcan y Termales.',
+    historyAndInfo:
+        'El Páramo de Frailejones, en Chiles, es un ecosistema de alta montaña que alberga especies endémicas de flora y fauna, siendo fuente de agua y vida para la región. El páramo es escenario de procesos ecológicos fundamentales, como la captación y regulación hídrica, la conservación de la biodiversidad y la adaptación al cambio climático.\n\nEl lugar es ideal para el turismo de naturaleza, la investigación científica y la educación ambiental, promoviendo la protección de los recursos naturales y la integración comunitaria.',
     activities: funesActivities,
   ),
   Destination(
@@ -409,6 +451,8 @@ List<Destination> destinations = [
     city: 'El dedo de Dios',
     country: 'Mallama',
     description: 'majestuoso cerro con formaciones rocosas únicas .',
+    historyAndInfo:
+        'El Dedo de Dios, en Mallama, es un cerro majestuoso con formaciones rocosas únicas que han inspirado leyendas, rituales y expresiones de espiritualidad. El sitio es apreciado por su belleza natural, la posibilidad de realizar actividades de senderismo y la importancia cultural para las comunidades locales.\n\nEl Dedo de Dios es símbolo de la relación entre el ser humano y la naturaleza, promoviendo el turismo responsable y la valoración del patrimonio geológico y cultural de Nariño.',
     activities: puerresActivities,
   ),
   Destination(
@@ -416,6 +460,8 @@ List<Destination> destinations = [
     city: 'Cascadas de Chihuacos',
     country: 'Potosi',
     description: 'hermosa cascada en entorno natural y el sol de los pastos',
+    historyAndInfo:
+        'Las Cascadas de Chihuacos, en Potosí, son un tesoro natural formado por caídas de agua rodeadas de montañas y vegetación nativa. El lugar es ideal para el ecoturismo, la observación de flora y fauna, y la realización de actividades recreativas y educativas.\n\nLas cascadas son símbolo de la riqueza hídrica y paisajística de Nariño, promoviendo la conservación ambiental y el desarrollo sostenible en la región.',
     activities: ospinaActivities,
   ),
   Destination(
@@ -423,6 +469,8 @@ List<Destination> destinations = [
     city: 'Cascada de la Paila',
     country: 'Pupiales',
     description: 'Manglares y ecoturismo marino del Pacífico.',
+    historyAndInfo:
+        'La Cascada de la Paila, en Pupiales, es un atractivo natural que destaca por la presencia de manglares, aguas cristalinas y biodiversidad marina. El sitio es refugio de especies de flora y fauna, y promueve la conservación ambiental y el ecoturismo marino.\n\nLa Cascada de la Paila es ejemplo de integración entre turismo, educación ambiental y protección de los ecosistemas acuáticos en Nariño.',
     activities: franciscoPizarroActivities,
   ),
   Destination(
@@ -430,6 +478,8 @@ List<Destination> destinations = [
     city: 'Carnaval de Blancos y Negros',
     country: 'Todo el departamento de Nariño',
     description: 'Patrimonio Cultural Inmaterial de la Humanidad.',
+    historyAndInfo:
+        'El Carnaval de Blancos y Negros, celebrado anualmente en Pasto y otros municipios de Nariño, es una de las fiestas más emblemáticas de Colombia. Declarado Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO, el carnaval tiene raíces prehispánicas, andinas e hispánicas, y se ha consolidado como símbolo de identidad, integración y creatividad.\n\nDurante el carnaval, la ciudad se llena de color, música, carrozas y expresiones artísticas que reivindican el legado afro, indígena y mestizo. El evento incluye el Desfile de las Colonias, el Día de los Negros y el Día de los Blancos, donde la comunidad celebra la diversidad y la unidad.\n\nEl carnaval es motor de desarrollo cultural, turístico y económico, promoviendo la participación ciudadana y el reconocimiento internacional de Nariño.',
     activities: carnavalActivities,
   ),
   Destination(
@@ -437,6 +487,8 @@ List<Destination> destinations = [
     city: 'Museo del Carnaval',
     country: 'Pasto',
     description: 'Historia y tradición del Carnaval de Blancos y Negros.',
+    historyAndInfo:
+        'El Museo del Carnaval, ubicado en Pasto, es un espacio dedicado a la preservación, exhibición y difusión de la historia y tradición del Carnaval de Blancos y Negros. El museo alberga colecciones de carrozas, trajes, fotografías y documentos que narran la evolución del carnaval y su impacto en la cultura nariñense.\n\nEs punto de encuentro para turistas, investigadores y artistas, promoviendo el estudio y la valoración de las expresiones culturales de la región. El museo contribuye al fortalecimiento de la identidad local y al reconocimiento internacional del carnaval.',
     activities: museoCarnavalActivities,
   ),
   Destination(
@@ -444,6 +496,8 @@ List<Destination> destinations = [
     city: 'Cañón de Juanambú',
     country: 'Buesaco',
     description: 'Formación geológica espectacular y biodiversidad.',
+    historyAndInfo:
+        'El Cañón de Juanambú, en Buesaco, es una formación geológica de gran belleza y relevancia histórica. El cañón fue escenario de la Batalla de Juanambú durante la campaña libertadora, y hoy es símbolo de la biodiversidad y el potencial turístico de la región.\n\nEl sitio ofrece oportunidades para el turismo de aventura, el senderismo y la observación de paisajes únicos, integrando historia, naturaleza y desarrollo local.',
     activities: canonJuanambuActivities,
   ),
   Destination(
@@ -451,6 +505,8 @@ List<Destination> destinations = [
     city: 'Cascadas de Wilke',
     country: 'La Florida',
     description: 'Cascadas Blanca y Negra en paisaje tropical.',
+    historyAndInfo:
+        'Las Cascadas de Wilke, en La Florida, son un conjunto de caídas de agua rodeadas de paisajes tropicales y biodiversidad. El entorno es refugio de especies de flora y fauna, y promueve la conservación ambiental y el turismo ecológico.\n\nLas cascadas son ejemplo de la riqueza natural de Nariño y de la importancia de proteger los ecosistemas acuáticos y terrestres.',
     activities: cascadasWilkActivities,
   ),
   Destination(
@@ -458,6 +514,8 @@ List<Destination> destinations = [
     city: 'Reserva Osos de Anteojos',
     country: 'La Planada',
     description: 'Observación del oso andino en su hábitat natural.',
+    historyAndInfo:
+        'La Reserva Osos de Anteojos, ubicada en La Planada, es un área protegida dedicada a la conservación del oso andino, especie emblemática y vulnerable de los Andes colombianos. La reserva es gestionada por la comunidad Awá, quienes han desarrollado proyectos de educación ambiental, investigación y turismo responsable.\n\nEl área alberga una gran diversidad de flora y fauna, siendo clave para la protección de especies amenazadas y la promoción de la integración comunitaria. La reserva es ejemplo de conservación participativa y de la relación armoniosa entre cultura y naturaleza en Nariño.',
     activities: ososAntejosActivities,
   ),
 ];
@@ -465,6 +523,8 @@ List<Destination> destinations = [
 List<Activity> azufralActivities = [
   Activity(
     imageUrl: 'assets/images/observacion_geologica.jpg',
+    historyAndInfo:
+        'Tesoro natural en San Pablo, caídas de agua rodeadas de montañas y vegetación nativa.',
     name: 'Observación Geológica',
     type: 'Ciencia y Naturaleza',
     startTimes: ['9:00 am'],
@@ -472,6 +532,8 @@ List<Activity> azufralActivities = [
     price: 5000,
   ),
   Activity(
+    historyAndInfo:
+        'Especie vulnerable, protegida en la Reserva La Planada, gestionada por la comunidad Awá.',
     imageUrl: 'assets/images/fotografia_paisajes.jpg',
     name: 'Fotografía de Paisajes',
     type: 'Fotografía',

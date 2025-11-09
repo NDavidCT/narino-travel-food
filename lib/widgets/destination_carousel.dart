@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:narino_travel_food/models/destination.dart';
 import 'package:narino_travel_food/pages/destination_page.dart';
+import 'package:narino_travel_food/services/translation_service.dart';
 import 'animated_favorite_button.dart';
 
 class DestinationCarousel extends StatefulWidget {
@@ -32,6 +33,35 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
 
   void _showAllDestinations() {
     Navigator.pushNamed(context, '/all-destinations');
+  }
+
+  List<String?> _translatedNames = List.filled(destinations.length, null);
+  Locale? _lastLocale;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _handleLocaleChange();
+  }
+
+  Future<void> _handleLocaleChange() async {
+    final locale = Localizations.localeOf(context);
+    if (_lastLocale == locale) return;
+    _lastLocale = locale;
+    final isEnglish = locale.languageCode == 'en';
+    if (isEnglish) {
+      for (int i = 0; i < destinations.length; i++) {
+        final name = destinations[i].city ?? '';
+        final nameTr = await TranslationService.translateText(name, 'es', 'en');
+        setState(() {
+          _translatedNames[i] = nameTr;
+        });
+      }
+    } else {
+      setState(() {
+        _translatedNames = List.filled(destinations.length, null);
+      });
+    }
   }
 
   @override
@@ -186,21 +216,18 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
                                         width:
                                             160.0, // Ancho disponible para el texto
                                         child: Text(
-                                          destination.city ?? '',
+                                          _translatedNames[index] ??
+                                              destination.city ??
+                                              '',
                                           style: const TextStyle(
                                             color: Colors.white,
-                                            fontSize:
-                                                18.0, // Reducido de 24 a 18
+                                            fontSize: 18.0,
                                             fontWeight: FontWeight.w600,
-                                            letterSpacing:
-                                                1.0, // Reducido de 1.2 a 1.0
-                                            height:
-                                                1.1, // Altura de línea compacta
+                                            letterSpacing: 1.0,
+                                            height: 1.1,
                                           ),
-                                          maxLines:
-                                              2, // Permitir hasta 2 líneas
-                                          overflow: TextOverflow
-                                              .ellipsis, // Puntos suspensivos si es muy largo
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                       Row(

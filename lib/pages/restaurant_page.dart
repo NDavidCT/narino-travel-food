@@ -1,3 +1,4 @@
+import '../services/translation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/models/restaurant.dart';
 import 'package:narino_travel_food/services/favorites_service.dart';
@@ -16,6 +17,8 @@ class RestaurantPage extends StatefulWidget {
 
 class _RestaurantPageState extends State<RestaurantPage>
     with TickerProviderStateMixin {
+  String? _translatedName;
+  Locale? _lastLocale;
   final FavoritesService _favoritesService = FavoritesService();
   late AnimationController _heartAnimationController;
   late Animation<double> _heartAnimation;
@@ -34,6 +37,33 @@ class _RestaurantPageState extends State<RestaurantPage>
     _favoritesService.initialize();
     // Configurar locale español para timeago
     timeago.setLocaleMessages('es', timeago.EsMessages());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _handleLocaleChange();
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _handleLocaleChange();
+  }
+
+  Future<void> _handleLocaleChange() async {
+    final locale = Localizations.localeOf(context);
+    if (_lastLocale == locale) return;
+    _lastLocale = locale;
+    final isEnglish = locale.languageCode == 'en';
+    if (isEnglish && widget.restaurant != null) {
+      final name = widget.restaurant!.name ?? '';
+      final nameTr = await TranslationService.translateText(name, 'es', 'en');
+      setState(() {
+        _translatedName = nameTr;
+      });
+    } else {
+      setState(() {
+        _translatedName = null;
+      });
+    }
   }
 
   @override
@@ -99,7 +129,9 @@ ${widget.restaurant!.description ?? 'Deliciosa gastronomía nariñense'}
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.restaurant?.name ?? 'Detalles del Restaurante'),
+        title: Text(_translatedName ??
+            widget.restaurant?.name ??
+            'Detalles del Restaurante'),
         // --- BOTONES DE FAVORITOS Y COMPARTIR ---
         actions: <Widget>[
           // Botón de favoritos con animación
@@ -173,7 +205,9 @@ ${widget.restaurant!.description ?? 'Deliciosa gastronomía nariñense'}
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    widget.restaurant?.name ?? 'Nombre no disponible',
+                    _translatedName ??
+                        widget.restaurant?.name ??
+                        'Nombre no disponible',
                     style: const TextStyle(
                         fontSize: 28, fontWeight: FontWeight.bold),
                   ),

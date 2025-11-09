@@ -5,7 +5,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../services/google_sign_in_service.dart';
 import 'register_screen.dart';
 import '../widgets/language_selector.dart';
-import '../l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   final void Function(Locale)? onLocaleChanged;

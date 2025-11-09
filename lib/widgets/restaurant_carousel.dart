@@ -1,10 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/models/restaurant.dart';
 import 'package:narino_travel_food/pages/restaurant_page.dart';
+import 'package:narino_travel_food/services/translation_service.dart';
 import 'animated_favorite_button.dart';
 
-class RestaurantCarousel extends StatelessWidget {
+class RestaurantCarousel extends StatefulWidget {
   const RestaurantCarousel({super.key});
+
+  @override
+  State<RestaurantCarousel> createState() => _RestaurantCarouselState();
+}
+
+class _RestaurantCarouselState extends State<RestaurantCarousel> {
+  List<String?> _translatedNames = List.filled(restaurants.length, null);
+  Locale? _lastLocale;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _handleLocaleChange();
+  }
+
+  Future<void> _handleLocaleChange() async {
+    final locale = Localizations.localeOf(context);
+    if (_lastLocale == locale) return;
+    _lastLocale = locale;
+    final isEnglish = locale.languageCode == 'en';
+    if (isEnglish) {
+      for (int i = 0; i < restaurants.length; i++) {
+        final name = restaurants[i].name ?? '';
+        final nameTr = await TranslationService.translateText(name, 'es', 'en');
+        setState(() {
+          _translatedNames[i] = nameTr;
+        });
+      }
+    } else {
+      setState(() {
+        _translatedNames = List.filled(restaurants.length, null);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,17 +133,17 @@ class RestaurantCarousel extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Flexible(
-                                child: Text(
-                                  restaurant.name ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 1.2,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
+                              Text(
+                                _translatedNames[index] ??
+                                    restaurant.name ??
+                                    '',
+                                style: const TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 1.2,
                                 ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
                               ),
                               Flexible(
                                 child: Text(

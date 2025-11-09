@@ -1,0 +1,83 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Ejecutar Flutter en host local",
+			"type": "shell",
+			"command": "flutter run -d chrome --web-port=8080",
+			"args": [],
+			"problemMatcher": [
+				"$dart"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Ejecutar Flutter en host local",
+			"type": "shell",
+			"command": "flutter run -d chrome --web-port=8080",
+			"isBackground": false,
+			"problemMatcher": [
+				"$dart"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Ejecutar Flutter en host local",
+			"type": "shell",
+			"command": "flutter run -d chrome --web-port=8080",
+			"isBackground": false,
+			"problemMatcher": [
+				"$dart"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Ejecutar Flutter en host local (puerto fijo)",
+			"type": "shell",
+			"command": "flutter run -d chrome --web-port=8080",
+			"isBackground": false,
+			"problemMatcher": [
+				"$dart"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Ejecutar Flutter en host local (puerto fijo)",
+			"type": "shell",
+			"command": "flutter run -d chrome --web-port=8080",
+			"isBackground": false,
+			"problemMatcher": [
+				"$dart"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Ejecutar Flutter en host local (puerto fijo)",
+			"type": "shell",
+			"command": "flutter run -d chrome --web-port=8080",
+			"isBackground": false,
+			"problemMatcher": [
+				"$dart"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Ejecutar Flutter Web en puerto 8080",
+			"type": "shell",
+			"command": "flutter run -d chrome --web-port=8080",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Ejecutar Flutter Web con traducción dinámica",
+			"type": "shell",
+			"command": "flutter run -d chrome --web-port=8080",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

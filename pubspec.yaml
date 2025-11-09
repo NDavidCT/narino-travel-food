@@ -39,6 +39,7 @@ dependencies:
   timeago: ^3.6.1
   flutter_localizations:
     sdk: flutter
+  translator: ^1.0.4+1
 
 dev_dependencies:
   intl_utils: ^2.8.5

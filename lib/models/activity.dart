@@ -4,7 +4,8 @@ class Activity {
   String? type;
   List<String>? startTimes;
   int? rating;
-  int? price; // <<-- Tipo 'int' (entero) es el correcto para COP
+  int? price;
+  String? historyAndInfo; // Nuevo campo para historia e información
 
   Activity({
     this.imageUrl,
@@ -13,6 +14,7 @@ class Activity {
     this.startTimes,
     this.rating,
     this.price,
+    this.historyAndInfo,
   });
 
   // Métodos para serialización JSON
@@ -24,6 +26,7 @@ class Activity {
       'startTimes': startTimes,
       'rating': rating,
       'price': price,
+      'historyAndInfo': historyAndInfo,
     };
   }
 
@@ -37,6 +40,7 @@ class Activity {
           : null,
       rating: json['rating'],
       price: json['price'],
+      historyAndInfo: json['historyAndInfo'],
     );
   }
 }

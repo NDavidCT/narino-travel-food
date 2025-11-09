@@ -8,6 +8,7 @@ import 'package:narino_travel_food/widgets/reviews_section.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../l10n/app_localizations.dart';
+import '../services/translation_service.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class DestinationPage extends StatefulWidget {
@@ -20,6 +21,10 @@ class DestinationPage extends StatefulWidget {
 
 class _DestinationPageState extends State<DestinationPage>
     with TickerProviderStateMixin {
+  String? _translatedName;
+  String? _translatedDescription;
+  String? _translatedHistory;
+  Locale? _lastLocale;
   final FavoritesService _favoritesService = FavoritesService();
   late AnimationController _heartAnimationController;
   late Animation<double> _heartAnimation;
@@ -38,6 +43,43 @@ class _DestinationPageState extends State<DestinationPage>
     _favoritesService.initialize();
     // Configurar locale español para timeago
     timeago.setLocaleMessages('es', timeago.EsMessages());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _handleLocaleChange();
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _handleLocaleChange();
+  }
+
+  Future<void> _handleLocaleChange() async {
+    final locale = Localizations.localeOf(context);
+    if (_lastLocale == locale) return;
+    _lastLocale = locale;
+    final isEnglish = locale.languageCode == 'en';
+    if (isEnglish) {
+      // Traducir descripción e historia
+      final desc = widget.destination.description ?? '';
+      final hist = widget.destination.historyAndInfo ?? '';
+      final name = widget.destination.city ?? '';
+      final descTr = await TranslationService.translateText(desc, 'es', 'en');
+      final histTr = await TranslationService.translateText(hist, 'es', 'en');
+      final nameTr = await TranslationService.translateText(name, 'es', 'en');
+      setState(() {
+        _translatedDescription = descTr;
+        _translatedHistory = histTr;
+        _translatedName = nameTr;
+      });
+    } else {
+      setState(() {
+        _translatedDescription = null;
+        _translatedHistory = null;
+        _translatedName = null;
+      });
+    }
   }
 
   @override
@@ -283,7 +325,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: Text(
-                widget.destination.city ?? '',
+                _translatedName ?? widget.destination.city ?? '',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
@@ -432,7 +474,9 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20.0, vertical: 15.0),
                     child: Text(
-                      widget.destination.description ?? '',
+                      _translatedDescription ??
+                          widget.destination.description ??
+                          '',
                       style: TextStyle(
                           fontSize: 16.0, color: Colors.grey[700], height: 1.4),
                     ),
@@ -536,7 +580,9 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20.0, vertical: 0.0),
                     child: Text(
-                      widget.destination.historyAndInfo ?? '',
+                      _translatedHistory ??
+                          widget.destination.historyAndInfo ??
+                          '',
                       style: TextStyle(
                           fontSize: 16.0, color: Colors.grey[700], height: 1.6),
                     ),

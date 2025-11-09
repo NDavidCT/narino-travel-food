@@ -608,6 +608,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "translator",
+      "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/translator-1.0.4+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "typed_data",
       "rootUri": "file:///C:/Users/DAVID%20CORAL/AppData/Local/Pub/Cache/hosted/pub.dev/typed_data-1.4.0",
       "packageUri": "lib/",

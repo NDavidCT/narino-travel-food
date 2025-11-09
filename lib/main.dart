@@ -76,7 +76,7 @@ class _MyAppState extends State<MyApp> {
     // Usar el locale del sistema/navegador si está disponible; si no, por defecto 'es'
     try {
       final platformLocale = WidgetsBinding.instance.window.locale;
-      _locale = platformLocale ?? const Locale('es');
+      _locale = platformLocale;
     } catch (_) {
       _locale = const Locale('es');
     }

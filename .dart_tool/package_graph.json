@@ -21,6 +21,7 @@
         "share_plus",
         "shared_preferences",
         "timeago",
+        "translator",
         "url_launcher"
       ],
       "devDependencies": [
@@ -73,6 +74,13 @@
         "path",
         "petitparser",
         "yaml"
+      ]
+    },
+    {
+      "name": "translator",
+      "version": "1.0.4+1",
+      "dependencies": [
+        "http"
       ]
     },
     {
