@@ -1,10 +1,10 @@
-🎉 PROYECTO IPI DELI TOUR - COMPLETADO CON ÉXITO 🎉
+🎉 PROYECTO NARIÑO TRAVEL & FOOD - COMPLETADO CON ÉXITO 🎉
 
 ═══════════════════════════════════════════════════════════════════════
 
 📅 FECHA DE FINALIZACIÓN: 17 de octubre de 2025
 🏆 ESTADO: ✅ COMPLETO Y FUNCIONAL
-🌐 URL PÚBLICA: https://apptouripi.web.app
+🌐 URL PÚBLICA: https://narinotravelfood-eff35.web.app/
 💻 DESARROLLO: http://localhost:8080
 
 ═══════════════════════════════════════════════════════════════════════
@@ -73,7 +73,7 @@ VERIFICAR:   .\verificar_proyecto.bat
 🙏 AGRADECIMIENTOS:
 
 Gracias a Dios por permitir completar exitosamente este proyecto 
-de turismo para la hermosa ciudad de Ipiales.
+de turismo para el departamento de Nariño
 
 ═══════════════════════════════════════════════════════════════════════
 
