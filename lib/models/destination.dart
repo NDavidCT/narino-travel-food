@@ -163,7 +163,7 @@ List<Activity> haciendaAlsaciaActivities = [
     rating: 4,
     price: 10000,
   ),
-};
+];
 
 // Actividades para Pedregal Rio
 List<Activity> pedregalRioActivities = [
