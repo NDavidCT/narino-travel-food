@@ -8,8 +8,8 @@ Se han agregado comentarios y secciones explicativas para principiantes.
 Aplicación web y móvil para descubrir destinos turísticos y experiencias gastronómicas en el departamento de Nariño, Colombia.
 
 ## 🎉 Estado del Proyecto
-- **Fecha de finalización:** 17 de octubre de 2025
-- **Estado:** ✅ Completo y funcional
+- **Fecha de finalización:** Noviembre de 2025
+- **Estado:** ✅ Completo y funcional (en proceso de depuracion)
 - **URL pública:** [https://narinotravelfood-eff35.web.app/](https://narinotravelfood-eff35.web.app/)
 - **Desarrollo local:** http://localhost:8080
 
@@ -73,7 +73,7 @@ Agrega aquí imágenes de la app funcionando (opcional).
 Este proyecto es educativo y abierto para la comunidad, especialmente mis estudiantes graduados promoción 2025.
 
 ---
-Desarrollado por NDavidCT y estudiantes de 3 Colegios Ipiales (IE Microempresarial los Andes), Pupiales (IE DE COMERCIO) y Potosí (IE Agropecuaria Luis Antonio Montero).
+Desarrollado por el Ing. de Sistemas David Coral Toro y estudiantes de 3 Colegios Ipiales (IE Microempresarial los Andes), Pupiales (IE DE COMERCIO) y Potosí (IE Agropecuaria Luis Antonio Montero).
 
 🙏 **Agradecimientos:**
 Gracias a Dios por permitir completar exitosamente este proyecto de turismo para el departamento de Nariño.
