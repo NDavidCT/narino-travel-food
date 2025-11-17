@@ -1,9 +1,12 @@
+// Pantalla de mapa interactivo
+// Permite visualizar ubicaciones y destinos turísticos en el mapa
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:narino_travel_food/services/maps_service.dart';
 
 class MapPage extends StatefulWidget {
+  // Permite centrar el mapa en un destino seleccionado
   final String? selectedDestination;
 
   const MapPage({super.key, this.selectedDestination});
@@ -13,18 +16,24 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  // Controlador del mapa
   final MapController _controller = MapController();
+  // Lista de marcadores en el mapa
   List<Marker> _markers = [];
+  // Posición actual mostrada en el mapa
   LatLng _currentPosition = MapsService.narinoCenter;
+  // Ubicación del usuario
   LatLng? _userLocation;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
+    // Inicializa el mapa y obtiene la ubicación
     _initializeMap();
   }
 
+  // Inicializa el mapa y los marcadores
   Future<void> _initializeMap() async {
     // Obtener ubicación actual
     LatLng? userLocation = await MapsService.getCurrentLocation();
@@ -50,6 +59,7 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
+  // Genera los marcadores para los destinos y la ubicación del usuario
   void _generateDestinationMarkers() {
     _markers = MapsService.destinationCoordinates.entries.map((entry) {
       return Marker(
@@ -98,6 +108,7 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
+  // Muestra información del destino al tocar un marcador
   void _onDestinationTapped(String destinationName) {
     // Mostrar información del destino
     showModalBottomSheet(
@@ -151,10 +162,12 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
+  // Mueve el mapa a una posición específica
   void _animateToPosition(LatLng position) {
     _controller.move(position, 15.0);
   }
 
+  // Centra el mapa en la ubicación actual del usuario
   void _goToCurrentLocation() async {
     LatLng? userLocation = await MapsService.getCurrentLocation();
     if (userLocation != null) {
@@ -165,6 +178,7 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
+  // Construye la interfaz principal del mapa
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -233,6 +247,7 @@ class _MapPageState extends State<MapPage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          // Botón para acercar el mapa
           FloatingActionButton(
             heroTag: "zoom_in",
             mini: true,
@@ -244,6 +259,7 @@ class _MapPageState extends State<MapPage> {
             },
           ),
           const SizedBox(height: 10),
+          // Botón para alejar el mapa
           FloatingActionButton(
             heroTag: "zoom_out",
             mini: true,
@@ -255,6 +271,7 @@ class _MapPageState extends State<MapPage> {
             },
           ),
           const SizedBox(height: 10),
+          // Botón para ver todo el departamento
           FloatingActionButton(
             heroTag: "view_all",
             backgroundColor: Colors.green[700],
@@ -265,6 +282,7 @@ class _MapPageState extends State<MapPage> {
             },
           ),
           const SizedBox(height: 10),
+          // Botón para ver destinos cercanos
           FloatingActionButton(
             heroTag: "nearby",
             backgroundColor: Colors.orange[700],

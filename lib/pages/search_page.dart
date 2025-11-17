@@ -1,3 +1,5 @@
+// Pantalla de búsqueda
+// Permite buscar destinos y restaurantes por nombre o descripción
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:narino_travel_food/models/destination.dart';
@@ -14,12 +16,15 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  // Controlador para el campo de búsqueda
   final TextEditingController _searchController = TextEditingController();
+  // Listas para guardar los resultados
   List<Destination> _destinationResults = [];
   List<Restaurant> _restaurantResults = [];
   bool _isSearching = false;
   bool _hasSearched = false;
 
+  // Realiza la búsqueda según el texto ingresado
   void _performSearch(String query) {
     if (query.trim().isEmpty) {
       setState(() {
@@ -34,7 +39,7 @@ class _SearchPageState extends State<SearchPage> {
       _isSearching = true;
     });
 
-    // Simular un pequeño delay para mejor UX
+    // Simula un pequeño retraso para mejor experiencia
     Future.delayed(const Duration(milliseconds: 300), () {
       final results = SearchService.searchAll(query);
       setState(() {
@@ -89,7 +94,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
 
-          // Resultados de búsqueda
+          // Muestra los resultados de la búsqueda
           Expanded(
             child: _buildSearchResults(),
           ),
@@ -98,6 +103,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  // Construye la lista de resultados según el estado
   Widget _buildSearchResults() {
     if (_isSearching) {
       return const Center(
@@ -136,6 +142,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  // Estado inicial antes de buscar
   Widget _buildInitialState() {
     return Center(
       child: Column(
@@ -171,6 +178,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  // Botones rápidos para buscar ejemplos
   Widget _buildQuickSearchButtons() {
     final quickSearches = [
       'Pasto',
@@ -200,6 +208,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  // Estado cuando no hay resultados
   Widget _buildNoResults() {
     return Center(
       child: Column(
@@ -232,6 +241,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  // Encabezado de cada sección de resultados
   Widget _buildSectionHeader(String title) {
     return Text(
       title,
@@ -243,6 +253,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  // Tarjeta para cada destino encontrado
   Widget _buildDestinationCard(Destination destination) {
     return Card(
       margin: const EdgeInsets.only(bottom: 8.0),
@@ -286,6 +297,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  // Tarjeta para cada restaurante encontrado
   Widget _buildRestaurantCard(Restaurant restaurant) {
     return Card(
       margin: const EdgeInsets.only(bottom: 8.0),
@@ -349,6 +361,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void dispose() {
+    // Libera el controlador de búsqueda
     _searchController.dispose();
     super.dispose();
   }

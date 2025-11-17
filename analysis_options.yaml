@@ -1,3 +1,7 @@
+# Archivo de configuración de análisis estático para Dart/Flutter
+# Explica cómo se aplican reglas de estilo y buenas prácticas
+# Comentarios agregados para principiantes
+
 # This file configures the analyzer, which statically analyzes Dart code to
 # check for errors, warnings, and lints.
 #

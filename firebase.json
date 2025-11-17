@@ -1,18 +1,26 @@
 {
+  // Archivo de configuración de Firebase para Flutter y Hosting
+  // Explica cómo se conectan las plataformas y cómo se despliega la app
+  // Comentarios agregados para principiantes
   "flutter": {
     "platforms": {
       "android": {
         "default": {
+          // Identificadores del proyecto y de la aplicación en Firebase
           "projectId": "narinotravelfood-eff35",
           "appId": "1:860020371265:android:4afd6724ee871c21357bc0",
+          // Archivo de configuración de Google Services para Android
           "fileOutput": "android/app/google-services.json"
         }
       },
       "dart": {
         "lib/firebase_options.dart": {
+          // Identificador del proyecto en Firebase
           "projectId": "narinotravelfood-eff35",
           "configurations": {
+            // Configuración para Android
             "android": "1:860020371265:android:4afd6724ee871c21357bc0",
+            // Configuración para Web
             "web": "1:860020371265:web:4fcfd9ba2aae7e81357bc0"
           }
         }
@@ -20,14 +28,17 @@
     }
   },
   "hosting": {
+    // Directorio público para el despliegue de la aplicación web
     "public": "build/web",
     "ignore": [
+      // Archivos y directorios a ignorar durante el despliegue
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "rewrites": [
       {
+        // Reescritura de todas las solicitudes a index.html
         "source": "**",
         "destination": "/index.html"
       }

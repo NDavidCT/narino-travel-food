@@ -1,12 +1,14 @@
+// Modelo para restaurantes típicos de Nariño
+// Incluye información, menú y métodos para JSON
 import 'package:narino_travel_food/models/food.dart';
 
 class Restaurant {
-  String? imageUrl;
-  String? name;
-  String? address;
-  String? description;
-  int? rating;
-  List<Food>? menu;
+  String? imageUrl; // URL de la imagen del restaurante
+  String? name; // Nombre del restaurante
+  String? address; // Dirección
+  String? description; // Descripción del restaurante
+  int? rating; // Calificación
+  List<Food>? menu; // Menú de alimentos
 
   Restaurant({
     this.imageUrl,
@@ -17,7 +19,7 @@ class Restaurant {
     this.menu,
   });
 
-  // Métodos para serialización JSON
+  // Convierte el restaurante a un mapa para guardar en JSON
   Map<String, dynamic> toJson() {
     return {
       'imageUrl': imageUrl,
@@ -29,6 +31,7 @@ class Restaurant {
     };
   }
 
+  // Crea un restaurante desde un mapa JSON
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     return Restaurant(
       imageUrl: json['imageUrl'],

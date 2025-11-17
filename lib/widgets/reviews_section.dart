@@ -1,3 +1,5 @@
+// Sección de reseñas y opiniones de usuarios
+// Permite ver, escribir y gestionar reseñas en las páginas de detalle
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/review.dart';

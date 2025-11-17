@@ -1,3 +1,5 @@
+// Pantalla de autenticación simplificada
+// En modo temporal, lleva directo a la pantalla principal sin login
 import 'package:flutter/material.dart';
 import 'main_screen.dart'; // Importamos el nuevo contenedor
 

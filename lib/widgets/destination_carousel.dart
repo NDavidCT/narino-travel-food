@@ -1,3 +1,5 @@
+// Carrusel de destinos turísticos destacados
+// Permite navegar horizontalmente y ver detalles de cada destino
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

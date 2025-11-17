@@ -1,3 +1,5 @@
+// Pantalla de detalle para restaurantes típicos
+// Muestra información, menú, favoritos y reseñas del restaurante
 import '../services/translation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/models/restaurant.dart';

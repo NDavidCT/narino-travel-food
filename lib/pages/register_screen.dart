@@ -1,3 +1,5 @@
+// Pantalla de registro de usuario
+// Permite crear una nueva cuenta en la app
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -9,11 +11,16 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  // Controlador para el campo de correo
   final _emailController = TextEditingController();
+  // Controlador para el campo de contraseña
   final _passwordController = TextEditingController();
+  // Controlador para confirmar la contraseña
   final _confirmPasswordController = TextEditingController();
+  // Variable para mostrar mensajes de error
   String? _errorMessage;
 
+  // Método para registrar un nuevo usuario
   Future<void> _signUp() async {
     setState(() {
       _errorMessage = null;
@@ -23,6 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final password = _passwordController.text.trim();
     final confirmPassword = _confirmPasswordController.text.trim();
 
+    // Verifica que las contraseñas sean iguales
     if (password != confirmPassword) {
       setState(() {
         _errorMessage = 'Las contraseñas no coinciden.';
@@ -30,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
 
-    // Validación básica de longitud
+    // Verifica que la contraseña tenga al menos 6 caracteres
     if (password.length < 6) {
       setState(() {
         _errorMessage = 'La contraseña debe tener al menos 6 caracteres.';
@@ -40,16 +48,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        // ¡CAMBIO CLAVE AQUÍ! Usamos la variable 'email' ya limpia con .trim()
         email: email,
         password: password,
       );
-      // Si el registro es exitoso, FirebaseAuth lo detecta y redirige automáticamente.
-      // Opcional: regresar a la pantalla de login si el auth_page no redirige inmediatamente.
+      // Si el registro es exitoso, regresa a la pantalla de login
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       setState(() {
-        // Mejoramos el manejo de errores para ser más amigable
+        // Muestra mensajes de error amigables
         if (e.code == 'weak-password') {
           _errorMessage = 'La contraseña es muy débil.';
         } else if (e.code == 'email-already-in-use') {
@@ -72,12 +78,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
+    // Libera los controladores cuando se cierra la pantalla
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
   }
 
+  // Construye la interfaz de usuario del registro
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,6 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // Icono de usuario
               const Icon(
                 Icons.person_add,
                 size: 80,
@@ -100,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 30),
 
-              // MENSAJE DE ERROR
+              // Muestra mensaje de error si existe
               if (_errorMessage != null)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
@@ -112,7 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
 
-              // CAMPO CORREO
+              // Campo para escribir el correo
               TextField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -175,7 +184,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const Text('¿Ya tienes una cuenta?'),
                   TextButton(
                     onPressed: () {
-                      Navigator.pop(context); // Regresar a la pantalla de Login
+                      // Regresa a la pantalla de login
+                      Navigator.pop(context);
                     },
                     child: const Text('Iniciar Sesión',
                         style: TextStyle(color: Colors.red)),

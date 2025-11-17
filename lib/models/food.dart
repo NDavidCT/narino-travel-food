@@ -1,8 +1,10 @@
+// Modelo para alimentos típicos (platos, bebidas, etc.)
+// Incluye información básica y métodos para convertir a JSON
 class Food {
-  String? imageUrl;
-  String? name;
-  double? price;
-  String? description;
+  String? imageUrl; // URL de la imagen del alimento
+  String? name; // Nombre del alimento
+  double? price; // Precio
+  String? description; // Descripción del alimento
 
   Food({
     this.imageUrl,
@@ -11,7 +13,7 @@ class Food {
     this.description,
   });
 
-  // Métodos para serialización JSON
+  // Convierte el alimento a un mapa para guardar en JSON
   Map<String, dynamic> toJson() {
     return {
       'imageUrl': imageUrl,
@@ -21,6 +23,7 @@ class Food {
     };
   }
 
+  // Crea un alimento desde un mapa JSON
   factory Food.fromJson(Map<String, dynamic> json) {
     return Food(
       imageUrl: json['imageUrl'],

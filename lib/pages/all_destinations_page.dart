@@ -1,3 +1,5 @@
+// Pantalla que muestra todos los destinos turísticos
+// Permite ver y seleccionar cualquier destino de Nariño
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/models/destination.dart';
 import 'package:narino_travel_food/pages/destination_page.dart';

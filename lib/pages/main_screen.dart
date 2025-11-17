@@ -1,8 +1,9 @@
+// Pantalla principal de la app
+// Gestiona la navegación entre páginas y el estado global
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/google_sign_in_service.dart';
-// Asegúrate de que estas importaciones sean correctas para tus archivos:
 import 'home_page.dart';
 import 'search_page.dart';
 import 'favorites_page.dart';
@@ -10,15 +11,17 @@ import 'map_page.dart';
 import '../widgets/language_selector.dart';
 
 class MainScreen extends StatefulWidget {
+  // Permite cambiar el idioma desde la pantalla principal
   final int initialIndex;
   final void Function(Locale)? onLocaleChanged;
   final Locale? currentLocale;
 
-  const MainScreen(
-      {super.key,
-      this.initialIndex = 1,
-      this.onLocaleChanged,
-      this.currentLocale});
+  const MainScreen({
+    super.key,
+    this.initialIndex = 1,
+    this.onLocaleChanged,
+    this.currentLocale,
+  });
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -27,6 +30,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   late int _selectedIndex;
 
+  // Lista de páginas que se muestran según el ítem seleccionado
   final List<Widget> _pages = [
     SearchPage(),
     HomePage(),
@@ -37,51 +41,44 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedIndex = widget.initialIndex; // Usamos el valor del widget
+    // Comienza en la página indicada (por defecto: Home)
+    _selectedIndex = widget.initialIndex;
   }
 
+  // Cambia la página seleccionada
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-  // FUNCIÓN PARA CERRAR SESIÓN (Restaurada)
+  // Cierra la sesión del usuario (Google y Firebase)
   void _signOut() async {
     try {
-      // 1. Cerrar la sesión de Google en el dispositivo
       await googleSignIn.signOut();
-
-      // 2. Cerrar la sesión de Firebase
       await FirebaseAuth.instance.signOut();
-
       print('Sesión cerrada completamente.');
     } catch (e) {
       print('Error al cerrar sesión: $e');
     }
-  } // WIDGET AUXILIAR PARA EL TÍTULO DEL APP BAR CON INFORMACIÓN DEL USUARIO
+  }
 
-  // WIDGET AUXILIAR PARA EL HEADER PROFESIONAL CON BRANDING Y USUARIO
-
+  // Construye el encabezado profesional con nombre y foto de usuario
   Widget _buildProfessionalHeader() {
-    // Obtiene el usuario de Firebase actualmente logueado
     final user = FirebaseAuth.instance.currentUser;
-    // El texto a mostrar (Nombre del usuario o su correo)
     final profileText = user?.displayName ?? user?.email ?? 'Usuario';
-    // La URL de la foto de perfil (si usa Google o proveedor con foto)
     String? profileImageUrl = user?.photoURL;
 
-    // Mejora para fotos de Google: agregar parámetro de tamaño
+    // Si la foto es de Google, ajusta el tamaño
     if (profileImageUrl != null &&
         profileImageUrl.contains('googleusercontent.com')) {
-      // Remover parámetros existentes y agregar tamaño específico
       profileImageUrl = '${profileImageUrl.split('=')[0]}=s96-c';
     }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // 1. TÍTULO PRINCIPAL DE LA APP (MÁS PROMINENTE)
+        // Título principal de la app
         const Text(
           'NARIÑO TRAVEL & FOOD',
           style: TextStyle(
@@ -99,18 +96,15 @@ class _MainScreenState extends State<MainScreen> {
           ),
           textAlign: TextAlign.center,
         ),
-
         const SizedBox(height: 8),
-
-        // 2. LÍNEA DE USUARIO (MÁS SUTIL)
+        // Línea con saludo, foto y nombre de usuario
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Lado izquierdo: Saludo + foto + nombre
             Expanded(
               child: Row(
                 children: [
-                  // Saludo "Hola,"
+                  // Saludo
                   Text(
                     AppLocalizations.of(context)!.greeting,
                     style: const TextStyle(
@@ -119,7 +113,6 @@ class _MainScreenState extends State<MainScreen> {
                       color: Colors.white70,
                     ),
                   ),
-
                   // Foto de perfil
                   ClipOval(
                     child: Container(
@@ -195,9 +188,7 @@ class _MainScreenState extends State<MainScreen> {
                                 ),
                     ),
                   ),
-
                   const SizedBox(width: 6),
-
                   // Nombre del usuario
                   Flexible(
                     child: Text(
@@ -213,8 +204,7 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
             ),
-
-            // Lado derecho: Botón cerrar sesión
+            // Botón para cerrar sesión
             TextButton.icon(
               onPressed: _signOut,
               icon: const Icon(
@@ -242,6 +232,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  // Construye la interfaz principal con barra superior y navegación inferior
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -264,10 +255,7 @@ class _MainScreenState extends State<MainScreen> {
                     child: SizedBox(
                       height: 40,
                       child: Builder(
-                        builder: (context) =>
-                            // Importa el widget creado para el selector de idioma
-                            // ignore: prefer_const_constructors
-                            LanguageSelector(
+                        builder: (context) => LanguageSelector(
                           currentLocale: widget.currentLocale!,
                           onLocaleChanged: widget.onLocaleChanged!,
                         ),
@@ -279,10 +267,9 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
-
+      // Muestra la página seleccionada
       body: _pages[_selectedIndex],
-
-      // BARRA DE NAVEGACIÓN INFERIOR (BottomNavigationBar)
+      // Barra de navegación inferior
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[

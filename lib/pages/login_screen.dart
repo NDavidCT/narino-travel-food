@@ -1,3 +1,5 @@
+// Pantalla de login principal para la app Nariño Travel & Food
+// Permite iniciar sesión con correo o Google, y navegar al registro
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +9,7 @@ import 'register_screen.dart';
 import '../widgets/language_selector.dart';
 
 class LoginScreen extends StatefulWidget {
+  // Permite cambiar el idioma desde el login
   final void Function(Locale)? onLocaleChanged;
   final Locale? currentLocale;
 
@@ -21,11 +24,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // Controlador para el campo de correo
   final _emailController = TextEditingController();
+  // Controlador para el campo de contraseña
   final _passwordController = TextEditingController();
+  // Variable para mostrar mensajes de error
   String? _errorMessage;
 
-  // LÓGICA DE LOGIN CON CORREO Y CONTRASEÑA
+  // Inicia sesión usando correo y contraseña
   Future<void> _signInWithEmail() async {
     setState(() {
       _errorMessage = null;
@@ -35,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+      // Si todo sale bien, el usuario entra a la app
     } on FirebaseAuthException catch (e) {
       setState(() {
         if (e.code == 'user-not-found') {
@@ -52,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  // LÓGICA DE LOGIN CON GOOGLE (OPTIMIZADA)
+  // Inicia sesión usando Google
   Future<void> _signInWithGoogle() async {
     setState(() {
       _errorMessage = null;
@@ -61,22 +68,21 @@ class _LoginScreenState extends State<LoginScreen> {
       GoogleSignInAccount? googleUser;
 
       if (kIsWeb) {
-        // 1. Intento silencioso primero (sin popup)
+        // En web, intenta primero sin mostrar ventana
         googleUser = await googleSignIn.signInSilently();
-
-        // 2. Si no hay usuario silencioso, ir directo al popup (sin confirmación)
+        // Si no funciona, muestra ventana de Google
         googleUser ??= await googleSignIn.signIn();
       } else {
-        // Móvil/Desktop: flujo normal
+        // En móvil o escritorio, flujo normal
         googleUser = await googleSignIn.signIn();
       }
 
       if (googleUser == null) {
-        // El usuario canceló o no se obtuvo cuenta
+        // Si el usuario cancela
         return;
       }
 
-      // 2. Obtener los detalles de autenticación de la solicitud
+      // Obtiene credenciales de Google
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
@@ -84,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
         idToken: googleAuth.idToken,
       );
 
-      // 3. Iniciar sesión en Firebase con las credenciales de Google
+      // Inicia sesión en Firebase con Google
       await FirebaseAuth.instance.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -99,35 +105,35 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
+    // Libera los controladores cuando se cierra la pantalla
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
 
+  // Construye la interfaz de usuario del login
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Utilizamos Stack para colocar la imagen de fondo detrás de todo
+      // Utilizamos Stack para poner la imagen de fondo y el formulario encima
       body: Stack(
         children: [
-          // 1. IMAGEN DE FONDO (Utiliza una imagen que ya debe estar en 'assets/images/')
+          // Imagen de fondo
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                // Recomiendo usar una imagen de Ipiales o de Las Lajas que ya tienes
                 image: AssetImage('assets/images/santuario_lajas.jpg'),
                 fit: BoxFit.cover, // Cubre toda la pantalla
               ),
             ),
           ),
 
-          // 2. CAPA DE SOMBRA (OVERLAY) para mejorar la legibilidad del texto
+          // Capa oscura para que el texto se vea mejor
           Container(
-            color:
-                Colors.black.withOpacity(0.6), // Tono oscuro y semitransparente
+            color: Colors.black.withOpacity(0.6),
           ),
 
-          // 3. CONTENIDO PRINCIPAL (Formulario)
+          // Formulario principal
           Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(30.0),
@@ -135,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Selector de idioma (si el callback y el locale están disponibles)
+                  // Selector de idioma (si está disponible)
                   if (widget.onLocaleChanged != null &&
                       widget.currentLocale != null)
                     Align(
@@ -149,14 +155,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   const SizedBox(height: 8),
-                  // TÍTULO DE LA APLICACIÓN
+                  // Título de la app
                   const Text(
                     'Nariño Travel & Food',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white, // Letras blancas
+                      color: Colors.white,
                       letterSpacing: 1.2,
                     ),
                   ),
@@ -166,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.white70, // Letras blancas sutiles
+                      color: Colors.white70,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -180,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 40),
 
-                  // MENSAJE DE ERROR
+                  // Muestra mensaje de error si existe
                   if (_errorMessage != null)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
@@ -193,22 +199,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
 
-                  // CAMPO CORREO
+                  // Campo para escribir el correo
                   TextField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    style: const TextStyle(
-                        color: Colors.white), // Texto escrito en blanco
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       labelText: 'Correo Electrónico',
                       labelStyle: const TextStyle(color: Colors.white70),
                       hintStyle: const TextStyle(color: Colors.white38),
                       filled: true,
-                      fillColor: Colors.white
-                          .withOpacity(0.1), // Fondo semitransparente
+                      fillColor: Colors.white.withOpacity(0.1),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none, // Bordes sutiles
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -221,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 15),
 
-                  // CAMPO CONTRASEÑA
+                  // Campo para escribir la contraseña
                   TextField(
                     controller: _passwordController,
                     obscureText: true,
@@ -246,13 +250,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 30),
 
-                  // BOTÓN INICIAR SESIÓN (CORREO)
+                  // Botón para iniciar sesión con correo
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: _signInWithEmail,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red.shade600, // Rojo vibrante
+                        backgroundColor: Colors.red.shade600,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 18),
                         shape: RoundedRectangleBorder(
@@ -268,7 +272,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   const SizedBox(height: 20),
 
-                  // SEPARADOR
+                  // Línea separadora entre métodos de acceso
                   const Row(
                     children: [
                       Expanded(
@@ -290,7 +294,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  // BOTÓN INICIAR SESIÓN (GOOGLE)
+                  // Botón para iniciar sesión con Google
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
@@ -312,7 +316,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   const SizedBox(height: 40),
 
-                  // ENLACE A REGISTRO
+                  // Enlace para ir a la pantalla de registro
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -322,6 +326,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                         onPressed: () {
+                          // Cuando se presiona, va a la pantalla de registro
                           Navigator.push(
                             context,
                             MaterialPageRoute(

@@ -1,3 +1,5 @@
+// Carrusel de restaurantes típicos de Nariño
+// Permite navegar horizontalmente y ver detalles de cada restaurante
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:narino_travel_food/models/restaurant.dart';

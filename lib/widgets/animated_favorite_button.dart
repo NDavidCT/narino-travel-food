@@ -1,3 +1,5 @@
+// Botón animado para agregar o quitar favoritos
+// Muestra animación al marcar/desmarcar y permite personalizar colores y tamaño
 import 'package:flutter/material.dart';
 import '../services/favorites_service.dart';
 

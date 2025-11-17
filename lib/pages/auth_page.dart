@@ -1,16 +1,22 @@
+// Pantalla de autenticación principal
+// Permite gestionar el acceso de usuarios a la app
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'main_screen.dart';
 import '../l10n/app_localizations.dart';
 
+// Esta página decide si mostrar el login o la pantalla principal según el estado de autenticación
 class AuthPage extends StatelessWidget {
+  // Función para cambiar el idioma
   final void Function(Locale)? onLocaleChanged;
+  // Idioma actual
   final Locale? currentLocale;
   const AuthPage({super.key, this.onLocaleChanged, this.currentLocale});
 
   @override
   Widget build(BuildContext context) {
+    // StreamBuilder escucha los cambios de autenticación en Firebase
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
@@ -23,6 +29,7 @@ class AuthPage extends StatelessWidget {
                 children: [
                   const CircularProgressIndicator(color: Colors.green),
                   const SizedBox(height: 20),
+                  // Mensaje de verificación
                   Text(AppLocalizations.of(context)?.verifyingAuth ??
                       'Verificando autenticación...')
                 ],
@@ -31,7 +38,7 @@ class AuthPage extends StatelessWidget {
           );
         }
 
-        // Si hay error en el stream
+        // Si hay error en el stream, muestra mensaje de error
         if (snapshot.hasError) {
           return Scaffold(
             body: Center(
@@ -49,8 +56,7 @@ class AuthPage extends StatelessWidget {
           );
         }
 
-        // Si el usuario está conectado, mostrar la pantalla principal con navegación
-
+        // Si el usuario está conectado, mostrar la pantalla principal
         if (snapshot.hasData && snapshot.data != null) {
           return MainScreen(
             initialIndex: 1,
@@ -59,7 +65,7 @@ class AuthPage extends StatelessWidget {
           );
         }
 
-        // Si no está conectado, vamos al Login
+        // Si no está conectado, mostrar la pantalla de login
         else {
           return LoginScreen(
             onLocaleChanged: onLocaleChanged,

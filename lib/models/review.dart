@@ -1,8 +1,10 @@
+// Modelo para reseñas de lugares turísticos y restaurantes
+// Permite guardar y recuperar opiniones de usuarios
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// Modelo para las reseñas de lugares turísticos y restaurantes
 class Review {
-  final String id;
+  final String id; // ID único de la reseña
   final String placeId; // ID del lugar (ej: "santuario-las-lajas")
   final String userId; // ID del usuario de Firebase Auth
   final String userName; // Nombre del usuario

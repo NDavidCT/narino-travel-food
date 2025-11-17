@@ -1,8 +1,10 @@
+// Servicio para abrir ubicaciones en Google Maps
+// Permite mostrar destinos turísticos en el mapa usando coordenadas o nombre
 import 'package:url_launcher/url_launcher.dart';
 import 'package:latlong2/latlong.dart';
 
 class GoogleMapsService {
-  // Coordenadas específicas para cada destino (las mismas que en maps_service.dart)
+  // Mapa de coordenadas para destinos principales
   static const Map<String, LatLng> destinationCoordinates = {
     'Santuario de las Lajas': LatLng(0.8147, -77.5936),
     'Centro Histórico de Pasto': LatLng(1.2136, -77.2811),
@@ -68,7 +70,7 @@ class GoogleMapsService {
     await _launchURL(url);
   }
 
-  /// Abre Google Maps con navegación desde ubicación actual al destino
+  /// Abre Google Maps para navegar desde la ubicación actual hasta el destino
   static Future<void> openNavigationToDestination(
       String destinationName) async {
     LatLng? coordinates = destinationCoordinates[destinationName];
@@ -89,7 +91,7 @@ class GoogleMapsService {
     await _launchURL(url);
   }
 
-  /// Función auxiliar para lanzar URLs
+  // Método privado para lanzar la URL en el navegador
   static Future<void> _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
 

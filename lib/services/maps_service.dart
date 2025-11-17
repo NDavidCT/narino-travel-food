@@ -1,12 +1,15 @@
+// Servicio para obtener ubicación y calcular distancias
+// Utiliza Geolocator y LatLng para trabajar con coordenadas geográficas
 import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart' as geolocator;
 import 'dart:math';
 
 class MapsService {
+  // Coordenada central de Nariño
   static const LatLng narinoCenter =
       LatLng(1.2136, -77.2811); // Centro de Nariño
 
-  // Coordenadas de destinos principales
+  // Mapa de coordenadas de destinos principales
   static const Map<String, LatLng> destinationCoordinates = {
     'Santuario de las Lajas': LatLng(0.8147, -77.5936),
     'Centro Histórico de Pasto': LatLng(1.2136, -77.2811),

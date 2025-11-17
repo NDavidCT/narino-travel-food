@@ -1,13 +1,24 @@
+# Archivo de configuración principal de Flutter
+# Define dependencias, assets y opciones del proyecto
+# Comentarios agregados para principiantes
+
 name: narino_travel_food
+# Descripción corta del proyecto
 description: "Discover the best destinations, restaurants and unique experiences in Nariño - Your complete travel and food guide"
+# No publicar en ningún lado por ahora
 publish_to: 'none'
 
+# Versión del paquete
 version: 2.0.0+3
 
+# Entorno de ejecución
 environment:
+  # SDK de Dart requerido
   sdk: '>=3.2.6 <4.0.0'
 
+# Dependencias del proyecto
 dependencies:
+  # Dependencia principal de Flutter
   flutter:
     sdk: flutter
   
@@ -41,23 +52,35 @@ dependencies:
     sdk: flutter
   translator: ^1.0.4+1
 
+# Dependencias solo para desarrollo
 dev_dependencies:
+  # Herramienta para generar archivos de traducción
   intl_utils: ^2.8.5
+  # Paquete para pruebas
   flutter_test:
     sdk: flutter
+  # Conjunto de reglas y herramientas para análisis estático de código
   flutter_lints: ^6.0.0
+  # Iconos de Cupertino (iOS)
   cupertino_icons: ^1.0.2
 
 
 flutter:
+  # Habilitar diseño basado en Material Design
   uses-material-design: true
+  # Generar código automáticamente
   generate: true
   # Declaración de assets para incluir la carpeta de imágenes
   assets:
     - assets/images/
 
+# Configuración para la internacionalización
 l10n:
+  # Directorio de archivos ARB
   arb-dir: lib/l10n
+  # Archivo ARB plantilla
   template-arb-file: app_es.arb
+  # Archivo de localización de salida
   output-localization-file: app_localizations.dart
+  # Clase de salida
   output-class: AppLocalizations

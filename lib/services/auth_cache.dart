@@ -1,39 +1,39 @@
+// Servicio para cachear el usuario autenticado y optimizar consultas
+// Evita llamadas repetidas a FirebaseAuth y mejora el rendimiento
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthCache {
-  // Cache para evitar múltiples verificaciones
+  // Usuario cacheado
   static User? _cachedUser;
   static DateTime? _lastCheck;
   static const Duration _cacheTimeout = Duration(minutes: 2);
 
-  // Verificación rápida de usuario actual con cache
+  // Obtiene el usuario actual usando cache
   static User? getCurrentUser() {
     final now = DateTime.now();
-
-    // Si el cache es válido, devolverlo
+    // Si el cache es válido, lo devuelve
     if (_cachedUser != null &&
         _lastCheck != null &&
         now.difference(_lastCheck!) < _cacheTimeout) {
       return _cachedUser;
     }
-
-    // Actualizar cache
+    // Actualiza el cache
     _cachedUser = FirebaseAuth.instance.currentUser;
     _lastCheck = now;
     return _cachedUser;
   }
 
-  // Limpiar caché al cerrar sesión
+  // Cierra sesión y limpia el cache
   static Future<void> signOut() async {
     try {
       await FirebaseAuth.instance.signOut();
       _clearCache();
     } catch (e) {
-      // Manejar errores silenciosamente
+      // Maneja errores silenciosamente
     }
   }
 
-  // Listener optimizado de cambios de autenticación
+  // Escucha cambios de autenticación y actualiza el cache
   static Stream<User?> get authStateChanges {
     return FirebaseAuth.instance.authStateChanges().map((user) {
       _cachedUser = user;
@@ -42,18 +42,18 @@ class AuthCache {
     });
   }
 
-  // Verificar si el usuario está autenticado sin hacer llamadas costosas
+  // Verifica si el usuario está autenticado
   static bool isUserSignedIn() {
     return getCurrentUser() != null;
   }
 
-  // Limpiar cache manualmente
+  // Limpia el cache manualmente
   static void _clearCache() {
     _cachedUser = null;
     _lastCheck = null;
   }
 
-  // Refrescar cache
+  // Refresca el cache
   static void refreshCache() {
     _clearCache();
     getCurrentUser();

@@ -1,3 +1,5 @@
+// Pantalla principal tras iniciar sesión
+// Muestra bienvenida y permite cerrar sesión
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

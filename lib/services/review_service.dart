@@ -1,9 +1,12 @@
+// Servicio para manejar reseñas en Firestore
+// Permite agregar, obtener y eliminar reseñas de usuarios
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/review.dart';
 
 /// Servicio para manejar las reseñas en Firestore
 class ReviewService {
+  // Singleton para acceso global
   static final ReviewService _instance = ReviewService._internal();
   factory ReviewService() => _instance;
   ReviewService._internal();

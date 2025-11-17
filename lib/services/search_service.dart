@@ -1,8 +1,10 @@
+// Servicio para buscar destinos y restaurantes
+// Permite realizar búsquedas por nombre, ciudad o descripción
 import 'package:narino_travel_food/models/destination.dart';
 import 'package:narino_travel_food/models/restaurant.dart';
 
 class SearchService {
-  // Método para buscar destinos por nombre, ciudad o descripción
+  // Busca destinos por nombre, ciudad o descripción
   static List<Destination> searchDestinations(String query) {
     if (query.isEmpty) return [];
 
@@ -14,7 +16,7 @@ class SearchService {
     }).toList();
   }
 
-  // Método para buscar restaurantes por nombre o descripción
+  // Busca restaurantes por nombre o descripción
   static List<Restaurant> searchRestaurants(String query) {
     if (query.isEmpty) return [];
 
@@ -26,7 +28,7 @@ class SearchService {
     }).toList();
   }
 
-  // Búsqueda combinada que retorna un mapa con ambos resultados
+  // Búsqueda combinada que retorna ambos resultados
   static Map<String, List<dynamic>> searchAll(String query) {
     return {
       'destinations': searchDestinations(query),

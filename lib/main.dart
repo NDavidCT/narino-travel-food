@@ -10,20 +10,24 @@ import 'package:narino_travel_food/pages/auth_page.dart';
 import 'package:narino_travel_food/pages/all_destinations_page.dart';
 import 'package:narino_travel_food/pages/map_page.dart';
 
+// Función principal que inicia la app
 void main() async {
+  // Necesario para inicializar plugins antes de correr la app
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Intentar inicializar Firebase con múltiples estrategias
+  // Variable para saber si Firebase se inicializó correctamente
   bool firebaseInitialized = false;
 
+  // Intentamos inicializar Firebase con dos estrategias
   try {
     print('🔥 Estrategia 1: Verificando Firebase apps...');
 
-    // Verificar de forma más segura si Firebase está disponible
+    // Verifica si ya hay apps de Firebase inicializadas
     final apps = Firebase.apps;
-    print('📱 Apps encontradas: ${apps.length}');
+    print('📱 Apps encontradas: {apps.length}');
 
     if (apps.isEmpty) {
+      // Si no hay, inicializa Firebase
       print('📱 Inicializando Firebase...');
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
@@ -38,7 +42,8 @@ void main() async {
     print('❌ Estrategia 1 falló: $e');
 
     try {
-      print('� Estrategia 2: Inicialización directa...');
+      // Si falla la primera, intenta inicializar directamente
+      print('🔥 Estrategia 2: Inicialización directa...');
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
@@ -50,7 +55,7 @@ void main() async {
     }
   }
 
-  // Ejecutar la app según el resultado
+  // Según el resultado, inicia la app con o sin Firebase
   if (firebaseInitialized) {
     print('🚀 Iniciando app CON Firebase...');
     runApp(const MyApp());
@@ -60,6 +65,7 @@ void main() async {
   }
 }
 
+// Widget principal de la app
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -68,12 +74,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  // Variable para guardar el idioma actual
   Locale? _locale;
 
   @override
   void initState() {
     super.initState();
-    // Usar el locale del sistema/navegador si está disponible; si no, por defecto 'es'
+    // Intenta usar el idioma del sistema, si no, usa español
     try {
       final platformLocale = WidgetsBinding.instance.window.locale;
       _locale = platformLocale;
@@ -82,6 +89,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  // Función para cambiar el idioma
   void _setLocale(Locale locale) {
     setState(() {
       _locale = locale;
@@ -90,6 +98,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    // Configuración principal de la app
     return MaterialApp(
       title: 'Nariño Travel & Food',
       debugShowCheckedModeBanner: false,
@@ -100,7 +109,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
         splashFactory: InkRipple.splashFactory,
       ),
-      locale: _locale,
+      locale: _locale, // Idioma actual
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -111,10 +120,12 @@ class _MyAppState extends State<MyApp> {
         Locale('es'),
         Locale('en'),
       ],
+      // Rutas de navegación
       routes: {
         '/all-destinations': (context) => const AllDestinationsPage(),
         '/map': (context) => const MapPage(),
       },
+      // Página de inicio (autenticación)
       home: AuthPage(
         onLocaleChanged: _setLocale,
         currentLocale: _locale,
@@ -123,7 +134,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-// App de respaldo sin Firebase
+// Widget alternativo si Firebase no se inicializa
 class MyAppWithoutFirebase extends StatelessWidget {
   const MyAppWithoutFirebase({super.key});
 
@@ -163,6 +174,7 @@ class MyAppWithoutFirebase extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
+                    // Muestra un mensaje de prueba
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Flutter Web funciona correctamente'),
@@ -183,7 +195,7 @@ class MyAppWithoutFirebase extends StatelessWidget {
                   onPressed: () {
                     // Recargar la página solo en web
                     if (kIsWeb) {
-                      // En web usamos JS para recargar
+                      // En web usaría JS para recargar
                       // html.window.location.reload();
                     }
                     // En cualquier plataforma, volver a intentar inicializar Firebase

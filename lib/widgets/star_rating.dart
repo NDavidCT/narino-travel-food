@@ -1,3 +1,5 @@
+// Widget para mostrar calificaciones con estrellas
+// Permite mostrar y seleccionar rating de 1 a 5 estrellas
 import 'package:flutter/material.dart';
 
 /// Widget para mostrar y seleccionar calificaciones con estrellas

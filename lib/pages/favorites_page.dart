@@ -1,3 +1,5 @@
+// Pantalla de favoritos
+// Muestra los destinos y restaurantes guardados por el usuario
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:share_plus/share_plus.dart';
@@ -16,6 +18,7 @@ class FavoritesPage extends StatefulWidget {
 
 class _FavoritesPageState extends State<FavoritesPage>
     with TickerProviderStateMixin {
+  // Permite compartir los favoritos
   void _shareFavorites() {
     final shareText = _favoritesService.generateShareText();
     Share.share(
@@ -35,27 +38,32 @@ class _FavoritesPageState extends State<FavoritesPage>
   @override
   void initState() {
     super.initState();
+    // Inicializa el controlador de pestañas
     _tabController = TabController(length: 2, vsync: this);
     _initializeFavorites();
   }
 
+  // Inicializa los favoritos al abrir la pantalla
   Future<void> _initializeFavorites() async {
     await _favoritesService.initialize();
   }
 
   @override
   void dispose() {
+    // Libera los controladores al cerrar la pantalla
     _tabController.dispose();
     _searchController.dispose();
     super.dispose();
   }
 
+  // Actualiza la búsqueda según el texto
   void _onSearchChanged(String query) {
     setState(() {
       _searchQuery = query;
     });
   }
 
+  // Muestra opciones para ordenar favoritos
   void _showSortOptions() {
     showModalBottomSheet(
       context: context,
@@ -96,6 +104,7 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
+  // Construye cada opción de ordenamiento
   Widget _buildSortOption(SortOption option, String title, IconData icon) {
     return ListTile(
       leading:
@@ -104,6 +113,7 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
+  // Muestra confirmación para eliminar todos los favoritos
   void _showClearConfirmation() {
     showDialog(
       context: context,
@@ -132,6 +142,7 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
+  // Construye la interfaz principal de favoritos
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -243,7 +254,6 @@ class _FavoritesPageState extends State<FavoritesPage>
                 if (_favoritesService.isEmpty) {
                   return _buildEmptyState();
                 }
-
                 return TabBarView(
                   controller: _tabController,
                   children: [
@@ -259,6 +269,7 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
+  // Estado cuando no hay favoritos guardados
   Widget _buildEmptyState() {
     return Center(
       child: Column(
@@ -309,6 +320,7 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
+  // Pestaña de destinos favoritos
   Widget _buildDestinationsTab() {
     final destinations = _favoritesService.searchDestinations(_searchQuery);
     final sortedDestinations = _favoritesService
@@ -330,6 +342,7 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
+  // Pestaña de restaurantes favoritos
   Widget _buildRestaurantsTab() {
     final restaurants = _favoritesService.searchRestaurants(_searchQuery);
     final sortedRestaurants = _favoritesService
@@ -350,6 +363,7 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
+  // Estado cuando no hay resultados en la búsqueda
   Widget _buildNoResultsFound(String type) {
     return Center(
       child: Column(
@@ -379,6 +393,7 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
+  // Tarjeta para cada destino favorito
   Widget _buildDestinationCard(Destination destination) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
@@ -495,6 +510,7 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
+  // Tarjeta para cada restaurante favorito
   Widget _buildRestaurantCard(Restaurant restaurant) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),

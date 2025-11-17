@@ -1,13 +1,16 @@
+// Servicio para gestionar favoritos (destinos y restaurantes)
+// Permite guardar, cargar y ordenar favoritos usando SharedPreferences
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import '../models/destination.dart';
 import '../models/restaurant.dart';
 
-// Enum fuera de la clase
+// Opciones de ordenamiento para favoritos
 enum SortOption { name, dateAdded, rating }
 
 class FavoritesService extends ChangeNotifier {
+  // Singleton para acceso global
   static final FavoritesService _instance = FavoritesService._internal();
   factory FavoritesService() => _instance;
   FavoritesService._internal();
@@ -15,11 +18,11 @@ class FavoritesService extends ChangeNotifier {
   List<Destination> _favoriteDestinations = [];
   List<Restaurant> _favoriteRestaurants = [];
 
-  // Keys para SharedPreferences
+  // Claves para guardar en SharedPreferences
   static const String _destinationsKey = 'favorite_destinations';
   static const String _restaurantsKey = 'favorite_restaurants';
 
-  // Getters
+  // Getters para acceder a favoritos
   List<Destination> get favoriteDestinations =>
       List.unmodifiable(_favoriteDestinations);
   List<Restaurant> get favoriteRestaurants =>
@@ -30,12 +33,12 @@ class FavoritesService extends ChangeNotifier {
   bool get isEmpty => totalFavorites == 0;
   bool get isNotEmpty => totalFavorites > 0;
 
-  // Inicializar el servicio cargando favoritos guardados
+  // Inicializa el servicio cargando favoritos guardados
   Future<void> initialize() async {
     await _loadFavorites();
   }
 
-  // Cargar favoritos desde SharedPreferences
+  // Carga favoritos desde SharedPreferences
   Future<void> _loadFavorites() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -81,10 +84,12 @@ class FavoritesService extends ChangeNotifier {
 
   // MÉTODOS PARA DESTINOS
 
+  /// Verifica si un destino es favorito
   bool isDestinationFavorite(String destinationName) {
     return _favoriteDestinations.any((dest) => dest.name == destinationName);
   }
 
+  /// Alterna el estado de favorito de un destino
   Future<bool> toggleDestinationFavorite(Destination destination) async {
     bool isFavorite = isDestinationFavorite(destination.name);
 
@@ -95,6 +100,7 @@ class FavoritesService extends ChangeNotifier {
     }
   }
 
+  /// Agrega un destino a favoritos
   Future<bool> addDestinationToFavorites(Destination destination) async {
     if (!isDestinationFavorite(destination.name)) {
       _favoriteDestinations.add(destination);
@@ -105,6 +111,7 @@ class FavoritesService extends ChangeNotifier {
     return false;
   }
 
+  /// Remueve un destino de favoritos
   Future<bool> removeDestinationFromFavorites(String destinationName) async {
     final index = _favoriteDestinations
         .indexWhere((dest) => dest.name == destinationName);
@@ -119,10 +126,12 @@ class FavoritesService extends ChangeNotifier {
 
   // MÉTODOS PARA RESTAURANTES
 
+  /// Verifica si un restaurante es favorito
   bool isRestaurantFavorite(String restaurantName) {
     return _favoriteRestaurants.any((rest) => rest.name == restaurantName);
   }
 
+  /// Alterna el estado de favorito de un restaurante
   Future<bool> toggleRestaurantFavorite(Restaurant restaurant) async {
     String restaurantName = restaurant.name ?? '';
     bool isFavorite = isRestaurantFavorite(restaurantName);
@@ -134,6 +143,7 @@ class FavoritesService extends ChangeNotifier {
     }
   }
 
+  /// Agrega un restaurante a favoritos
   Future<bool> addRestaurantToFavorites(Restaurant restaurant) async {
     String restaurantName = restaurant.name ?? '';
     if (!isRestaurantFavorite(restaurantName)) {
@@ -145,6 +155,7 @@ class FavoritesService extends ChangeNotifier {
     return false;
   }
 
+  /// Remueve un restaurante de favoritos
   Future<bool> removeRestaurantFromFavorites(String restaurantName) async {
     final index =
         _favoriteRestaurants.indexWhere((rest) => rest.name == restaurantName);
@@ -159,6 +170,7 @@ class FavoritesService extends ChangeNotifier {
 
   // MÉTODOS DE BÚSQUEDA Y FILTRADO
 
+  /// Busca destinos favoritos que contengan la query
   List<Destination> searchDestinations(String query) {
     if (query.isEmpty) return _favoriteDestinations;
 
@@ -170,6 +182,7 @@ class FavoritesService extends ChangeNotifier {
         .toList();
   }
 
+  /// Busca restaurantes favoritos que contengan la query
   List<Restaurant> searchRestaurants(String query) {
     if (query.isEmpty) return _favoriteRestaurants;
 
@@ -183,6 +196,7 @@ class FavoritesService extends ChangeNotifier {
 
   // ORDENAMIENTO
 
+  /// Devuelve destinos ordenados según la opción y orden especificados
   List<Destination> getSortedDestinations(SortOption sortBy,
       {bool ascending = true}) {
     List<Destination> sorted = List.from(_favoriteDestinations);
@@ -207,6 +221,7 @@ class FavoritesService extends ChangeNotifier {
     return sorted;
   }
 
+  /// Devuelve restaurantes ordenados según la opción y orden especificados
   List<Restaurant> getSortedRestaurants(SortOption sortBy,
       {bool ascending = true}) {
     List<Restaurant> sorted = List.from(_favoriteRestaurants);
@@ -232,6 +247,7 @@ class FavoritesService extends ChangeNotifier {
 
   // FUNCIONALIDAD DE COMPARTIR
 
+  /// Genera un texto para compartir en redes sociales
   String generateShareText() {
     if (isEmpty) {
       return "¡Descubre los mejores destinos y restaurantes de Nariño! 🇨🇴\n\n📱 Descarga Nariño Travel & Food";
@@ -266,6 +282,7 @@ class FavoritesService extends ChangeNotifier {
 
   // LIMPIAR TODOS LOS FAVORITOS
 
+  /// Limpia todos los destinos y restaurantes favoritos
   Future<void> clearAllFavorites() async {
     _favoriteDestinations.clear();
     _favoriteRestaurants.clear();
@@ -273,12 +290,14 @@ class FavoritesService extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Limpia solo los destinos favoritos
   Future<void> clearDestinations() async {
     _favoriteDestinations.clear();
     await _saveFavorites();
     notifyListeners();
   }
 
+  /// Limpia solo los restaurantes favoritos
   Future<void> clearRestaurants() async {
     _favoriteRestaurants.clear();
     await _saveFavorites();

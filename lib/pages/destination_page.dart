@@ -1,3 +1,5 @@
+// Pantalla de detalle para un destino turístico en Nariño Travel & Food
+// Muestra información, actividades, mapa y reseñas del destino
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:narino_travel_food/models/activity.dart';
@@ -12,6 +14,7 @@ import '../services/translation_service.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class DestinationPage extends StatefulWidget {
+  // Recibe el destino a mostrar
   final Destination destination;
 
   const DestinationPage({super.key, required this.destination});
@@ -21,6 +24,7 @@ class DestinationPage extends StatefulWidget {
 
 class _DestinationPageState extends State<DestinationPage>
     with TickerProviderStateMixin {
+  // Variables para traducción automática
   String? _translatedName;
   String? _translatedDescription;
   String? _translatedHistory;
@@ -32,6 +36,7 @@ class _DestinationPageState extends State<DestinationPage>
   @override
   void initState() {
     super.initState();
+    // Animación para el icono de favoritos
     _heartAnimationController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -41,7 +46,7 @@ class _DestinationPageState extends State<DestinationPage>
           parent: _heartAnimationController, curve: Curves.elasticOut),
     );
     _favoritesService.initialize();
-    // Configurar locale español para timeago
+    // Configura español para fechas
     timeago.setLocaleMessages('es', timeago.EsMessages());
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -55,6 +60,7 @@ class _DestinationPageState extends State<DestinationPage>
     _handleLocaleChange();
   }
 
+  // Traduce los textos si el idioma es inglés
   Future<void> _handleLocaleChange() async {
     final locale = Localizations.localeOf(context);
     if (_lastLocale == locale) return;
@@ -88,14 +94,14 @@ class _DestinationPageState extends State<DestinationPage>
     super.dispose();
   }
 
+  // Agrega o quita el destino de favoritos
   Future<void> _toggleFavorite() async {
     bool wasAdded =
         await _favoritesService.toggleDestinationFavorite(widget.destination);
 
     if (wasAdded) {
-      _heartAnimationController.forward().then((_) {
-        _heartAnimationController.reverse();
-      });
+      await _heartAnimationController.forward();
+      _heartAnimationController.reverse();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('${widget.destination.name} agregado a favoritos ❤️'),
@@ -120,6 +126,7 @@ class _DestinationPageState extends State<DestinationPage>
     }
   }
 
+  // Permite compartir el destino por redes
   void _shareDestination() {
     final shareText = '''
 🏞️ ${widget.destination.name} - Nariño, Colombia
@@ -135,7 +142,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
         subject: '${widget.destination.name} - Nariño Travel & Food');
   }
 
-  // Widget para construir las estrellas de calificación de forma visual
+  // Muestra las estrellas de calificación
   Widget _buildRatingStars(int rating) {
     List<Widget> stars = [];
     for (int i = 0; i < 5; i++) {
@@ -148,11 +155,11 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
     return Row(children: stars);
   }
 
-  // Widget para construir las tarjetas de actividad
+  // Tarjeta para cada actividad destacada
   Widget _buildActivityCard(Activity activity) {
     return Stack(
       children: <Widget>[
-        // TARJETA DE FONDO (detalles)
+        // Tarjeta de fondo con detalles
         Container(
           margin: const EdgeInsets.fromLTRB(60.0, 5.0, 20.0, 5.0),
           height: 170.0,
@@ -169,7 +176,6 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
             ],
           ),
           child: Padding(
-            // CAMBIO: Aumentamos el padding izquierdo a 150.0
             padding: const EdgeInsets.fromLTRB(150.0, 20.0, 20.0, 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -266,7 +272,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
             ),
           ),
         ),
-        // IMAGEN FRONTAL (miniatura de actividad)
+        // Imagen de la actividad
         Positioned(
           left: 20.0,
           top: 15.0,
@@ -274,7 +280,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
             child: Image(
-              width: 160.0, // <-- CAMBIO CLAVE: Imagen más ancha (160.0)
+              width: 160.0,
               image: AssetImage(activity.imageUrl ?? ''),
               fit: BoxFit.cover,
             ),
@@ -284,6 +290,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
     );
   }
 
+  // Construye la interfaz principal del destino
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -334,14 +341,14 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
               ),
               background: Stack(
                 children: <Widget>[
-                  // IMAGEN DE FONDO
+                  // Imagen de fondo del destino
                   Image(
                     image: AssetImage(widget.destination.imageUrl ?? ''),
                     fit: BoxFit.contain,
                     height: double.infinity,
                     width: double.infinity,
                   ),
-                  // GRADIENTE DE SOMBRA
+                  // Gradiente de sombra para mejorar legibilidad
                   Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
@@ -355,7 +362,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                       ),
                     ),
                   ),
-                  // INFO EN LA PARTE SUPERIOR DE LA IMAGEN
+                  // Información principal del destino
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20.0),
                     child: Align(
@@ -397,7 +404,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                       ),
                     ),
                   ),
-                  // ICONO DE GOOGLE MAPS - Esquina superior derecha
+                  // Botón para abrir Google Maps
                   Positioned(
                     top: 60.0,
                     right: 20.0,
@@ -455,7 +462,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                // TÍTULO DE LA SECCIÓN
+                // Sección de información del destino
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
                   child: Text(
@@ -468,7 +475,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                   ),
                 ),
 
-                // DESCRIPCIÓN CORTA
+                // Descripción corta
                 if (widget.destination.description != null)
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -482,13 +489,13 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                     ),
                   ),
 
-                // BOTONES DE MAPA Y NAVEGACIÓN
+                // Botones de mapa y navegación
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 20.0, vertical: 20.0),
                   child: Row(
                     children: [
-                      // BOTÓN VER EN MAPA
+                      // Botón ver en mapa
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () async {
@@ -524,7 +531,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
 
                       SizedBox(width: 12.0),
 
-                      // BOTÓN NAVEGAR
+                      // Botón navegar
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () async {
@@ -560,7 +567,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                   ),
                 ),
 
-                // TÍTULO DE HISTORIA E INFORMACIÓN RELEVANTE
+                // Sección de historia e información relevante
                 if (widget.destination.historyAndInfo != null)
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
@@ -574,7 +581,6 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                     ),
                   ),
 
-                // TEXTO DETALLADO
                 if (widget.destination.historyAndInfo != null)
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -588,7 +594,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                     ),
                   ),
 
-                // TÍTULO DE ACTIVIDADES
+                // Sección de actividades destacadas
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
                   child: Text(
@@ -600,14 +606,11 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                     ),
                   ),
                 ),
-
-                // Lista de tarjetas de actividad
                 if (widget.destination.activities != null)
                   ...widget.destination.activities!.map((activity) {
                     return _buildActivityCard(activity);
                   }),
-
-                // SECCIÓN DE RESEÑAS
+                // Sección de reseñas y opiniones
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 10.0),
                   child: Text(

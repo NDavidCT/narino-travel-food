@@ -1,3 +1,5 @@
+// Selector de idioma para la app
+// Permite cambiar entre español e inglés fácilmente
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
 

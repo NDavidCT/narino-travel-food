@@ -1,13 +1,15 @@
+// Modelo para destinos turísticos (ciudades, pueblos, lugares)
+// Incluye información, actividades, ubicación y métodos para JSON
 import 'package:narino_travel_food/models/activity.dart';
 
 class Destination {
-  String? imageUrl;
-  String? city;
-  String? country;
+  String? imageUrl; // URL de la imagen principal del destino
+  String? city; // Nombre de la ciudad o lugar
+  String? country; // País
   String? description; // Descripción corta (resumen)
-  List<Activity>? activities;
-  String? historyAndInfo; // Campo para historia y detalles
-  double? latitude;
+  List<Activity>? activities; // Lista de actividades destacadas
+  String? historyAndInfo; // Historia y detalles relevantes
+  double? latitude; // Ubicación geográfica
   double? longitude;
 
   Destination({
@@ -21,10 +23,10 @@ class Destination {
     this.longitude,
   });
 
-  // Getter para obtener el nombre (usamos city como identificador principal)
+  // Devuelve el nombre del destino (usando city)
   String get name => city ?? 'Destino sin nombre';
 
-  // Getter para rating (calculamos promedio de actividades)
+  // Calcula el rating promedio de las actividades
   int get rating {
     if (activities == null || activities!.isEmpty) return 0;
     double avgRating = activities!
@@ -34,7 +36,7 @@ class Destination {
     return avgRating.round();
   }
 
-  // Métodos para serialización JSON
+  // Convierte el destino a un mapa para guardar en JSON
   Map<String, dynamic> toJson() {
     return {
       'imageUrl': imageUrl,
@@ -48,6 +50,7 @@ class Destination {
     };
   }
 
+  // Crea un destino desde un mapa JSON
   factory Destination.fromJson(Map<String, dynamic> json) {
     return Destination(
       imageUrl: json['imageUrl'],
@@ -160,7 +163,7 @@ List<Activity> haciendaAlsaciaActivities = [
     rating: 4,
     price: 10000,
   ),
-];
+};
 
 // Actividades para Pedregal Rio
 List<Activity> pedregalRioActivities = [
