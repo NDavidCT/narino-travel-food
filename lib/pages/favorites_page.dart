@@ -29,7 +29,7 @@ class _FavoritesPageState extends State<FavoritesPage>
   final TextEditingController _searchController = TextEditingController();
 
   String _searchQuery = '';
-  SortOption _sortOption = SortOption.name;
+  final SortOption _sortOption = SortOption.name;
   bool _sortAscending = true;
 
   @override

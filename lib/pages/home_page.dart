@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
-import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:narino_travel_food/widgets/destination_carousel.dart';
 import 'package:narino_travel_food/widgets/restaurant_carousel.dart';
 

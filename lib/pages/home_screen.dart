@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatelessWidget {
