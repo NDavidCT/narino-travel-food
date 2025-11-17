@@ -1,16 +1,46 @@
-# ipi_deli_tour
+# Nariño Travel & Food
 
-A new Flutter project.
+Aplicación web y móvil para descubrir destinos turísticos y experiencias gastronómicas en el departamento de Nariño, Colombia.
 
-## Getting Started
+## 🚀 Características principales
+- Visualización de destinos turísticos y restaurantes
+- Sistema de favoritos y reseñas
+- Autenticación de usuarios
+- Soporte multilenguaje (español/inglés)
+- Integración con mapas y multimedia
+- Despliegue en web y dispositivos móviles
 
-This project is a starting point for a Flutter application.
+## 🛠️ Tecnologías utilizadas
+- Flutter/Dart
+- Firebase (Auth, Firestore, Storage, Hosting)
+- GitHub para control de versiones
 
-A few resources to get you started if this is your first Flutter project:
+## 📦 Instalación
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/NDavidCT/narino-travel-food.git
+   ```
+2. Ingresa a la carpeta del proyecto:
+   ```bash
+   cd narino-travel-food
+   ```
+3. Instala dependencias:
+   ```bash
+   flutter pub get
+   ```
+4. Ejecuta la app:
+   ```bash
+   flutter run
+   ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📷 Capturas de pantalla
+Agrega aquí imágenes de la app funcionando (opcional).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🤝 Contribuciones
+¿Quieres aportar? Haz un fork, crea una rama y envía tu pull request.
+
+## 📄 Licencia
+Este proyecto es educativo y abierto para la comunidad.
+
+---
+Desarrollado por NDavidCT y colaboradores.
