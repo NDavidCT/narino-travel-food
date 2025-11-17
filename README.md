@@ -40,7 +40,7 @@ Agrega aquí imágenes de la app funcionando (opcional).
 ¿Quieres aportar? Haz un fork, crea una rama y envía tu pull request.
 
 ## 📄 Licencia
-Este proyecto es educativo y abierto para la comunidad.
+Este proyecto es educativo y abierto para la comunidad, especialmente mis estudiantes graduados promocion 2025
 
 ---
-Desarrollado por NDavidCT y colaboradores.
+Desarrollado por NDavidCT y estudiantes de 3 Colegios Ipiales(IE Microempresarial los Andes) Pupiales(IE DE COMERCIO) Y Potosi(IE Agropecuaria Luis Antonio Montero)
