@@ -250,8 +250,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/santuario_lajas.jpg',
     city: 'Santuario de Nuestra Señora de Las Lajas',
     country: 'Ipiales',
-    latitude: -0.807982,
-    longitude: -77.585879,
+    latitude: 1.408815,
+    longitude: -77.289457,
     description:
         'El Santuario de Nuestra Señora de Las Lajas es una proeza de la ingeniería y la estética neogótica, encajado dramáticamente en la garganta del cañón del río Guáitara en Nariño, Colombia.',
     activities: lajasActivities,
@@ -271,6 +271,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/la_cocha.jpg',
     city: 'Laguna de la Cocha',
     country: 'Pasto',
+    latitude: 1.13941,
+    longitude: -77.15388,
     description: 'Navega la hermosa Laguna de la Cocha.',
     activities: laCochaActivities,
     historyAndInfo:
@@ -316,6 +318,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/laguna_bolsa.jpg',
     city: 'Laguna de La Bolsa',
     country: 'Cumbal',
+    latitude: 0.940998,
+    longitude: -77.825046,
     description: 'hermosa laguna de aguas cristalinas.',
     historyAndInfo:
         'La Laguna de La Bolsa, ubicada en el municipio de Cumbal, es un espejo de agua de origen glaciar rodeado de montañas y vegetación nativa. Sus aguas cristalinas reflejan la pureza del entorno y son hábitat de aves migratorias y especies endémicas.\n\nLa laguna es fundamental para la regulación hídrica de la región y es considerada sagrada por las comunidades locales, quienes realizan rituales y celebraciones en sus orillas. El sitio es ideal para el ecoturismo, la observación de fauna y la contemplación de paisajes andinos.\n\nLa Bolsa forma parte de la red de humedales de Nariño y contribuye a la conservación ambiental y cultural del territorio.',
@@ -325,6 +329,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/katza_pi.jpg',
     city: 'Katza Pi',
     country: 'Ricaurte',
+    latitude: 1.206999,
+    longitude: -77.987930,
     description: 'Relájate en las aguas termales naturales.',
     historyAndInfo:
         'Katza Pi, en Ricaurte, es un complejo de aguas termales naturales que brotan de las entrañas de la tierra, producto de la actividad volcánica de la región. Estas aguas han sido utilizadas por comunidades indígenas y visitantes para la relajación, la salud y el bienestar, gracias a sus propiedades minerales.\n\nEl entorno de Katza Pi está rodeado de paisajes montañosos, vegetación exuberante y senderos ecológicos que invitan al turismo de naturaleza y aventura. El sitio es punto de encuentro para el turismo de bienestar, la cultura ancestral y la integración comunitaria.\n\nKatza Pi representa la armonía entre el ser humano y los recursos naturales, promoviendo el desarrollo sostenible y la preservación de tradiciones milenarias.',
@@ -334,6 +340,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/rio_telembi.jpg',
     city: 'Río Telembí',
     country: 'Barbacoas',
+    latitude: 1.675634,
+    longitude: -78.136483,
     description: 'Explora la minería ancestral y cultura afro.',
     historyAndInfo:
         'El Río Telembí, en Barbacoas, es uno de los principales afluentes de la costa pacífica nariñense. Sus aguas han sido testigo de la minería ancestral, la pesca y la navegación, actividades que han marcado la historia y la economía de la región.\n\nLa cuenca del Telembí alberga una biodiversidad extraordinaria, con manglares, selvas y especies endémicas. La cultura afrodescendiente y las comunidades indígenas han desarrollado tradiciones, leyendas y festividades en torno al río, que es símbolo de resiliencia y adaptación.\n\nEl Telembí es vital para la integración regional, la conservación ambiental y el turismo ecológico, siendo un ejemplo de la riqueza natural y cultural del Pacífico colombiano.',
@@ -352,6 +360,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/hacienda_alsacia.jpg',
     city: 'Hacienda Alsacia',
     country: 'Tuquerres',
+    latitude: 1.05476,
+    longitude: -77.67494,
     description:
         'recreación como pesca deportiva, una pista de motos y senderos ecológicos',
     historyAndInfo:
@@ -362,6 +372,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/pedregal_rio.jpg',
     city: 'Pedregal Rio',
     country: 'Imues',
+    latitude: 1.054463,
+    longitude: -77.453726,
     description: 'hermoso balneario para disfrutar en familia',
     historyAndInfo:
         'Pedregal Río, en Imues, es un balneario natural formado por el cauce del río y rodeado de extensas áreas verdes y vegetación nativa. Es ideal para el descanso, la recreación familiar y el contacto directo con la naturaleza.\n\nEl sitio es conocido por sus aguas limpias, la hospitalidad de la comunidad local y la posibilidad de realizar actividades como natación, picnic y senderismo. Pedregal Río es ejemplo de turismo comunitario y conservación de recursos hídricos en Nariño.',
@@ -371,6 +383,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/paramo_paja_blanca.jpg',
     city: 'Paramo Paja Blanca',
     country: 'Gualmatán',
+    latitude: 0.977242,
+    longitude: -77.581805,
     description: 'hermoso paisaje con frailejones y paramos.',
     historyAndInfo:
         'El Páramo Paja Blanca, en Gualmatán, es una de las áreas protegidas más importantes de Nariño. Alberga gran cantidad de especies nativas, entre ellas el frailejón, y provee de agua a varios municipios de la zona.\n\nEl páramo es escenario de procesos ecológicos fundamentales para la regulación hídrica, la conservación de la biodiversidad y la adaptación al cambio climático. El paisaje invita a la contemplación, la investigación científica y la educación ambiental, siendo clave para la sostenibilidad regional.\n\nPaja Blanca es también espacio de celebraciones culturales y religiosas, integrando la vida comunitaria con la protección de la naturaleza.',
@@ -390,6 +404,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/laguna_coba_negra.jpg',
     city: 'laguna Coba Negra',
     country: 'Pasto',
+    latitude: 1.177056,
+    longitude: -77.343465,
     historyAndInfo:
         'La Laguna Coba Negra, ubicada en Pasto, es un área natural protegida de gran importancia ecológica y cultural. Sus aguas oscuras y misteriosas han inspirado leyendas, estudios científicos y actividades de conservación.\n\nLa laguna es vital para la biodiversidad regional, albergando especies de flora y fauna únicas, y contribuyendo a la regulación hídrica y climática. El entorno es ideal para la observación de aves, la investigación ambiental y el turismo ecológico.\n\nCoba Negra es símbolo de la relación entre naturaleza y cultura en Nariño, promoviendo el respeto y la protección de los recursos naturales.',
     description: 'Misteriosa laguna de aguas oscuras y entorno natural.',
@@ -399,6 +415,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/ecoparque.jpg',
     city: 'Haciendas Cafeteras',
     country: 'Buesaco',
+    latitude: 1.423751,
+    longitude: -77.148218,
     description: 'Ecoparque y Café especial de altura y haciendas cafeteras.',
     historyAndInfo:
         'Las Haciendas Cafeteras de Buesaco son reconocidas a nivel nacional por la producción de café especial de altura, resultado de la combinación entre clima, suelo y tradición agrícola. Los ecoparques ofrecen experiencias de agroturismo, donde los visitantes pueden conocer el proceso de cultivo, cosecha y preparación del café, así como disfrutar de actividades recreativas y educativas.\n\nLa región es ejemplo de innovación rural, integración comunitaria y conservación ambiental, promoviendo el desarrollo sostenible y la valoración de la cultura cafetera en Nariño.',
@@ -408,6 +426,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/sombrero_paja.jpeg',
     city: 'Sombreros de Paja Toquilla',
     country: 'Sandoná',
+    latitude: 1.289059,
+    longitude: -77.469398,
     description: 'Sombreros de paja toquilla patrimonio cultural.',
     historyAndInfo:
         'Sandoná es el principal productor colombiano de sombreros tejidos en paja toquilla, una tradición artesanal que se remonta al siglo XIX. El arte de tejer sombreros y accesorios con fibras naturales de iraca ha sido transmitido por generaciones, convirtiéndose en símbolo de identidad y patrimonio cultural.\n\nLa elaboración de estos artículos artesanales es fuente de ingresos y atractivo turístico, destacando la destreza y creatividad de los artesanos sandoneños. El municipio celebra ferias y festividades dedicadas a la artesanía, promoviendo la integración social y el reconocimiento nacional e internacional.',
@@ -426,6 +446,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/mirador_chimayoy.jpg',
     city: 'Mirador de Chimayoy',
     country: 'Pasto',
+    latitude: 1.262117,
+    longitude: -77.285140,
     description: 'Mirador de Chimayoy y páramos únicos.',
     historyAndInfo:
         'El Mirador de Chimayoy, situado a pocos kilómetros de Pasto, es un centro ambiental y turístico que ofrece vistas panorámicas de los páramos, montañas y valles andinos. Chimayoy, que en lengua quillasinga significa "ir al encuentro con el sol", es espacio de educación ambiental, investigación y conservación ecológica.\n\nEl lugar cuenta con senderos ecológicos, actividades educativas y proyectos de integración comunitaria, promoviendo la valoración y protección de los ecosistemas de alta montaña. Chimayoy es referente de turismo ecológico y desarrollo sostenible en Nariño.',
@@ -435,18 +457,22 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/piedra_bolivar.jpg',
     city: 'Piedra de Bolívar',
     country: 'Consaca',
+    latitude: 1.186010,
+    longitude: -77.462789,
     description: 'Piedra de Bolívar y formaciones rocosas.',
     historyAndInfo:
         'La Piedra de Bolívar, en Consaca, es una formación rocosa de gran valor histórico y simbólico. Conmemora la Batalla de Bomboná, uno de los episodios más importantes de la campaña libertadora en Colombia. El sitio es visitado por su valor histórico, sus paisajes únicos y la posibilidad de realizar actividades de senderismo y observación de flora y fauna.\n\nLa Piedra de Bolívar es símbolo de la identidad andina y de la memoria colectiva de Nariño, integrando historia, naturaleza y turismo cultural.',
     activities: mallamaActivities,
   ),
   Destination(
-    imageUrl: 'assets/images/paramo_frailejones.jpg',
-    city: 'Paramo de Frailejones',
+    imageUrl: 'assets/images/termales_chiles.jpg',
+    city: 'Termales de Chiles',
     country: 'Chiles',
-    description: 'Páramos, Volcan y Termales.',
+    latitude: 0.810049,
+    longitude: -77.862713,
+    description: 'Aguas termales naturales en la frontera con Ecuador.',
     historyAndInfo:
-        'El Páramo de Frailejones, en Chiles, es un ecosistema de alta montaña que alberga especies endémicas de flora y fauna, siendo fuente de agua y vida para la región. El páramo es escenario de procesos ecológicos fundamentales, como la captación y regulación hídrica, la conservación de la biodiversidad y la adaptación al cambio climático.\n\nEl lugar es ideal para el turismo de naturaleza, la investigación científica y la educación ambiental, promoviendo la protección de los recursos naturales y la integración comunitaria.',
+        'Los Termales de Chiles, ubicados en la frontera entre Colombia y Ecuador, son un atractivo natural reconocido por sus aguas termales de origen volcánico, rodeadas de paisajes andinos y páramos. El sitio es ideal para el descanso, la recreación y el turismo de bienestar, ofreciendo piscinas naturales y servicios básicos para los visitantes.\n\nEl entorno promueve la conservación ambiental y la integración binacional, siendo un punto de encuentro para turistas de ambos países. Los termales son valorados por sus propiedades terapéuticas y su importancia ecológica en la región.',
     activities: funesActivities,
   ),
   Destination(

@@ -19,7 +19,7 @@ class MapsService {
     'Laguna de La Bolsa': LatLng(0.9600, -77.8500),
     'Katza Pi': LatLng(1.1500, -77.4000),
     'Río Telembí': LatLng(1.6500, -78.1500),
-    'Hacienda Alsacia': LatLng(0.8200, -77.6100),
+    'Hacienda Alsacia': LatLng(1.05476, -77.67494),
     'Pedregal Rio': LatLng(0.9800, -77.4500),
     'Paramo Paja Blanca': LatLng(0.8800, -77.7200),
     'Centro Recreacional Comfamiliar': LatLng(1.1800, -77.3200),
