@@ -541,12 +541,14 @@ List<Destination> destinations = [
     activities: cascadasWilkActivities,
   ),
   Destination(
-    imageUrl: 'assets/images/osos_anteojos.jpg',
-    city: 'Reserva Osos de Anteojos',
-    country: 'La Planada',
+    imageUrl: 'assets/images/oso_2.jpeg',
+    city: 'Osos de Anteojos',
+    country: 'Funes',
+    latitude: 1.0015472143141955,
+    longitude: -77.40047853135017,
     description: 'Observación del oso andino en su hábitat natural.',
     historyAndInfo:
-        'La Reserva Osos de Anteojos, ubicada en La Planada, es un área protegida dedicada a la conservación del oso andino, especie emblemática y vulnerable de los Andes colombianos. La reserva es gestionada por la comunidad Awá, quienes han desarrollado proyectos de educación ambiental, investigación y turismo responsable.\n\nEl área alberga una gran diversidad de flora y fauna, siendo clave para la protección de especies amenazadas y la promoción de la integración comunitaria. La reserva es ejemplo de conservación participativa y de la relación armoniosa entre cultura y naturaleza en Nariño.',
+        'Osos de Anteojos, en el municipio de Funes, es un sitio de naturaleza dedicado a la observación del oso andino, especie emblemática y vulnerable de los Andes colombianos. El recorrido atraviesa bosque andino, potreros y paisajes de montaña, y permite conocer la flora y fauna de la región.\n\nEl lugar es ideal para el ecoturismo, la fotografía de naturaleza y la educación ambiental, promoviendo la conservación del oso andino y de su hábitat.',
     activities: ososAntejosActivities,
   ),
   Destination(
@@ -560,6 +562,72 @@ List<Destination> destinations = [
     historyAndInfo:
         'Patrimonio natural regional: Es considerada uno de los atractivos ecoturísticos más preciados de Funes y sus alrededores, muy apreciada por la comunidad local por su valor paisajístico.\n\nReconocimiento: Los visitantes suelen destacar su excelente conservación natural, lo que la convierte en un punto de interés clave para quienes buscan conocer la riqueza hídrica de Nariño.',
     activities: chilidonaActivities,
+  ),
+  Destination(
+    imageUrl: 'assets/images/finca_carmen_amelia_1.jpeg',
+    city: 'Finca Carmen Amelia',
+    country: 'Funes',
+    latitude: 1.011026,
+    longitude: -77.454944,
+    description:
+        'Finca campestre en el municipio de Funes, ideal para pasar un día en familia y para celebrar eventos. Cuenta con jardines, corredores decorados, piscina, jacuzzi y zonas de descanso rodeadas del paisaje montañoso de Nariño.',
+    historyAndInfo:
+        'Finca Carmen Amelia es un lugar que se alquila para eventos y para disfrutar en familia. Su casa de arquitectura campesina, con techos de teja, corredores de madera y caminos de piedra, conserva el ambiente tradicional del campo nariñense.\n\nSus espacios abiertos permiten organizar cumpleaños, reuniones familiares, matrimonios y celebraciones, mientras que la piscina, el jacuzzi, los columpios y los jardines ofrecen descanso y contacto con la naturaleza. Se recomienda reservar con anticipación con el propietario.',
+    activities: fincaCarmenAmeliaActivities,
+  ),
+];
+
+// Actividades para Finca Carmen Amelia
+List<Activity> fincaCarmenAmeliaActivities = [
+  Activity(
+    imageUrl: 'assets/images/finca_carmen_amelia_3.jpeg',
+    name: 'Eventos y celebraciones',
+    type: 'Eventos',
+    historyAndInfo:
+        'Amplios corredores y zonas verdes decoradas para cumpleaños, reuniones familiares, matrimonios y otras celebraciones. Alquiler por día, sujeto a reserva.',
+    startTimes: ['10:00 am'],
+    rating: 5,
+    price: 350000,
+  ),
+  Activity(
+    imageUrl: 'assets/images/finca_carmen_amelia_12.jpeg',
+    name: 'Piscina',
+    type: 'Recreación',
+    historyAndInfo:
+        'Piscina rodeada de jardines y muros de piedra, perfecta para refrescarse y disfrutar en familia durante el día.',
+    startTimes: ['10:00 am', '2:00 pm'],
+    rating: 5,
+    price: 15000,
+  ),
+  Activity(
+    imageUrl: 'assets/images/finca_carmen_amelia_10.jpeg',
+    name: 'Jacuzzi y fogata nocturna',
+    type: 'Relax',
+    historyAndInfo:
+        'Espacio bajo cubierta de guadua con jacuzzi, asador e iluminación ambiental para disfrutar de la noche entre montañas.',
+    startTimes: ['6:00 pm'],
+    rating: 5,
+    price: 40000,
+  ),
+  Activity(
+    imageUrl: 'assets/images/finca_carmen_amelia_5.jpeg',
+    name: 'Columpios y jardines',
+    type: 'Naturaleza',
+    historyAndInfo:
+        'Columpios y senderos de piedra entre jardines floridos con vista a las montañas, ideales para fotografías y descanso.',
+    startTimes: ['9:00 am'],
+    rating: 4,
+    price: 0,
+  ),
+  Activity(
+    imageUrl: 'assets/images/finca_carmen_amelia_4.jpeg',
+    name: 'Día de campo en familia',
+    type: 'Familiar',
+    historyAndInfo:
+        'Zonas verdes con mesas al aire libre para compartir almuerzos, juegos y tardes tranquilas en contacto con el campo.',
+    startTimes: ['9:00 am'],
+    rating: 5,
+    price: 20000,
   ),
 ];
 
@@ -1056,10 +1124,10 @@ List<Activity> cascadasWilkActivities = [
   ),
 ];
 
-// Actividades para Reserva Osos de Anteojos
+// Actividades para Osos de Anteojos
 List<Activity> ososAntejosActivities = [
   Activity(
-    imageUrl: 'assets/images/observacion_osos.jpg',
+    imageUrl: 'assets/images/oso_1.jpeg',
     name: 'Observación de Osos Andinos',
     type: 'Vida Silvestre',
     startTimes: ['6:00 am'],
@@ -1067,7 +1135,31 @@ List<Activity> ososAntejosActivities = [
     price: 35000,
   ),
   Activity(
-    imageUrl: 'assets/images/conservacion_osos.jpg',
+    imageUrl: 'assets/images/oso_3.jpeg',
+    name: 'Caminata por el Bosque Andino',
+    type: 'Naturaleza',
+    startTimes: ['8:00 am'],
+    rating: 5,
+    price: 0,
+  ),
+  Activity(
+    imageUrl: 'assets/images/oso_4.jpeg',
+    name: 'Paisajes de Montaña',
+    type: 'Panorámica',
+    startTimes: ['10:00 am'],
+    rating: 5,
+    price: 0,
+  ),
+  Activity(
+    imageUrl: 'assets/images/oso_5.jpeg',
+    name: 'Roca con Petroglifos',
+    type: 'Cultura e Historia',
+    startTimes: ['11:00 am'],
+    rating: 4,
+    price: 0,
+  ),
+  Activity(
+    imageUrl: 'assets/images/oso_6.jpeg',
     name: 'Programa de Conservación',
     type: 'Educación Ambiental',
     startTimes: ['9:00 am'],
