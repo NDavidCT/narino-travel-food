@@ -9,28 +9,38 @@ class MapsService {
   static const LatLng narinoCenter =
       LatLng(1.2136, -77.2811); // Centro de Nariño
 
-  // Mapa de coordenadas de destinos principales
+  // Vista inicial que muestra todo el departamento
+  static const LatLng narinoOverviewCenter = LatLng(1.25, -77.9);
+  static const double narinoOverviewZoom = 8.0;
+
+  // Coordenadas de los destinos (misma fuente que GoogleMapsService).
+  // La clave es el nombre exacto del destino; sin coordenada no hay marcador.
   static const Map<String, LatLng> destinationCoordinates = {
-    'Santuario de las Lajas': LatLng(0.8147, -77.5936),
+    'Santuario de Nuestra Señora de Las Lajas': LatLng(0.8147, -77.5936),
     'Centro Histórico de Pasto': LatLng(1.2136, -77.2811),
+    'Laguna de la Cocha': LatLng(1.13941, -77.15388),
     'Volcán Galeras': LatLng(1.2200, -77.3600),
-    'Playas de Tumaco': LatLng(1.8014, -78.7642),
-    'Volcán Cumbal': LatLng(0.9500, -77.8700),
-    'Laguna de La Bolsa': LatLng(0.9600, -77.8500),
-    'Katza Pi': LatLng(1.1500, -77.4000),
-    'Río Telembí': LatLng(1.6500, -78.1500),
+    'Playas de Tumaco': LatLng(1.830055, -78.731882),
+    'Volcán Cumbal': LatLng(0.951786, -77.886942),
+    'Laguna de La Bolsa': LatLng(0.940998, -77.825046),
+    'Katza Pi': LatLng(1.206999, -77.987930),
+    'Río Telembí': LatLng(1.675634, -78.136483),
+    'Reservas Naturales de El Tambo': LatLng(1.4200, -77.3500),
     'Hacienda Alsacia': LatLng(1.05476, -77.67494),
-    'Pedregal Rio': LatLng(0.9800, -77.4500),
-    'Paramo Paja Blanca': LatLng(0.8800, -77.7200),
-    'Centro Recreacional Comfamiliar': LatLng(1.1800, -77.3200),
-    'Laguna Coba Negra': LatLng(1.2500, -77.2500),
+    'Pedregal Rio': LatLng(1.054463, -77.453726),
+    'Paramo Paja Blanca': LatLng(0.977242, -77.581805),
+    'centro recreacional Comfamiliar': LatLng(1.408815, -77.289457),
+    'laguna Coba Negra': LatLng(1.177056, -77.343465),
+    'Haciendas Cafeteras': LatLng(1.423751, -77.148218),
+    'Sombreros de Paja Toquilla': LatLng(1.289059, -77.469398),
+    'Mirador de Chimayoy': LatLng(1.262117, -77.285140),
+    'Piedra de Bolívar': LatLng(1.186010, -77.462789),
+    'Termales de Chiles': LatLng(0.810049, -77.862713),
     'Cascada la Chilidoña': LatLng(0.921353, -77.444429),
     'Finca Carmen Amelia': LatLng(1.011026, -77.454944),
     'Cascada de la Paila': LatLng(0.908906, -77.637185),
     'Osos de Anteojos': LatLng(1.0015472143141955, -77.40047853135017),
-    // Agregar más coordenadas según necesites
   };
-
   // Obtener ubicación actual del usuario usando Geolocator (GRATIS)
   static Future<LatLng?> getCurrentLocation() async {
     bool serviceEnabled =

@@ -20,6 +20,8 @@ class LanguageSelector extends StatelessWidget {
       normalizedLocale = const Locale('es');
     } else if (currentLocale.languageCode == 'en') {
       normalizedLocale = const Locale('en');
+    } else if (currentLocale.languageCode == 'qu') {
+      normalizedLocale = const Locale('qu');
     } else {
       normalizedLocale = const Locale('es'); // fallback
     }
@@ -36,6 +38,10 @@ class LanguageSelector extends StatelessWidget {
           DropdownMenuItem(
             value: const Locale('en'),
             child: Text(AppLocalizations.of(context)?.english ?? 'English'),
+          ),
+          DropdownMenuItem(
+            value: const Locale('qu'),
+            child: Text(AppLocalizations.of(context)?.kichwa ?? 'Kichwa'),
           ),
         ],
         onChanged: (locale) {

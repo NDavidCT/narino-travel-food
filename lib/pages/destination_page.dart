@@ -1,5 +1,7 @@
 // Pantalla de detalle para un destino turístico en Nariño Travel & Food
 // Muestra información, actividades, mapa y reseñas del destino
+import 'package:narino_travel_food/services/name_translations.dart';
+import 'package:narino_travel_food/services/content_translations_qu.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:narino_travel_food/models/activity.dart';
@@ -25,9 +27,10 @@ class DestinationPage extends StatefulWidget {
 class _DestinationPageState extends State<DestinationPage>
     with TickerProviderStateMixin {
   // Variables para traducción automática
-  String? _translatedName;
   String? _translatedDescription;
   String? _translatedHistory;
+  Map<String, String> _translatedActivityNames = {};
+  Map<String, String> _translatedActivityTypes = {};
   Locale? _lastLocale;
   final FavoritesService _favoritesService = FavoritesService();
   late AnimationController _heartAnimationController;
@@ -66,24 +69,52 @@ class _DestinationPageState extends State<DestinationPage>
     if (_lastLocale == locale) return;
     _lastLocale = locale;
     final isEnglish = locale.languageCode == 'en';
-    if (isEnglish) {
+    if (locale.languageCode == 'qu') {
+      final desc = widget.destination.description ?? '';
+      final hist = widget.destination.historyAndInfo ?? '';
+      final names = <String, String>{};
+      final types = <String, String>{};
+      for (final a in widget.destination.activities ?? []) {
+        final key = a.name ?? '';
+        final n = kichwaActivityNames[key];
+        final t = kichwaActivityTypes[a.type ?? ''];
+        if (n != null) names[key] = n;
+        if (t != null) types[key] = t;
+      }
+      setState(() {
+        _translatedDescription = kichwaTexts[desc];
+        _translatedHistory = kichwaTexts[hist];
+        _translatedActivityNames = names;
+        _translatedActivityTypes = types;
+      });
+    } else if (isEnglish) {
       // Traducir descripción e historia
       final desc = widget.destination.description ?? '';
       final hist = widget.destination.historyAndInfo ?? '';
-      final name = widget.destination.city ?? '';
       final descTr = await TranslationService.translateText(desc, 'es', 'en');
       final histTr = await TranslationService.translateText(hist, 'es', 'en');
-      final nameTr = await TranslationService.translateText(name, 'es', 'en');
+      final names = <String, String>{};
+      final types = <String, String>{};
+      await Future.wait((widget.destination.activities ?? []).map((a) async {
+        final key = a.name ?? '';
+        names[key] =
+            await TranslationService.translateText(key, 'es', 'en');
+        types[key] = await TranslationService.translateText(
+            a.type ?? '', 'es', 'en');
+      }));
+      if (!mounted) return;
       setState(() {
         _translatedDescription = descTr;
         _translatedHistory = histTr;
-        _translatedName = nameTr;
+        _translatedActivityNames = names;
+        _translatedActivityTypes = types;
       });
     } else {
       setState(() {
         _translatedDescription = null;
         _translatedHistory = null;
-        _translatedName = null;
+        _translatedActivityNames = {};
+        _translatedActivityTypes = {};
       });
     }
   }
@@ -104,7 +135,8 @@ class _DestinationPageState extends State<DestinationPage>
       _heartAnimationController.reverse();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${widget.destination.name} agregado a favoritos ❤️'),
+          content: Text(
+              '${widget.destination.name} ${AppLocalizations.of(context)!.addedToFavorites} ❤️'),
           backgroundColor: Colors.green,
           duration: const Duration(seconds: 2),
         ),
@@ -112,11 +144,12 @@ class _DestinationPageState extends State<DestinationPage>
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${widget.destination.name} eliminado de favoritos'),
+          content: Text(
+              '${widget.destination.name} ${AppLocalizations.of(context)!.removedFromFavorites}'),
           backgroundColor: Colors.orange,
           duration: const Duration(seconds: 2),
           action: SnackBarAction(
-            label: 'Deshacer',
+            label: AppLocalizations.of(context)!.undo,
             onPressed: () {
               _favoritesService.addDestinationToFavorites(widget.destination);
             },
@@ -187,7 +220,9 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                   children: <Widget>[
                     Expanded(
                       child: Text(
-                        activity.name ?? 'Actividad',
+                        _translatedActivityNames[activity.name] ??
+                            activity.name ??
+                            'Actividad',
                         style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.w600,
@@ -205,9 +240,9 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const Text(
-                          'por persona',
-                          style: TextStyle(
+                        Text(
+                          AppLocalizations.of(context)!.perPerson,
+                          style: const TextStyle(
                             color: Colors.grey,
                           ),
                         ),
@@ -216,7 +251,9 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                   ],
                 ),
                 Text(
-                  activity.type ?? '',
+                  _translatedActivityTypes[activity.name] ??
+                      activity.type ??
+                      '',
                   style: const TextStyle(
                     color: Colors.grey,
                   ),
@@ -326,18 +363,32 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
               IconButton(
                 icon: const Icon(Icons.share, color: Colors.white, size: 24),
                 onPressed: _shareDestination,
-                tooltip: 'Compartir destino',
+                tooltip: AppLocalizations.of(context)!.shareDestination,
               ),
             ],
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              title: Text(
-                _translatedName ?? widget.destination.city ?? '',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
+              // El título solo aparece cuando la barra está colapsada
+              title: Builder(
+                builder: (context) {
+                  final settings = context.dependOnInheritedWidgetOfExactType<
+                      FlexibleSpaceBarSettings>();
+                  final collapsed = settings != null &&
+                      settings.currentExtent <=
+                          settings.minExtent + 20;
+                  return AnimatedOpacity(
+                    opacity: collapsed ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 150),
+                    child: Text(
+                      localizedName(context, widget.destination.city),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                },
               ),
               background: Stack(
                 children: <Widget>[
@@ -374,7 +425,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              widget.destination.city ?? '',
+                              localizedName(context, widget.destination.city),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 30.0,
@@ -506,14 +557,14 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                             } catch (e) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text('No se pudo abrir el mapa: $e'),
+                                  content: Text('${AppLocalizations.of(context)!.couldNotOpenMap}: $e'),
                                   backgroundColor: Colors.red,
                                 ),
                               );
                             }
                           },
                           icon: Icon(Icons.map_outlined, size: 20),
-                          label: Text('Ver en Mapa'),
+                          label: Text(AppLocalizations.of(context)!.viewOnMap),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green[50],
                             foregroundColor: Colors.green[700],
@@ -550,7 +601,7 @@ ${widget.destination.description ?? 'Un destino increíble para visitar'}
                             }
                           },
                           icon: Icon(Icons.navigation, size: 20),
-                          label: Text('Navegar'),
+                          label: Text(AppLocalizations.of(context)!.navigate),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green[600],
                             foregroundColor: Colors.white,

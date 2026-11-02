@@ -1,12 +1,13 @@
 // Carrusel de destinos turísticos destacados
 // Permite navegar horizontalmente y ver detalles de cada destino
 import 'package:flutter/gestures.dart' show PointerDeviceKind;
+import 'package:narino_travel_food/services/name_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:narino_travel_food/models/destination.dart';
 import 'package:narino_travel_food/pages/destination_page.dart';
-import 'package:narino_travel_food/services/translation_service.dart';
+import 'package:narino_travel_food/widgets/translated_text.dart';
 import 'animated_favorite_button.dart';
 
 class DestinationCarousel extends StatefulWidget {
@@ -55,35 +56,6 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
     Navigator.pushNamed(context, '/all-destinations');
   }
 
-  List<String?> _translatedNames = List.filled(destinations.length, null);
-  Locale? _lastLocale;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _handleLocaleChange();
-  }
-
-  Future<void> _handleLocaleChange() async {
-    final locale = Localizations.localeOf(context);
-    if (_lastLocale == locale) return;
-    _lastLocale = locale;
-    final isEnglish = locale.languageCode == 'en';
-    if (isEnglish) {
-      for (int i = 0; i < destinations.length; i++) {
-        final name = destinations[i].city ?? '';
-        final nameTr = await TranslationService.translateText(name, 'es', 'en');
-        setState(() {
-          _translatedNames[i] = nameTr;
-        });
-      }
-    } else {
-      setState(() {
-        _translatedNames = List.filled(destinations.length, null);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -108,7 +80,7 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
               GestureDetector(
                 onTap: _showAllDestinations,
                 child: Text(
-                  'Ver todos',
+                  AppLocalizations.of(context)!.viewAll,
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 16.0,
@@ -180,7 +152,10 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        '${destination.activities?.length} actividades',
+                                        AppLocalizations.of(context)!
+                                            .activitiesCount(
+                                                destination.activities?.length ??
+                                                    0),
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.w600,
@@ -189,7 +164,7 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
                                       ),
                                       const SizedBox(height: 4.0),
                                       Expanded(
-                                        child: Text(
+                                        child: TranslatedText(
                                           destination.description ?? '',
                                           style: const TextStyle(
                                             color: Colors.grey,
@@ -248,9 +223,8 @@ class _DestinationCarouselState extends State<DestinationCarousel> {
                                           width:
                                               160.0, // Ancho disponible para el texto
                                           child: Text(
-                                            _translatedNames[index] ??
-                                                destination.city ??
-                                                '',
+                                            localizedName(
+                                                context, destination.city),
                                             style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 18.0,

@@ -7,6 +7,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
+import 'app_localizations_qu.dart';
 
 // ignore_for_file: type=lint
 
@@ -92,7 +93,8 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('es')
+    Locale('es'),
+    Locale('qu')
   ];
 
   /// No description provided for @appTitle.
@@ -154,6 +156,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get english;
+
+  /// No description provided for @kichwa.
+  ///
+  /// In en, this message translates to:
+  /// **'Kichwa'**
+  String get kichwa;
 
   /// No description provided for @noReviews.
   ///
@@ -526,6 +534,330 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Restaurant'**
   String get restaurant;
+
+  /// No description provided for @tagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover destinations, restaurants and unique experiences'**
+  String get tagline;
+
+  /// No description provided for @signInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signInTitle;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailLabel;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordLabel;
+
+  /// No description provided for @confirmPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPasswordLabel;
+
+  /// No description provided for @signInButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signInButton;
+
+  /// No description provided for @continueWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continueWithGoogle;
+
+  /// No description provided for @noAccountQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get noAccountQuestion;
+
+  /// No description provided for @registerHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up here'**
+  String get registerHere;
+
+  /// No description provided for @userNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No user found with that email.'**
+  String get userNotFound;
+
+  /// No description provided for @wrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect password.'**
+  String get wrongPassword;
+
+  /// No description provided for @loginError.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-in error'**
+  String get loginError;
+
+  /// No description provided for @googleSignInError.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Sign-In error'**
+  String get googleSignInError;
+
+  /// No description provided for @unexpectedError.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred'**
+  String get unexpectedError;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get createAccount;
+
+  /// No description provided for @registerAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Register Account'**
+  String get registerAccount;
+
+  /// No description provided for @haveAccountQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get haveAccountQuestion;
+
+  /// No description provided for @signInLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signInLink;
+
+  /// No description provided for @passwordsDontMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match.'**
+  String get passwordsDontMatch;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters long.'**
+  String get passwordTooShort;
+
+  /// No description provided for @weakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'The password is too weak.'**
+  String get weakPassword;
+
+  /// No description provided for @emailInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'This email is already registered.'**
+  String get emailInUse;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Format error: the email address is not valid.'**
+  String get invalidEmail;
+
+  /// No description provided for @registerError.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration error'**
+  String get registerError;
+
+  /// No description provided for @aboutRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'About the Restaurant'**
+  String get aboutRestaurant;
+
+  /// No description provided for @viewOnMap.
+  ///
+  /// In en, this message translates to:
+  /// **'View on Map'**
+  String get viewOnMap;
+
+  /// No description provided for @navigate.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigate'**
+  String get navigate;
+
+  /// No description provided for @shareDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'Share destination'**
+  String get shareDestination;
+
+  /// No description provided for @shareRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Share restaurant'**
+  String get shareRestaurant;
+
+  /// No description provided for @addedToFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'added to favorites'**
+  String get addedToFavorites;
+
+  /// No description provided for @couldNotOpenMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the map'**
+  String get couldNotOpenMap;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search destinations, restaurants...'**
+  String get searchHint;
+
+  /// No description provided for @searchFavoritesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search in favorites...'**
+  String get searchFavoritesHint;
+
+  /// No description provided for @favoritesCleared.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites removed'**
+  String get favoritesCleared;
+
+  /// No description provided for @mapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nariño Map'**
+  String get mapTitle;
+
+  /// No description provided for @myLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'My location'**
+  String get myLocation;
+
+  /// No description provided for @viewDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'View destination'**
+  String get viewDestination;
+
+  /// No description provided for @calculatingDistance.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculating distance...'**
+  String get calculatingDistance;
+
+  /// No description provided for @nearbyDestinations.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby Destinations'**
+  String get nearbyDestinations;
+
+  /// No description provided for @noNearbyDestinations.
+  ///
+  /// In en, this message translates to:
+  /// **'No nearby destinations found'**
+  String get noNearbyDestinations;
+
+  /// No description provided for @loadingMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading map...'**
+  String get loadingMap;
+
+  /// No description provided for @perPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'per person'**
+  String get perPerson;
+
+  /// No description provided for @restaurantDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant Details'**
+  String get restaurantDetails;
+
+  /// No description provided for @descriptionUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Description not available.'**
+  String get descriptionUnavailable;
+
+  /// No description provided for @addressUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Address not available'**
+  String get addressUnavailable;
+
+  /// No description provided for @nameUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Name not available'**
+  String get nameUnavailable;
+
+  /// No description provided for @viewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get viewAll;
+
+  /// No description provided for @allDestinationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All Nariño Destinations'**
+  String get allDestinationsTitle;
+
+  /// No description provided for @searchInNarino.
+  ///
+  /// In en, this message translates to:
+  /// **'Search in Nariño'**
+  String get searchInNarino;
+
+  /// No description provided for @noResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No results found'**
+  String get noResults;
+
+  /// No description provided for @tryOtherKeywords.
+  ///
+  /// In en, this message translates to:
+  /// **'Try other keywords'**
+  String get tryOtherKeywords;
+
+  /// No description provided for @activitiesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 activity} other{{count} activities}}'**
+  String activitiesCount(int count);
+
+  /// No description provided for @destinationsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Destinations ({count})'**
+  String destinationsCount(int count);
+
+  /// No description provided for @restaurantsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants ({count})'**
+  String restaurantsCount(int count);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -537,7 +869,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'qu'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -550,6 +882,7 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en': return AppLocalizationsEn();
     case 'es': return AppLocalizationsEs();
+    case 'qu': return AppLocalizationsQu();
   }
 
   throw FlutterError(

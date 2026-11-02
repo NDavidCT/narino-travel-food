@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:narino_travel_food/services/maps_service.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 
 class MapPage extends StatefulWidget {
   // Permite centrar el mapa en un destino seleccionado
@@ -21,7 +22,7 @@ class _MapPageState extends State<MapPage> {
   // Lista de marcadores en el mapa
   List<Marker> _markers = [];
   // Posición actual mostrada en el mapa
-  LatLng _currentPosition = MapsService.narinoCenter;
+  LatLng _currentPosition = MapsService.narinoOverviewCenter;
   // Ubicación del usuario
   LatLng? _userLocation;
   bool _isLoading = true;
@@ -36,10 +37,10 @@ class _MapPageState extends State<MapPage> {
   // Inicializa el mapa y los marcadores
   Future<void> _initializeMap() async {
     // Obtener ubicación actual
+    // La ubicación del usuario solo se muestra como punto; no mueve la vista inicial
     LatLng? userLocation = await MapsService.getCurrentLocation();
     if (userLocation != null) {
       _userLocation = userLocation;
-      _currentPosition = userLocation;
     }
 
     // Generar marcadores para destinos
@@ -140,7 +141,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                     );
                   }
-                  return const Text('Calculando distancia...');
+                  return Text(AppLocalizations.of(context)!.calculatingDistance);
                 },
               ),
               const SizedBox(height: 20),
@@ -152,7 +153,7 @@ class _MapPageState extends State<MapPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green[700],
                 ),
-                child: const Text('Ver destino',
+                child: Text(AppLocalizations.of(context)!.viewDestination,
                     style: TextStyle(color: Colors.white)),
               ),
             ],
@@ -183,14 +184,14 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mapa de Nariño - GRATIS'),
+        title: Text(AppLocalizations.of(context)!.mapTitle),
         backgroundColor: Colors.green[700],
         foregroundColor: Colors.white,
         actions: [
           IconButton(
             icon: const Icon(Icons.my_location),
             onPressed: _goToCurrentLocation,
-            tooltip: 'Mi ubicación',
+            tooltip: AppLocalizations.of(context)!.myLocation,
           ),
           IconButton(
             icon: const Icon(Icons.info),
@@ -214,13 +215,13 @@ class _MapPageState extends State<MapPage> {
         ],
       ),
       body: _isLoading
-          ? const Center(
+          ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(color: Colors.green),
-                  SizedBox(height: 10),
-                  Text('Cargando mapa gratuito...'),
+                  const CircularProgressIndicator(color: Colors.green),
+                  const SizedBox(height: 10),
+                  Text(AppLocalizations.of(context)!.loadingMap),
                 ],
               ),
             )
@@ -228,7 +229,9 @@ class _MapPageState extends State<MapPage> {
               mapController: _controller,
               options: MapOptions(
                 center: _currentPosition,
-                zoom: 8.0,
+                zoom: widget.selectedDestination != null
+                    ? 12.0
+                    : MapsService.narinoOverviewZoom,
                 minZoom: 5.0,
                 maxZoom: 18.0,
               ),
@@ -278,7 +281,8 @@ class _MapPageState extends State<MapPage> {
             child: const Icon(Icons.map, color: Colors.white),
             onPressed: () {
               // Mostrar todos los destinos
-              _controller.move(MapsService.narinoCenter, 8.0);
+              _controller.move(MapsService.narinoOverviewCenter,
+                  MapsService.narinoOverviewZoom);
             },
           ),
           const SizedBox(height: 10),
@@ -295,7 +299,7 @@ class _MapPageState extends State<MapPage> {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('Destinos Cercanos'),
+                    title: Text(AppLocalizations.of(context)!.nearbyDestinations),
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: nearby
@@ -318,8 +322,8 @@ class _MapPageState extends State<MapPage> {
                 );
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text('No se encontraron destinos cercanos')),
+                  SnackBar(
+                      content: Text(AppLocalizations.of(context)!.noNearbyDestinations)),
                 );
               }
             },

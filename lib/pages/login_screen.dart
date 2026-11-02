@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../services/google_sign_in_service.dart';
 import 'register_screen.dart';
 import '../widgets/language_selector.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   // Permite cambiar el idioma desde el login
@@ -33,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // Inicia sesión usando correo y contraseña
   Future<void> _signInWithEmail() async {
+    final l = AppLocalizations.of(context)!;
     setState(() {
       _errorMessage = null;
     });
@@ -45,22 +47,23 @@ class _LoginScreenState extends State<LoginScreen> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         if (e.code == 'user-not-found') {
-          _errorMessage = 'No se encontró un usuario con ese correo.';
+          _errorMessage = l.userNotFound;
         } else if (e.code == 'wrong-password') {
-          _errorMessage = 'Contraseña incorrecta.';
+          _errorMessage = l.wrongPassword;
         } else {
-          _errorMessage = 'Error de inicio de sesión: ${e.message}';
+          _errorMessage = '${l.loginError}: ${e.message}';
         }
       });
     } catch (e) {
       setState(() {
-        _errorMessage = 'Ocurrió un error inesperado: $e';
+        _errorMessage = '${l.unexpectedError}: $e';
       });
     }
   }
 
   // Inicia sesión usando Google
   Future<void> _signInWithGoogle() async {
+    final l = AppLocalizations.of(context)!;
     setState(() {
       _errorMessage = null;
     });
@@ -94,11 +97,11 @@ class _LoginScreenState extends State<LoginScreen> {
       await FirebaseAuth.instance.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       setState(() {
-        _errorMessage = 'Error con Google Sign-In: ${e.message}';
+        _errorMessage = '${l.googleSignInError}: ${e.message}';
       });
     } catch (e) {
       setState(() {
-        _errorMessage = 'Ocurrió un error inesperado: $e';
+        _errorMessage = '${l.unexpectedError}: $e';
       });
     }
   }
@@ -161,35 +164,33 @@ class _LoginScreenState extends State<LoginScreen> {
                       image: true,
                       label: 'Logo de Nariño Travel & Food',
                       child: Container(
-                        width: 120,
-                        height: 120,
-                        padding: const EdgeInsets.all(8),
+                        width: MediaQuery.of(context).size.width > 600 ? 300 : 230,
+                        height: MediaQuery.of(context).size.width > 600 ? 300 : 230,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(24),
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.5),
+                              blurRadius: 24,
+                              spreadRadius: 2,
+                            ),
+                          ],
                         ),
-                        child: Image.asset(
-                          'assets/images/logo_narino.jpg',
-                          fit: BoxFit.contain,
+                        child: ClipOval(
+                          child: Transform.scale(
+                            scale: 1.06,
+                            child: Image.asset(
+                              'assets/images/logo_narino.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 20),
-                  // Título de la app
-                  const Text(
-                    'Nariño Travel & Food',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Descubre destinos, restaurantes y experiencias únicas',
+                  Text(
+                    AppLocalizations.of(context)!.tagline,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
@@ -197,8 +198,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
-                    'Sign In',
+                  Text(
+                    AppLocalizations.of(context)!.signInTitle,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
@@ -226,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     keyboardType: TextInputType.emailAddress,
                     style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      labelText: 'Correo Electrónico',
+                      labelText: AppLocalizations.of(context)!.emailLabel,
                       labelStyle: const TextStyle(color: Colors.white70),
                       hintStyle: const TextStyle(color: Colors.white38),
                       filled: true,
@@ -252,7 +253,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscureText: true,
                     style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      labelText: 'Contraseña',
+                      labelText: AppLocalizations.of(context)!.passwordLabel,
                       labelStyle: const TextStyle(color: Colors.white70),
                       hintStyle: const TextStyle(color: Colors.white38),
                       filled: true,
@@ -285,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         elevation: 5,
                       ),
-                      child: const Text('Ingresar',
+                      child: Text(AppLocalizations.of(context)!.signInButton,
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
                     ),
@@ -321,7 +322,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton.icon(
                       onPressed: _signInWithGoogle,
                       icon: const Icon(Icons.g_mobiledata, size: 28),
-                      label: const Text('Continuar con Google'),
+                      label: Text(AppLocalizations.of(context)!.continueWithGoogle),
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
                             Colors.white, // Fondo blanco para Google
@@ -341,8 +342,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        '¿No tienes una cuenta?',
+                      Text(
+                        AppLocalizations.of(context)!.noAccountQuestion,
                         style: TextStyle(color: Colors.white70),
                       ),
                       TextButton(
@@ -354,7 +355,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 builder: (context) => const RegisterScreen()),
                           );
                         },
-                        child: Text('Regístrate Aquí',
+                        child: Text(AppLocalizations.of(context)!.registerHere,
                             style: TextStyle(
                                 color: Colors.red.shade300,
                                 fontWeight: FontWeight.bold)),

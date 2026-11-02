@@ -47,7 +47,7 @@ class AuthPage extends StatelessWidget {
                 children: [
                   const Icon(Icons.error, color: Colors.red, size: 60),
                   const SizedBox(height: 20),
-                  const Text('Error de autenticación'),
+                  Text(AppLocalizations.of(context)!.authError),
                   const SizedBox(height: 10),
                   Text('${snapshot.error}'),
                 ],

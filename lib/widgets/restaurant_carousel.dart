@@ -1,10 +1,11 @@
 // Carrusel de restaurantes típicos de Nariño
 // Permite navegar horizontalmente y ver detalles de cada restaurante
+import 'package:narino_travel_food/services/name_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:narino_travel_food/models/restaurant.dart';
 import 'package:narino_travel_food/pages/restaurant_page.dart';
-import 'package:narino_travel_food/services/translation_service.dart';
+import 'package:narino_travel_food/widgets/translated_text.dart';
 import 'animated_favorite_button.dart';
 
 class RestaurantCarousel extends StatefulWidget {
@@ -15,35 +16,6 @@ class RestaurantCarousel extends StatefulWidget {
 }
 
 class _RestaurantCarouselState extends State<RestaurantCarousel> {
-  List<String?> _translatedNames = List.filled(restaurants.length, null);
-  Locale? _lastLocale;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _handleLocaleChange();
-  }
-
-  Future<void> _handleLocaleChange() async {
-    final locale = Localizations.localeOf(context);
-    if (_lastLocale == locale) return;
-    _lastLocale = locale;
-    final isEnglish = locale.languageCode == 'en';
-    if (isEnglish) {
-      for (int i = 0; i < restaurants.length; i++) {
-        final name = restaurants[i].name ?? '';
-        final nameTr = await TranslationService.translateText(name, 'es', 'en');
-        setState(() {
-          _translatedNames[i] = nameTr;
-        });
-      }
-    } else {
-      setState(() {
-        _translatedNames = List.filled(restaurants.length, null);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,16 +33,13 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                   letterSpacing: 1.5,
                 ),
               ),
-              GestureDetector(
-                onTap: () => print('Ver todos'),
-                child: Text(
-                  'Ver todos',
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 1.0,
-                  ),
+              Text(
+                AppLocalizations.of(context)!.viewAll,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1.0,
                 ),
               ),
             ],
@@ -137,9 +106,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                _translatedNames[index] ??
-                                    restaurant.name ??
-                                    '',
+                                localizedName(context, restaurant.name),
                                 style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w600,
@@ -149,7 +116,7 @@ class _RestaurantCarouselState extends State<RestaurantCarousel> {
                                 maxLines: 1,
                               ),
                               Flexible(
-                                child: Text(
+                                child: TranslatedText(
                                   restaurant.address ?? '',
                                   style: const TextStyle(color: Colors.grey),
                                   overflow: TextOverflow.ellipsis,

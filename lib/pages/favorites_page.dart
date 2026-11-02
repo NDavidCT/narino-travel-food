@@ -1,7 +1,9 @@
 // Pantalla de favoritos
 // Muestra los destinos y restaurantes guardados por el usuario
+import 'package:narino_travel_food/services/name_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
+import 'package:narino_travel_food/widgets/translated_text.dart';
 import 'package:share_plus/share_plus.dart';
 import '../services/favorites_service.dart';
 import '../models/destination.dart';
@@ -130,7 +132,7 @@ class _FavoritesPageState extends State<FavoritesPage>
               _favoritesService.clearAllFavorites();
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Favoritos eliminados')),
+                SnackBar(content: Text(AppLocalizations.of(context)!.favoritesCleared)),
               );
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
@@ -226,7 +228,7 @@ class _FavoritesPageState extends State<FavoritesPage>
               controller: _searchController,
               onChanged: _onSearchChanged,
               decoration: InputDecoration(
-                hintText: 'Buscar en favoritos...',
+                hintText: AppLocalizations.of(context)!.searchFavoritesHint,
                 prefixIcon: const Icon(Icons.search, color: Colors.green),
                 suffixIcon: _searchQuery.isNotEmpty
                     ? IconButton(
@@ -330,7 +332,8 @@ class _FavoritesPageState extends State<FavoritesPage>
         .toList();
 
     if (filteredDestinations.isEmpty && _searchQuery.isNotEmpty) {
-      return _buildNoResultsFound('destinos');
+      return _buildNoResultsFound(
+          AppLocalizations.of(context)!.noResultsFoundDestinations);
     }
 
     return ListView.builder(
@@ -351,7 +354,8 @@ class _FavoritesPageState extends State<FavoritesPage>
         sortedRestaurants.where((rest) => restaurants.contains(rest)).toList();
 
     if (filteredRestaurants.isEmpty && _searchQuery.isNotEmpty) {
-      return _buildNoResultsFound('restaurantes');
+      return _buildNoResultsFound(
+          AppLocalizations.of(context)!.noResultsFoundRestaurants);
     }
 
     return ListView.builder(
@@ -376,7 +380,7 @@ class _FavoritesPageState extends State<FavoritesPage>
           ),
           const SizedBox(height: 16),
           Text(
-            'No se encontraron $type',
+            type,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -385,7 +389,7 @@ class _FavoritesPageState extends State<FavoritesPage>
           ),
           const SizedBox(height: 8),
           Text(
-            'Intenta con otros términos de búsqueda',
+            AppLocalizations.of(context)!.tryOtherSearchTerms,
             style: TextStyle(color: Colors.grey.shade500),
           ),
         ],
@@ -440,7 +444,7 @@ class _FavoritesPageState extends State<FavoritesPage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      destination.name,
+                      localizedName(context, destination.name),
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -448,7 +452,7 @@ class _FavoritesPageState extends State<FavoritesPage>
                     ),
                     const SizedBox(height: 4),
                     if (destination.description != null)
-                      Text(
+                      TranslatedText(
                         destination.description!,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -491,9 +495,9 @@ class _FavoritesPageState extends State<FavoritesPage>
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content:
-                          Text('${destination.name} eliminado de favoritos'),
+                          Text('${destination.name} ${AppLocalizations.of(context)!.removedFromFavorites}'),
                       action: SnackBarAction(
-                        label: 'Deshacer',
+                        label: AppLocalizations.of(context)!.undo,
                         onPressed: () {
                           _favoritesService
                               .addDestinationToFavorites(destination);
@@ -557,8 +561,9 @@ class _FavoritesPageState extends State<FavoritesPage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      restaurant.name ??
-                          AppLocalizations.of(context)!.restaurantNoName,
+                      restaurant.name != null
+                          ? localizedName(context, restaurant.name)
+                          : AppLocalizations.of(context)!.restaurantNoName,
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -566,7 +571,7 @@ class _FavoritesPageState extends State<FavoritesPage>
                     ),
                     const SizedBox(height: 4),
                     if (restaurant.address != null)
-                      Text(
+                      TranslatedText(
                         restaurant.address!,
                         style: TextStyle(
                           color: Colors.grey.shade600,
@@ -607,9 +612,9 @@ class _FavoritesPageState extends State<FavoritesPage>
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                          '${restaurant.name ?? 'Restaurante'} eliminado de favoritos'),
+                          '${restaurant.name ?? AppLocalizations.of(context)!.restaurant} ${AppLocalizations.of(context)!.removedFromFavorites}'),
                       action: SnackBarAction(
-                        label: 'Deshacer',
+                        label: AppLocalizations.of(context)!.undo,
                         onPressed: () {
                           _favoritesService
                               .addRestaurantToFavorites(restaurant);

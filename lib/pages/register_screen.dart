@@ -2,6 +2,7 @@
 // Permite crear una nueva cuenta en la app
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -22,6 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   // Método para registrar un nuevo usuario
   Future<void> _signUp() async {
+    final l = AppLocalizations.of(context)!;
     setState(() {
       _errorMessage = null;
     });
@@ -33,7 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // Verifica que las contraseñas sean iguales
     if (password != confirmPassword) {
       setState(() {
-        _errorMessage = 'Las contraseñas no coinciden.';
+        _errorMessage = l.passwordsDontMatch;
       });
       return;
     }
@@ -41,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // Verifica que la contraseña tenga al menos 6 caracteres
     if (password.length < 6) {
       setState(() {
-        _errorMessage = 'La contraseña debe tener al menos 6 caracteres.';
+        _errorMessage = l.passwordTooShort;
       });
       return;
     }
@@ -57,20 +59,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       setState(() {
         // Muestra mensajes de error amigables
         if (e.code == 'weak-password') {
-          _errorMessage = 'La contraseña es muy débil.';
+          _errorMessage = l.weakPassword;
         } else if (e.code == 'email-already-in-use') {
-          _errorMessage = 'El correo electrónico ya está registrado.';
+          _errorMessage = l.emailInUse;
         } else if (e.code == 'invalid-email') {
-          _errorMessage =
-              'Error de formato: El correo electrónico no es válido.';
+          _errorMessage = l.invalidEmail;
         } else {
-          _errorMessage = 'Error de registro: ${e.message}';
+          _errorMessage = '${l.registerError}: ${e.message}';
         }
         print('Error de registro: ${e.message}');
       });
     } catch (e) {
       setState(() {
-        _errorMessage = 'Ocurrió un error inesperado: $e';
+        _errorMessage = '${l.unexpectedError}: $e';
         print('Error inesperado: $e');
       });
     }
@@ -90,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Crear Cuenta'),
+        title: Text(AppLocalizations.of(context)!.createAccount),
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
       ),
@@ -125,10 +126,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  labelText: 'Correo Electrónico',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.emailLabel,
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.email),
                 ),
               ),
               const SizedBox(height: 20),
@@ -137,10 +138,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Contraseña',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.passwordLabel,
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.lock),
                 ),
               ),
               const SizedBox(height: 20),
@@ -149,10 +150,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextField(
                 controller: _confirmPasswordController,
                 obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Confirmar Contraseña',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock_open),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.confirmPasswordLabel,
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.lock_open),
                 ),
               ),
               const SizedBox(height: 25),
@@ -170,7 +171,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text('Registrar Cuenta',
+                  child: Text(AppLocalizations.of(context)!.registerAccount,
                       style: TextStyle(fontSize: 18)),
                 ),
               ),
@@ -181,13 +182,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('¿Ya tienes una cuenta?'),
+                  Text(AppLocalizations.of(context)!.haveAccountQuestion),
                   TextButton(
                     onPressed: () {
                       // Regresa a la pantalla de login
                       Navigator.pop(context);
                     },
-                    child: const Text('Iniciar Sesión',
+                    child: Text(AppLocalizations.of(context)!.signInLink,
                         style: TextStyle(color: Colors.red)),
                   ),
                 ],

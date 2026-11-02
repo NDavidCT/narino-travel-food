@@ -1,7 +1,9 @@
 // Pantalla de búsqueda
 // Permite buscar destinos y restaurantes por nombre o descripción
+import 'package:narino_travel_food/services/name_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
+import 'package:narino_travel_food/widgets/translated_text.dart';
 import 'package:narino_travel_food/models/destination.dart';
 import 'package:narino_travel_food/models/restaurant.dart';
 import 'package:narino_travel_food/services/search_service.dart';
@@ -55,8 +57,8 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Buscar en Nariño',
+        title: Text(
+          AppLocalizations.of(context)!.searchInNarino,
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.green.shade700,
@@ -72,7 +74,7 @@ class _SearchPageState extends State<SearchPage> {
               controller: _searchController,
               onChanged: _performSearch,
               decoration: InputDecoration(
-                hintText: 'Buscar destinos, restaurantes...',
+                hintText: AppLocalizations.of(context)!.searchHint,
                 prefixIcon: const Icon(Icons.search, color: Colors.green),
                 suffixIcon: _searchController.text.isNotEmpty
                     ? IconButton(
@@ -124,7 +126,8 @@ class _SearchPageState extends State<SearchPage> {
       children: [
         // Resultados de destinos
         if (_destinationResults.isNotEmpty) ...[
-          _buildSectionHeader('Destinos (${_destinationResults.length})'),
+          _buildSectionHeader(AppLocalizations.of(context)!
+              .destinationsCount(_destinationResults.length)),
           const SizedBox(height: 8),
           ..._destinationResults
               .map((destination) => _buildDestinationCard(destination)),
@@ -133,7 +136,8 @@ class _SearchPageState extends State<SearchPage> {
 
         // Resultados de restaurantes
         if (_restaurantResults.isNotEmpty) ...[
-          _buildSectionHeader('Restaurantes (${_restaurantResults.length})'),
+          _buildSectionHeader(AppLocalizations.of(context)!
+              .restaurantsCount(_restaurantResults.length)),
           const SizedBox(height: 8),
           ..._restaurantResults
               .map((restaurant) => _buildRestaurantCard(restaurant)),
@@ -221,7 +225,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
           const SizedBox(height: 16),
           Text(
-            'No se encontraron resultados',
+            AppLocalizations.of(context)!.noResults,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -230,7 +234,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Intenta con otras palabras clave',
+            AppLocalizations.of(context)!.tryOtherKeywords,
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey.shade500,
@@ -276,10 +280,10 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ),
         title: Text(
-          destination.city!,
+          localizedName(context, destination.city),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: Text(
+        subtitle: TranslatedText(
           destination.description!,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
@@ -320,13 +324,13 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ),
         title: Text(
-          restaurant.name!,
+          localizedName(context, restaurant.name),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(restaurant.address!),
+            TranslatedText(restaurant.address!),
             Row(
               children: [
                 Row(

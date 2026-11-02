@@ -9,6 +9,7 @@
   "language": "Language",
   "spanish": "Spanish",
   "english": "English",
+  "kichwa": "Kichwa",
   "noReviews": "No reviews yet.",
   "addReview": "Add your review",
   "submit": "Submit",
@@ -72,5 +73,83 @@
   "removedFromFavorites": "removed from favorites",
   "undo": "Undo",
   "restaurantNoName": "Restaurant without name",
-  "restaurant": "Restaurant"
+  "restaurant": "Restaurant",
+  "tagline": "Discover destinations, restaurants and unique experiences",
+  "signInTitle": "Sign In",
+  "emailLabel": "Email",
+  "passwordLabel": "Password",
+  "confirmPasswordLabel": "Confirm Password",
+  "signInButton": "Sign in",
+  "continueWithGoogle": "Continue with Google",
+  "noAccountQuestion": "Don't have an account?",
+  "registerHere": "Sign up here",
+  "userNotFound": "No user found with that email.",
+  "wrongPassword": "Incorrect password.",
+  "loginError": "Sign-in error",
+  "googleSignInError": "Google Sign-In error",
+  "unexpectedError": "An unexpected error occurred",
+  "createAccount": "Create Account",
+  "registerAccount": "Register Account",
+  "haveAccountQuestion": "Already have an account?",
+  "signInLink": "Sign In",
+  "passwordsDontMatch": "Passwords do not match.",
+  "passwordTooShort": "Password must be at least 6 characters long.",
+  "weakPassword": "The password is too weak.",
+  "emailInUse": "This email is already registered.",
+  "invalidEmail": "Format error: the email address is not valid.",
+  "registerError": "Registration error",
+  "aboutRestaurant": "About the Restaurant",
+  "viewOnMap": "View on Map",
+  "navigate": "Navigate",
+  "shareDestination": "Share destination",
+  "shareRestaurant": "Share restaurant",
+  "addedToFavorites": "added to favorites",
+  "couldNotOpenMap": "Could not open the map",
+  "searchHint": "Search destinations, restaurants...",
+  "searchFavoritesHint": "Search in favorites...",
+  "favoritesCleared": "Favorites removed",
+  "mapTitle": "Nariño Map",
+  "myLocation": "My location",
+  "viewDestination": "View destination",
+  "calculatingDistance": "Calculating distance...",
+  "nearbyDestinations": "Nearby Destinations",
+  "noNearbyDestinations": "No nearby destinations found",
+  "loadingMap": "Loading map...",
+  "perPerson": "per person",
+  "restaurantDetails": "Restaurant Details",
+  "descriptionUnavailable": "Description not available.",
+  "addressUnavailable": "Address not available",
+  "nameUnavailable": "Name not available",
+  "viewAll": "See all",
+  "noResultsFoundDestinations": "No destinations found",
+  "noResultsFoundRestaurants": "No restaurants found",
+  "tryOtherSearchTerms": "Try other search terms",
+  "allDestinationsTitle": "All Nariño Destinations",
+  "searchInNarino": "Search in Nariño",
+  "noResults": "No results found",
+  "tryOtherKeywords": "Try other keywords",
+  "activitiesCount": "{count, plural, =1{1 activity} other{{count} activities}}",
+  "@activitiesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "destinationsCount": "Destinations ({count})",
+  "@destinationsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "restaurantsCount": "Restaurants ({count})",
+  "@restaurantsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

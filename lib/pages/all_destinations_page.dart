@@ -1,6 +1,8 @@
 // Pantalla que muestra todos los destinos turísticos
 // Permite ver y seleccionar cualquier destino de Nariño
+import 'package:narino_travel_food/services/name_translations.dart';
 import 'package:flutter/material.dart';
+import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:narino_travel_food/models/destination.dart';
 import 'package:narino_travel_food/pages/destination_page.dart';
 
@@ -11,8 +13,8 @@ class AllDestinationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Todos los Destinos de Nariño',
+        title: Text(
+          AppLocalizations.of(context)!.allDestinationsTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -110,7 +112,7 @@ class AllDestinationsPage extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                destination.city ?? '',
+                                localizedName(context, destination.city),
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 14.0,
@@ -143,7 +145,8 @@ class AllDestinationsPage extends StatelessWidget {
                               ),
                               const SizedBox(height: 2.0),
                               Text(
-                                '${destination.activities?.length} actividades',
+                                AppLocalizations.of(context)!
+                                    .activitiesCount(destination.activities?.length ?? 0),
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 10.0,

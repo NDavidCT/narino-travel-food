@@ -39,6 +39,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get english => 'Inglés';
 
   @override
+  String get kichwa => 'Kichwa';
+
+  @override
   String get noReviews => 'Aún no hay reseñas.';
 
   @override
@@ -223,4 +226,178 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get restaurant => 'Restaurante';
+
+  @override
+  String get tagline => 'Descubre destinos, restaurantes y experiencias únicas';
+
+  @override
+  String get signInTitle => 'Iniciar sesión';
+
+  @override
+  String get emailLabel => 'Correo Electrónico';
+
+  @override
+  String get passwordLabel => 'Contraseña';
+
+  @override
+  String get confirmPasswordLabel => 'Confirmar Contraseña';
+
+  @override
+  String get signInButton => 'Ingresar';
+
+  @override
+  String get continueWithGoogle => 'Continuar con Google';
+
+  @override
+  String get noAccountQuestion => '¿No tienes una cuenta?';
+
+  @override
+  String get registerHere => 'Regístrate Aquí';
+
+  @override
+  String get userNotFound => 'No se encontró un usuario con ese correo.';
+
+  @override
+  String get wrongPassword => 'Contraseña incorrecta.';
+
+  @override
+  String get loginError => 'Error de inicio de sesión';
+
+  @override
+  String get googleSignInError => 'Error con Google Sign-In';
+
+  @override
+  String get unexpectedError => 'Ocurrió un error inesperado';
+
+  @override
+  String get createAccount => 'Crear Cuenta';
+
+  @override
+  String get registerAccount => 'Registrar Cuenta';
+
+  @override
+  String get haveAccountQuestion => '¿Ya tienes una cuenta?';
+
+  @override
+  String get signInLink => 'Iniciar Sesión';
+
+  @override
+  String get passwordsDontMatch => 'Las contraseñas no coinciden.';
+
+  @override
+  String get passwordTooShort => 'La contraseña debe tener al menos 6 caracteres.';
+
+  @override
+  String get weakPassword => 'La contraseña es muy débil.';
+
+  @override
+  String get emailInUse => 'El correo electrónico ya está registrado.';
+
+  @override
+  String get invalidEmail => 'Error de formato: El correo electrónico no es válido.';
+
+  @override
+  String get registerError => 'Error de registro';
+
+  @override
+  String get aboutRestaurant => 'Acerca del Restaurante';
+
+  @override
+  String get viewOnMap => 'Ver en Mapa';
+
+  @override
+  String get navigate => 'Navegar';
+
+  @override
+  String get shareDestination => 'Compartir destino';
+
+  @override
+  String get shareRestaurant => 'Compartir restaurante';
+
+  @override
+  String get addedToFavorites => 'agregado a favoritos';
+
+  @override
+  String get couldNotOpenMap => 'No se pudo abrir el mapa';
+
+  @override
+  String get searchHint => 'Buscar destinos, restaurantes...';
+
+  @override
+  String get searchFavoritesHint => 'Buscar en favoritos...';
+
+  @override
+  String get favoritesCleared => 'Favoritos eliminados';
+
+  @override
+  String get mapTitle => 'Mapa de Nariño';
+
+  @override
+  String get myLocation => 'Mi ubicación';
+
+  @override
+  String get viewDestination => 'Ver destino';
+
+  @override
+  String get calculatingDistance => 'Calculando distancia...';
+
+  @override
+  String get nearbyDestinations => 'Destinos Cercanos';
+
+  @override
+  String get noNearbyDestinations => 'No se encontraron destinos cercanos';
+
+  @override
+  String get loadingMap => 'Cargando mapa...';
+
+  @override
+  String get perPerson => 'por persona';
+
+  @override
+  String get restaurantDetails => 'Detalles del Restaurante';
+
+  @override
+  String get descriptionUnavailable => 'Descripción no disponible.';
+
+  @override
+  String get addressUnavailable => 'Dirección no disponible';
+
+  @override
+  String get nameUnavailable => 'Nombre no disponible';
+
+  @override
+  String get viewAll => 'Ver todos';
+
+  @override
+  String get allDestinationsTitle => 'Todos los Destinos de Nariño';
+
+  @override
+  String get searchInNarino => 'Buscar en Nariño';
+
+  @override
+  String get noResults => 'No se encontraron resultados';
+
+  @override
+  String get tryOtherKeywords => 'Intenta con otras palabras clave';
+
+  @override
+  String activitiesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count actividades',
+      one: '1 actividad',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String destinationsCount(int count) {
+    return 'Destinos ($count)';
+  }
+
+  @override
+  String restaurantsCount(int count) {
+    return 'Restaurantes ($count)';
+  }
 }

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
+import 'package:narino_travel_food/l10n/kichwa_fallback_delegates.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:narino_travel_food/firebase_options.dart';
 import 'package:flutter/foundation.dart';
@@ -110,15 +110,14 @@ class _MyAppState extends State<MyApp> {
         splashFactory: InkRipple.splashFactory,
       ),
       locale: _locale, // Idioma actual
-      localizationsDelegates: const [
+      localizationsDelegates: [
         AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+        ...kichwaFallbackDelegates,
       ],
       supportedLocales: const [
         Locale('es'),
         Locale('en'),
+        Locale('qu'),
       ],
       // Rutas de navegación
       routes: {

@@ -1,7 +1,10 @@
 // Pantalla de detalle para restaurantes típicos
 // Muestra información, menú, favoritos y reseñas del restaurante
 import '../services/translation_service.dart';
+import 'package:narino_travel_food/services/content_translations_qu.dart';
+import 'package:narino_travel_food/services/name_translations.dart';
 import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
 import 'package:narino_travel_food/models/restaurant.dart';
 import 'package:narino_travel_food/services/favorites_service.dart';
 import 'package:narino_travel_food/widgets/reviews_section.dart';
@@ -19,7 +22,7 @@ class RestaurantPage extends StatefulWidget {
 
 class _RestaurantPageState extends State<RestaurantPage>
     with TickerProviderStateMixin {
-  String? _translatedName;
+  String? _translatedDescription;
   Locale? _lastLocale;
   final FavoritesService _favoritesService = FavoritesService();
   late AnimationController _heartAnimationController;
@@ -55,15 +58,21 @@ class _RestaurantPageState extends State<RestaurantPage>
     if (_lastLocale == locale) return;
     _lastLocale = locale;
     final isEnglish = locale.languageCode == 'en';
-    if (isEnglish && widget.restaurant != null) {
-      final name = widget.restaurant!.name ?? '';
-      final nameTr = await TranslationService.translateText(name, 'es', 'en');
+    if (locale.languageCode == 'qu' && widget.restaurant != null) {
       setState(() {
-        _translatedName = nameTr;
+        _translatedDescription =
+            kichwaTexts[widget.restaurant!.description ?? ''];
+      });
+    } else if (isEnglish && widget.restaurant != null) {
+      final descTr = await TranslationService.translateText(
+          widget.restaurant!.description ?? '', 'es', 'en');
+      if (!mounted) return;
+      setState(() {
+        _translatedDescription = descTr.isEmpty ? null : descTr;
       });
     } else {
       setState(() {
-        _translatedName = null;
+        _translatedDescription = null;
       });
     }
   }
@@ -86,7 +95,8 @@ class _RestaurantPageState extends State<RestaurantPage>
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${widget.restaurant!.name} agregado a favoritos ❤️'),
+          content: Text(
+              '${widget.restaurant!.name} ${AppLocalizations.of(context)!.addedToFavorites} ❤️'),
           backgroundColor: Colors.green,
           duration: const Duration(seconds: 2),
         ),
@@ -94,11 +104,12 @@ class _RestaurantPageState extends State<RestaurantPage>
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${widget.restaurant!.name} eliminado de favoritos'),
+          content: Text(
+              '${widget.restaurant!.name} ${AppLocalizations.of(context)!.removedFromFavorites}'),
           backgroundColor: Colors.orange,
           duration: const Duration(seconds: 2),
           action: SnackBarAction(
-            label: 'Deshacer',
+            label: AppLocalizations.of(context)!.undo,
             onPressed: () {
               _favoritesService.addRestaurantToFavorites(widget.restaurant!);
             },
@@ -131,9 +142,9 @@ ${widget.restaurant!.description ?? 'Deliciosa gastronomía nariñense'}
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_translatedName ??
-            widget.restaurant?.name ??
-            'Detalles del Restaurante'),
+        title: Text(widget.restaurant?.name != null
+            ? localizedName(context, widget.restaurant!.name)
+            : AppLocalizations.of(context)!.restaurantDetails),
         // --- BOTONES DE FAVORITOS Y COMPARTIR ---
         actions: <Widget>[
           // Botón de favoritos con animación
@@ -162,7 +173,7 @@ ${widget.restaurant!.description ?? 'Deliciosa gastronomía nariñense'}
           IconButton(
             icon: const Icon(Icons.share),
             onPressed: _shareRestaurant,
-            tooltip: 'Compartir restaurante',
+            tooltip: AppLocalizations.of(context)!.shareRestaurant,
           ),
         ],
       ),
@@ -207,33 +218,35 @@ ${widget.restaurant!.description ?? 'Deliciosa gastronomía nariñense'}
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    _translatedName ??
-                        widget.restaurant?.name ??
-                        'Nombre no disponible',
+                    widget.restaurant?.name != null
+                        ? localizedName(context, widget.restaurant!.name)
+                        : AppLocalizations.of(context)!.nameUnavailable,
                     style: const TextStyle(
                         fontSize: 28, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    widget.restaurant?.address ?? 'Dirección no disponible',
+                    widget.restaurant?.address ??
+                        AppLocalizations.of(context)!.addressUnavailable,
                     style: const TextStyle(fontSize: 18, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    'Acerca del Restaurante',
+                  Text(
+                    AppLocalizations.of(context)!.aboutRestaurant,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    widget.restaurant?.description ??
-                        'Descripción no disponible.',
+                    _translatedDescription ??
+                        widget.restaurant?.description ??
+                        AppLocalizations.of(context)!.descriptionUnavailable,
                     style: const TextStyle(fontSize: 16),
                   ),
 
                   // SECCIÓN DE RESEÑAS
                   const SizedBox(height: 40),
-                  const Text(
-                    'Reseñas y opiniones',
+                  Text(
+                    AppLocalizations.of(context)!.reviewsAndOpinions,
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
