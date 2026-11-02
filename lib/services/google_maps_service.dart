@@ -28,6 +28,7 @@ class GoogleMapsService {
     'Piedra de Bolívar': LatLng(1.186010, -77.462789),
     'Termales de Chiles': LatLng(0.810049, -77.862713),
     'Cascada la Chilidoña': LatLng(0.921353, -77.444429),
+    'Cascada de la Paila': LatLng(0.908906, -77.637185),
     'Lagunas Glaciales': LatLng(0.9100, -77.7500),
     'Telares Indígenas': LatLng(0.8500, -77.8200),
     'Reservas de Biodiversidad': LatLng(1.0500, -77.6800),

@@ -497,6 +497,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/cascada_la_paila.jpg',
     city: 'Cascada de la Paila',
     country: 'Pupiales',
+    latitude: 0.908906,
+    longitude: -77.637185,
     description: 'Manglares y ecoturismo marino del Pacífico.',
     historyAndInfo:
         'La Cascada de la Paila, en Pupiales, es un atractivo natural que destaca por la presencia de manglares, aguas cristalinas y biodiversidad marina. El sitio es refugio de especies de flora y fauna, y promueve la conservación ambiental y el ecoturismo marino.\n\nLa Cascada de la Paila es ejemplo de integración entre turismo, educación ambiental y protección de los ecosistemas acuáticos en Nariño.',

@@ -25,6 +25,7 @@ class MapsService {
     'Centro Recreacional Comfamiliar': LatLng(1.1800, -77.3200),
     'Laguna Coba Negra': LatLng(1.2500, -77.2500),
     'Cascada la Chilidoña': LatLng(0.921353, -77.444429),
+    'Cascada de la Paila': LatLng(0.908906, -77.637185),
     // Agregar más coordenadas según necesites
   };
 
