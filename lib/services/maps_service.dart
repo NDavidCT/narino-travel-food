@@ -24,6 +24,7 @@ class MapsService {
     'Paramo Paja Blanca': LatLng(0.8800, -77.7200),
     'Centro Recreacional Comfamiliar': LatLng(1.1800, -77.3200),
     'Laguna Coba Negra': LatLng(1.2500, -77.2500),
+    'Cascada la Chilidoña': LatLng(0.921353, -77.444429),
     // Agregar más coordenadas según necesites
   };
 

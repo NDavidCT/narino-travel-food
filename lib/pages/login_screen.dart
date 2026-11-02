@@ -155,6 +155,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   const SizedBox(height: 8),
+                  // Logo de la aplicación
+                  Center(
+                    child: Semantics(
+                      image: true,
+                      label: 'Logo de Nariño Travel & Food',
+                      child: Container(
+                        width: 120,
+                        height: 120,
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        child: Image.asset(
+                          'assets/images/logo_narino.jpg',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   // Título de la app
                   const Text(
                     'Nariño Travel & Food',

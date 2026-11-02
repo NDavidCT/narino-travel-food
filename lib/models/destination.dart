@@ -547,6 +547,52 @@ List<Destination> destinations = [
         'La Reserva Osos de Anteojos, ubicada en La Planada, es un área protegida dedicada a la conservación del oso andino, especie emblemática y vulnerable de los Andes colombianos. La reserva es gestionada por la comunidad Awá, quienes han desarrollado proyectos de educación ambiental, investigación y turismo responsable.\n\nEl área alberga una gran diversidad de flora y fauna, siendo clave para la protección de especies amenazadas y la promoción de la integración comunitaria. La reserva es ejemplo de conservación participativa y de la relación armoniosa entre cultura y naturaleza en Nariño.',
     activities: ososAntejosActivities,
   ),
+  Destination(
+    imageUrl: 'assets/images/cascada_chilidona.png',
+    city: 'Cascada la Chilidoña',
+    country: 'Funes',
+    latitude: 0.921353,
+    longitude: -77.444429,
+    description:
+        'Ubicación: Se encuentra en la zona rural del municipio de Funes, rodeada por la biodiversidad típica de los Andes colombianos y un entorno montañoso privilegiado.\n\nEntorno natural: El área se destaca por su aire puro, quebradas cristalinas y una vegetación densa que hace del trayecto una experiencia ideal para desconectarse de la rutina.',
+    historyAndInfo:
+        'Patrimonio natural regional: Es considerada uno de los atractivos ecoturísticos más preciados de Funes y sus alrededores, muy apreciada por la comunidad local por su valor paisajístico.\n\nReconocimiento: Los visitantes suelen destacar su excelente conservación natural, lo que la convierte en un punto de interés clave para quienes buscan conocer la riqueza hídrica de Nariño.',
+    activities: chilidonaActivities,
+  ),
+];
+
+// Actividades para Cascada la Chilidoña
+List<Activity> chilidonaActivities = [
+  Activity(
+    imageUrl: 'assets/images/cascada_chilidona.png',
+    name: 'Caminata ecológica (Senderismo)',
+    type: 'Naturaleza',
+    historyAndInfo:
+        'Disfruta de rutas de trekking y senderos de montaña que conducen hasta la caída de agua, permitiendo apreciar la flora y fauna local.',
+    startTimes: ['8:00 am'],
+    rating: 5,
+    price: 0,
+  ),
+  Activity(
+    imageUrl: 'assets/images/fotografia_paisajes.jpg',
+    name: 'Fotografía de naturaleza',
+    type: 'Fotografía',
+    historyAndInfo:
+        'El paisaje montañoso y la imponente caída de agua brindan escenarios perfectos para capturar postales inolvidables.',
+    startTimes: ['8:00 am'],
+    rating: 5,
+    price: 0,
+  ),
+  Activity(
+    imageUrl: 'assets/images/avistamiento_aves.jpg',
+    name: 'Avistamiento de flora y fauna',
+    type: 'Naturaleza',
+    historyAndInfo:
+        'Ideal para observar aves andinas y especies vegetales propias de la región altoandina.',
+    startTimes: ['7:00 am'],
+    rating: 4,
+    price: 0,
+  ),
 ];
 // Actividades específicas para Laguna de Azufral
 List<Activity> azufralActivities = [
