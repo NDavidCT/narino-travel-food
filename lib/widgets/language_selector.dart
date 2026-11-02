@@ -20,8 +20,8 @@ class LanguageSelector extends StatelessWidget {
       normalizedLocale = const Locale('es');
     } else if (currentLocale.languageCode == 'en') {
       normalizedLocale = const Locale('en');
-    } else if (currentLocale.languageCode == 'qu') {
-      normalizedLocale = const Locale('qu');
+    } else if (['qu', 'pt', 'fr', 'de', 'zh'].contains(currentLocale.languageCode)) {
+      normalizedLocale = Locale(currentLocale.languageCode);
     } else {
       normalizedLocale = const Locale('es'); // fallback
     }
@@ -43,6 +43,10 @@ class LanguageSelector extends StatelessWidget {
             value: const Locale('qu'),
             child: Text(AppLocalizations.of(context)?.kichwa ?? 'Kichwa'),
           ),
+          const DropdownMenuItem(value: Locale('pt'), child: Text('Português')),
+          const DropdownMenuItem(value: Locale('fr'), child: Text('Français')),
+          const DropdownMenuItem(value: Locale('de'), child: Text('Deutsch')),
+          const DropdownMenuItem(value: Locale('zh'), child: Text('中文')),
         ],
         onChanged: (locale) {
           if (locale != null) {

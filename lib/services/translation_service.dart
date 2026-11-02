@@ -3,6 +3,21 @@
 import 'package:translator/translator.dart';
 
 class TranslationService {
+  // Idiomas de la app que Google Translate puede traducir desde español
+  static String? googleCode(String lang) {
+    switch (lang) {
+      case 'en':
+      case 'pt':
+      case 'fr':
+      case 'de':
+        return lang;
+      case 'zh':
+        return 'zh-cn';
+      default:
+        return null;
+    }
+  }
+
   // Instancia de GoogleTranslator
   static final GoogleTranslator _translator = GoogleTranslator();
 

@@ -39,7 +39,7 @@ class _TranslatedTextState extends State<TranslatedText> {
 
   Future<void> _update() async {
     final lang = Localizations.localeOf(context).languageCode;
-    final isEnglish = lang == 'en';
+    final target = TranslationService.googleCode(lang);
     final key = '$lang|${widget.text}';
     if (_requestKey == key) return;
     _requestKey = key;
@@ -47,12 +47,12 @@ class _TranslatedTextState extends State<TranslatedText> {
       setState(() => _translated = kichwaTexts[widget.text]);
       return;
     }
-    if (!isEnglish || widget.text.trim().isEmpty) {
+    if (target == null || widget.text.trim().isEmpty) {
       if (_translated != null) setState(() => _translated = null);
       return;
     }
     final result =
-        await TranslationService.translateText(widget.text, 'es', 'en');
+        await TranslationService.translateText(widget.text, 'es', target);
     if (!mounted || _requestKey != key) return;
     setState(() => _translated = result);
   }

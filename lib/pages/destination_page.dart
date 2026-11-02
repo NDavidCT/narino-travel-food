@@ -68,7 +68,8 @@ class _DestinationPageState extends State<DestinationPage>
     final locale = Localizations.localeOf(context);
     if (_lastLocale == locale) return;
     _lastLocale = locale;
-    final isEnglish = locale.languageCode == 'en';
+    final target = TranslationService.googleCode(locale.languageCode);
+    final isEnglish = target != null;
     if (locale.languageCode == 'qu') {
       final desc = widget.destination.description ?? '';
       final hist = widget.destination.historyAndInfo ?? '';
@@ -91,16 +92,16 @@ class _DestinationPageState extends State<DestinationPage>
       // Traducir descripción e historia
       final desc = widget.destination.description ?? '';
       final hist = widget.destination.historyAndInfo ?? '';
-      final descTr = await TranslationService.translateText(desc, 'es', 'en');
-      final histTr = await TranslationService.translateText(hist, 'es', 'en');
+      final descTr = await TranslationService.translateText(desc, 'es', target);
+      final histTr = await TranslationService.translateText(hist, 'es', target);
       final names = <String, String>{};
       final types = <String, String>{};
       await Future.wait((widget.destination.activities ?? []).map((a) async {
         final key = a.name ?? '';
         names[key] =
-            await TranslationService.translateText(key, 'es', 'en');
+            await TranslationService.translateText(key, 'es', target);
         types[key] = await TranslationService.translateText(
-            a.type ?? '', 'es', 'en');
+            a.type ?? '', 'es', target);
       }));
       if (!mounted) return;
       setState(() {

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:narino_travel_food/l10n/app_localizations.dart';
 import 'package:narino_travel_food/l10n/kichwa_fallback_delegates.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -118,6 +118,10 @@ class _MyAppState extends State<MyApp> {
         Locale('es'),
         Locale('en'),
         Locale('qu'),
+        Locale('pt'),
+        Locale('fr'),
+        Locale('de'),
+        Locale('zh'),
       ],
       // Rutas de navegación
       routes: {

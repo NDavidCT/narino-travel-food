@@ -57,7 +57,8 @@ class _RestaurantPageState extends State<RestaurantPage>
     final locale = Localizations.localeOf(context);
     if (_lastLocale == locale) return;
     _lastLocale = locale;
-    final isEnglish = locale.languageCode == 'en';
+    final target = TranslationService.googleCode(locale.languageCode);
+    final isEnglish = target != null;
     if (locale.languageCode == 'qu' && widget.restaurant != null) {
       setState(() {
         _translatedDescription =
@@ -65,7 +66,7 @@ class _RestaurantPageState extends State<RestaurantPage>
       });
     } else if (isEnglish && widget.restaurant != null) {
       final descTr = await TranslationService.translateText(
-          widget.restaurant!.description ?? '', 'es', 'en');
+          widget.restaurant!.description ?? '', 'es', target);
       if (!mounted) return;
       setState(() {
         _translatedDescription = descTr.isEmpty ? null : descTr;
